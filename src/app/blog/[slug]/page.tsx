@@ -41,7 +41,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   const post = getPostBySlug(slug)
   if (!post) notFound()
 
-  const jsonLd = {
+  const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
@@ -62,12 +62,58 @@ export default async function BlogPostPage({ params }: PageProps) {
     },
   }
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Accueil",
+        item: "https://louisdecaumont.fr",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: "https://louisdecaumont.fr/blog",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: `https://louisdecaumont.fr/blog/${slug}`,
+      },
+    ],
+  }
+
+  const schemas: Record<string, unknown>[] = [articleJsonLd, breadcrumbJsonLd]
+
+  if (post.faq.length > 0) {
+    const faqJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: post.faq.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
+    }
+    schemas.push(faqJsonLd)
+  }
+
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      {schemas.map((schema, index) => (
+        <script
+          key={`schema-${schema["@type"]}-${index}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
       <BlogArticle post={post} />
     </>
   )

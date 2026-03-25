@@ -5,12 +5,18 @@ import readingTime from "reading-time"
 
 const BLOG_DIR = path.join(process.cwd(), "src/content/blog")
 
+export interface FAQ {
+  question: string
+  answer: string
+}
+
 export interface BlogPost {
   slug: string
   title: string
   description: string
   date: string
   keywords: string[]
+  faq: FAQ[]
   readingTime: string
   content: string
 }
@@ -43,6 +49,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
     description: data.description ?? "",
     date: data.date ?? "",
     keywords: data.keywords ?? [],
+    faq: data.faq ?? [],
     readingTime: stats.text.replace("read", "de lecture"),
     content,
   }

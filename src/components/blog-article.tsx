@@ -3,6 +3,8 @@ import { MDXRemote } from "next-mdx-remote/rsc"
 import remarkGfm from "remark-gfm"
 import { BlogArticleHeader } from "@/components/blog-article-header"
 import { BlogArticleCTA } from "@/components/blog-article-cta"
+import { BlogFAQ } from "@/components/blog-faq"
+import { BlogBreadcrumb } from "@/components/blog-breadcrumb"
 import type { BlogPost } from "@/lib/blog"
 
 const mdxComponents = {
@@ -98,6 +100,7 @@ const mdxComponents = {
 export function BlogArticle({ post }: Readonly<{ post: BlogPost }>) {
   return (
     <article className="mx-auto max-w-3xl px-6 pt-32 pb-20">
+      <BlogBreadcrumb title={post.title} />
       <BlogArticleHeader post={post} />
 
       <hr className="mb-10 border-border" />
@@ -110,6 +113,7 @@ export function BlogArticle({ post }: Readonly<{ post: BlogPost }>) {
         />
       </div>
 
+      <BlogFAQ faqs={post.faq} />
       <BlogArticleCTA />
     </article>
   )
