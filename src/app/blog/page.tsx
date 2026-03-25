@@ -14,6 +14,7 @@ export const metadata: Metadata = {
       "Articles sur le développement web, Next.js, React, SEO et la création de sites performants.",
     type: "website",
     locale: "fr_FR",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Blog Louis de Caumont" }],
   },
 }
 

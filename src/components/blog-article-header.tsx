@@ -39,10 +39,17 @@ export function BlogArticleHeader({
         transition={{ duration: 0.5, delay: 0.1 }}
       >
         <div className="mb-4 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-          <span className="flex items-center gap-1.5">
+          <address className="not-italic">
+            Par{" "}
+            <a rel="author" href="/a-propos" className="font-medium text-foreground hover:underline">
+              Louis de Caumont
+            </a>
+          </address>
+          <span className="text-muted-foreground/30">|</span>
+          <time dateTime={post.date} className="flex items-center gap-1.5">
             <Calendar size={14} />
             {formatDate(post.date)}
-          </span>
+          </time>
           <span className="flex items-center gap-1.5">
             <Clock size={14} />
             {post.readingTime}

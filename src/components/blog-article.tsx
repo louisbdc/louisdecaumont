@@ -64,7 +64,7 @@ const mdxComponents = {
   ),
   hr: () => <hr className="my-10 border-border" />,
   table: (props: React.HTMLAttributes<HTMLTableElement>) => (
-    <div className="my-6 overflow-x-auto rounded-xl border border-border">
+    <div className="my-6 overflow-x-auto rounded-xl border border-border" role="region" aria-label="Tableau comparatif">
       <table className="w-full text-sm" {...props} />
     </div>
   ),
