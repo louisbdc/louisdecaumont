@@ -77,6 +77,49 @@ export default function MentionsLegales() {
               autorisation préalable est interdite.
             </p>
           </section>
+
+          <section>
+            <h2 className="mb-3 text-lg font-semibold text-foreground">
+              Cookies et mesure d&apos;audience
+            </h2>
+            <p>
+              Ce site utilise Google Analytics 4 pour mesurer l&apos;audience
+              et comprendre comment les visiteurs interagissent avec le contenu.
+              Google Analytics collecte des données anonymisées telles que les
+              pages visitées, la durée de la session et le type d&apos;appareil
+              utilisé. Ces informations servent uniquement à améliorer
+              l&apos;expérience utilisateur et le contenu du site.
+            </p>
+            <p className="mt-3">
+              Aucun cookie publicitaire n&apos;est déposé. Vous pouvez
+              désactiver le suivi Google Analytics en installant le module
+              complémentaire de navigateur disponible sur le site de Google.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="mb-3 text-lg font-semibold text-foreground">
+              Liens externes
+            </h2>
+            <p>
+              Ce site contient des liens vers des sites tiers (projets clients,
+              réseaux sociaux, outils). Louis de Caumont ne peut être tenu
+              responsable du contenu de ces sites externes ni de leurs
+              pratiques en matière de protection des données personnelles.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="mb-3 text-lg font-semibold text-foreground">
+              Mise à jour
+            </h2>
+            <p>
+              Cette page a été mise à jour le 25 mars 2026. Louis de Caumont
+              se réserve le droit de modifier ces mentions légales et cette
+              politique de confidentialité à tout moment. Les modifications
+              prennent effet dès leur publication sur cette page.
+            </p>
+          </section>
         </div>
       </div>
     </div>
