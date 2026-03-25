@@ -58,6 +58,11 @@ export default function BlogPage() {
           vous. Je partage également des études de cas tirées de projets réels
           et des analyses des tendances du développement web en France.
         </p>
+        <p className="mt-3 text-base text-muted-foreground leading-relaxed">
+          Tous les articles sont rédigés par Louis de Caumont, développeur
+          freelance basé à Lyon avec plus de 12 projets livrés dans des
+          secteurs variés : SaaS, santé, BTP, finance et mobilité.
+        </p>
       </div>
 
       {posts.length === 0 ? (

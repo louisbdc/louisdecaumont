@@ -86,7 +86,9 @@ export function ContactPage() {
             Basé à Lyon, je travaille avec des clients dans toute la France et
             en Belgique. Que votre projet soit simple ou complexe, chaque
             demande reçoit une réponse détaillée et adaptée à vos objectifs
-            business, votre budget et vos contraintes techniques.
+            business, votre budget et vos contraintes techniques. Mes
+            spécialités : Next.js, React, TypeScript, Flutter et le SEO
+            technique.
           </p>
         </motion.div>
 
