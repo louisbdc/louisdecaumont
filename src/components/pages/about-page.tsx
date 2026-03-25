@@ -176,6 +176,39 @@ export function AboutPage() {
           <AutoRevealParagraph text="Développeur full-stack basé à Lyon, formé à Epitech. Je conçois des sites web et des applications mobiles qui convertissent. Next.js, Flutter, SEO, performance. Plus de 12 projets livrés pour des clients allant du SaaS à l'artisan." />
         </div>
 
+        {/* Approach */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-24"
+        >
+          <h2 className="mb-8 text-sm font-medium uppercase tracking-widest text-muted-foreground">
+            Mon approche
+          </h2>
+          <div className="glass neu-shadow rounded-2xl p-8">
+            <p className="text-base leading-relaxed text-muted-foreground">
+              Je crois qu&apos;un bon site web ne se limite pas à un joli design.
+              Il doit charger vite, être trouvable sur Google, et surtout aider
+              votre activité à se développer. Ma philosophie de travail repose sur
+              trois piliers : la performance technique, la clarté du message et la
+              mesure des résultats. Chaque décision de conception est guidée par
+              les données et les objectifs concrets de votre entreprise.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              Je privilégie les technologies modernes comme Next.js et React
+              parce qu&apos;elles permettent de construire des sites rapides,
+              accessibles et faciles à faire évoluer. Le SEO technique est
+              intégré dès la première ligne de code, pas ajouté comme une couche
+              après coup. Et parce que chaque projet est différent, je prends le
+              temps de comprendre votre métier avant de proposer une solution.
+              Pas de templates génériques, pas de fonctionnalités inutiles :
+              uniquement ce qui sert votre croissance.
+            </p>
+          </div>
+        </motion.div>
+
         {/* Skills grid */}
         <motion.div
           initial={{ opacity: 0 }}

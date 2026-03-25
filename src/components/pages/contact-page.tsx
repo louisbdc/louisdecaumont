@@ -76,6 +76,11 @@ export function ContactPage() {
             Un projet en tête ? Une question ? Je suis disponible pour en
             discuter et trouver la meilleure solution pour vos besoins.
           </p>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+            Décrivez votre projet en quelques lignes. Je reviens vers vous sous
+            48h avec une première analyse et une estimation. Premier échange
+            gratuit et sans engagement.
+          </p>
         </motion.div>
 
         <div className="grid gap-12 lg:grid-cols-2">
@@ -228,6 +233,58 @@ export function ContactPage() {
             </div>
           </motion.div>
         </div>
+
+        {/* FAQ */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-20"
+        >
+          <h2 className="mb-8 text-sm font-medium uppercase tracking-widest text-muted-foreground">
+            Questions fréquentes
+          </h2>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="glass neu-shadow-sm rounded-2xl p-6">
+              <h3 className="mb-2 text-base font-semibold text-foreground">
+                Comment se déroule un premier échange ?
+              </h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                Après réception de votre message, je vous propose un appel de 30
+                minutes pour comprendre votre projet en détail. Nous discutons
+                de vos objectifs, de vos contraintes techniques et de votre
+                budget. Cet échange est gratuit et sans engagement, il me permet
+                de vous proposer une solution adaptée.
+              </p>
+            </div>
+            <div className="glass neu-shadow-sm rounded-2xl p-6">
+              <h3 className="mb-2 text-base font-semibold text-foreground">
+                Quels sont les délais habituels ?
+              </h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                Un site vitrine est généralement livré en 2 à 4 semaines. Pour
+                une application web ou mobile plus complexe, comptez 4 à 8
+                semaines selon les fonctionnalités. Je fournis un planning
+                détaillé dès le devis, avec des points d&apos;étape réguliers
+                pour suivre l&apos;avancement du projet.
+              </p>
+            </div>
+            <div className="glass neu-shadow-sm rounded-2xl p-6">
+              <h3 className="mb-2 text-base font-semibold text-foreground">
+                Que comprend le tarif ?
+              </h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                Le devis inclut la conception, le développement, les tests,
+                le déploiement et une formation à la prise en main. Le SEO
+                technique de base et l&apos;optimisation des performances sont
+                inclus dans chaque projet. La maintenance et les évolutions
+                futures sont proposées en option avec un forfait mensuel adapté
+                à vos besoins.
+              </p>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </div>
   )

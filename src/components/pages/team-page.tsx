@@ -110,6 +110,17 @@ export function TeamPage() {
             Un réseau de talents spécialisés, orchestré pour chaque projet.
             Développement, design, SEO et accompagnement. Tout est couvert.
           </p>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+            Chaque projet est unique, et les compétences nécessaires varient.
+            Plutôt que de tout faire seul, je m&apos;appuie sur un réseau de
+            freelances et de partenaires de confiance, sélectionnés pour leur
+            expertise dans leur domaine. Cette approche collaborative garantit
+            un haut niveau de qualité sur chaque aspect de votre projet :
+            développement, design, référencement et accompagnement. Je reste
+            votre interlocuteur unique et je coordonne l&apos;ensemble des
+            interventions pour que vous n&apos;ayez qu&apos;un seul point de
+            contact, du premier échange à la livraison.
+          </p>
         </motion.div>
 
         {/* Team members */}

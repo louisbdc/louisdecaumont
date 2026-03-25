@@ -40,6 +40,24 @@ export default function BlogPage() {
           Pour entrepreneurs et décideurs qui veulent faire les bons choix
           techniques.
         </p>
+        <p className="mt-4 text-base text-muted-foreground leading-relaxed">
+          Vous trouverez ici des articles concrets sur la création de sites web
+          performants avec Next.js et React, l&apos;optimisation du
+          référencement naturel (SEO), et les meilleures pratiques pour
+          améliorer la vitesse de chargement et les Core Web Vitals de votre
+          site. Chaque article est écrit pour être actionnable : des
+          explications claires, des exemples de code et des conseils que vous
+          pouvez appliquer immédiatement à votre projet.
+        </p>
+        <p className="mt-3 text-base text-muted-foreground leading-relaxed">
+          Que vous soyez entrepreneur cherchant à comprendre les enjeux
+          techniques de votre site, décideur souhaitant évaluer les options
+          technologiques pour votre entreprise, ou développeur en quête de
+          retours d&apos;expérience sur des stacks modernes comme TypeScript,
+          Tailwind CSS ou les architectures serverless, ce blog est fait pour
+          vous. Je partage également des études de cas tirées de projets réels
+          et des analyses des tendances du développement web en France.
+        </p>
       </div>
 
       {posts.length === 0 ? (
