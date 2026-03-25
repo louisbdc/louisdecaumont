@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# squirrelscan
+squirrel.toml
+.squirrel/
+
+# scripts
+/scripts/
+
+# IDE
+.vscode/
+.idea/
