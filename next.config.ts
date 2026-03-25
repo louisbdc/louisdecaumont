@@ -22,18 +22,6 @@ const nextConfig: NextConfig = {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=()",
           },
-          {
-            key: "Content-Security-Policy",
-            value: [
-              "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com",
-              "style-src 'self' 'unsafe-inline'",
-              "img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com",
-              "font-src 'self'",
-              "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://*.google-analytics.com https://formspree.io",
-              "frame-ancestors 'none'",
-            ].join("; "),
-          },
         ],
       },
     ];
