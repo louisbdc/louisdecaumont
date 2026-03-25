@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Mentions légales & Politique de confidentialité — Louis de Caumont",
+  title: "Mentions légales & Confidentialité — Louis de Caumont",
   description:
     "Mentions légales et politique de confidentialité du site louisdecaumont.fr. Informations sur la collecte et le traitement des données personnelles.",
   alternates: { canonical: "/mentions-legales" },

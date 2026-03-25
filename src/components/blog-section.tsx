@@ -1,21 +1,6 @@
-import type { Metadata } from "next"
 import Link from "next/link"
 import { getAllPosts } from "@/lib/blog"
 import { ArrowRight, Clock, Calendar } from "lucide-react"
-
-export const metadata: Metadata = {
-  title: "Blog Dev Web, SEO & Performance — Louis de Caumont",
-  description:
-    "Articles sur le développement web, Next.js, React, SEO et la création de sites performants. Guides pratiques pour entrepreneurs et décideurs.",
-  alternates: { canonical: "/blog" },
-  openGraph: {
-    title: "Blog Dev Web, SEO & Performance — Louis de Caumont",
-    description:
-      "Articles sur le développement web, Next.js, React, SEO et la création de sites performants.",
-    type: "website",
-    locale: "fr_FR",
-  },
-}
 
 function formatDate(dateString: string): string {
   return new Date(dateString).toLocaleDateString("fr-FR", {
@@ -25,25 +10,26 @@ function formatDate(dateString: string): string {
   })
 }
 
-export default function BlogPage() {
-  const posts = getAllPosts()
+export function BlogSection() {
+  const posts = getAllPosts().slice(0, 3)
+
+  if (posts.length === 0) return null
 
   return (
-    <section className="mx-auto max-w-4xl px-6 pt-32 pb-20">
-      <div className="mb-16">
-        <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-          Blog
-        </h1>
-        <p className="mt-4 text-lg text-muted-foreground">
-          Guides pratiques sur le développement web, le SEO et la performance.
-          Pour entrepreneurs et décideurs qui veulent faire les bons choix
-          techniques.
-        </p>
-      </div>
+    <section id="blog" className="px-6 py-24">
+      <div className="mx-auto max-w-4xl">
+        <div className="mb-12 text-center">
+          <p className="mb-4 text-sm font-medium uppercase tracking-widest text-muted-foreground">
+            Blog
+          </p>
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            Derniers articles
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground">
+            Guides pratiques sur le développement web, le SEO et la performance.
+          </p>
+        </div>
 
-      {posts.length === 0 ? (
-        <p className="text-muted-foreground">Aucun article pour le moment.</p>
-      ) : (
         <div className="flex flex-col gap-6">
           {posts.map((post) => (
             <Link
@@ -63,9 +49,9 @@ export default function BlogPage() {
                   </span>
                 </div>
 
-                <h2 className="text-xl font-semibold tracking-tight text-foreground transition-colors duration-200 group-hover:text-accent sm:text-2xl">
+                <h3 className="text-xl font-semibold tracking-tight text-foreground transition-colors duration-200 group-hover:text-accent sm:text-2xl">
                   {post.title}
-                </h2>
+                </h3>
 
                 <p className="text-muted-foreground leading-relaxed">
                   {post.description}
@@ -93,7 +79,17 @@ export default function BlogPage() {
             </Link>
           ))}
         </div>
-      )}
+
+        <div className="mt-10 text-center">
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 rounded-2xl bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:shadow-lg"
+          >
+            Voir tous les articles
+            <ArrowRight size={14} />
+          </Link>
+        </div>
+      </div>
     </section>
   )
 }

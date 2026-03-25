@@ -27,11 +27,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       locale: "fr_FR",
       publishedTime: post.date,
       authors: ["Louis de Caumont"],
+      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: post.title }],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.description,
+      images: ["/og-image.png"],
     },
   }
 }
@@ -52,9 +54,14 @@ export default async function BlogPostPage({ params }: PageProps) {
       name: "Louis de Caumont",
       url: "https://louisdecaumont.fr",
     },
+    image: "https://www.louisdecaumont.fr/og-image.png",
     publisher: {
-      "@type": "Person",
+      "@type": "Organization",
       name: "Louis de Caumont",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.louisdecaumont.fr/logo.png",
+      },
     },
     mainEntityOfPage: {
       "@type": "WebPage",

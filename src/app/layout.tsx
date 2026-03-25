@@ -18,22 +18,38 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://louisdecaumont.fr"),
   title: "Louis de Caumont — Développeur Web Freelance à Lyon",
   description:
-    "Portfolio de Louis de Caumont, développeur web freelance à Lyon. Création de sites web sur mesure, du site vitrine à la plateforme SaaS. Next.js, React, TypeScript.",
+    "Louis de Caumont, développeur web freelance à Lyon. Création de sites performants sur mesure : site vitrine, SaaS, e-commerce. Next.js, React, TypeScript.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: "Louis de Caumont — Développeur Web Freelance à Lyon",
     description:
-      "Portfolio de Louis de Caumont, développeur web freelance à Lyon. Création de sites web sur mesure, du site vitrine à la plateforme SaaS. Next.js, React, TypeScript.",
+      "Louis de Caumont, développeur web freelance à Lyon. Création de sites performants sur mesure : site vitrine, SaaS, e-commerce. Next.js, React, TypeScript.",
     type: "website",
     locale: "fr_FR",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Louis de Caumont — Développeur Web Freelance",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Louis de Caumont — Développeur Web Freelance à Lyon",
     description:
-      "Portfolio de Louis de Caumont, développeur web freelance à Lyon. Création de sites web sur mesure, du site vitrine à la plateforme SaaS. Next.js, React, TypeScript.",
+      "Louis de Caumont, développeur web freelance à Lyon. Création de sites performants sur mesure : site vitrine, SaaS, e-commerce. Next.js, React, TypeScript.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Louis de Caumont — Développeur Web Freelance",
+      },
+    ],
   },
 }
 

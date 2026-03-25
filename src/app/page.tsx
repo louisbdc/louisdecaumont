@@ -2,6 +2,7 @@ import { Hero } from "@/components/hero"
 import { TechMarquee } from "@/components/tech-marquee"
 import { ProjectsSection } from "@/components/projects-section"
 import { AboutSection } from "@/components/about-section"
+import { BlogSection } from "@/components/blog-section"
 import { ContactSection } from "@/components/contact-section"
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
       <TechMarquee />
       <ProjectsSection />
       <AboutSection />
+      <BlogSection />
       <ContactSection />
     </>
   )
