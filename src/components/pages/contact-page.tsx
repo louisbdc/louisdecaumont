@@ -77,9 +77,16 @@ export function ContactPage() {
             discuter et trouver la meilleure solution pour vos besoins.
           </p>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
-            Décrivez votre projet en quelques lignes. Je reviens vers vous sous
-            48h avec une première analyse et une estimation. Premier échange
-            gratuit et sans engagement.
+            Décrivez votre projet en quelques lignes : site vitrine, application
+            web, plateforme SaaS ou refonte de site existant. Je reviens vers
+            vous sous 48h avec une première analyse et une estimation
+            personnalisée. Premier échange gratuit et sans engagement.
+          </p>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            Basé à Lyon, je travaille avec des clients dans toute la France et
+            en Belgique. Que votre projet soit simple ou complexe, chaque
+            demande reçoit une réponse détaillée et adaptée à vos objectifs
+            business, votre budget et vos contraintes techniques.
           </p>
         </motion.div>
 

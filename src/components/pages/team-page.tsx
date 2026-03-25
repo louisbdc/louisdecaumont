@@ -177,6 +177,13 @@ export function TeamPage() {
           >
             Nos valeurs
           </motion.h2>
+          <p className="mb-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            Ces quatre principes guident chaque décision, de la première
+            maquette au déploiement final. Ils garantissent que votre projet
+            est livré avec le niveau de qualité, de transparence et de
+            réactivité que vous attendez d&apos;un partenaire technique de
+            confiance.
+          </p>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((value, i) => (
