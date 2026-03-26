@@ -1,26 +1,10 @@
 "use client"
 
-import { useRef, useState, useEffect, useMemo } from "react"
+import { useRef, useState } from "react"
 import Image from "next/image"
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useMotionValue,
-  useMotionValueEvent,
-  type MotionValue,
-} from "framer-motion"
-import { ExternalLink } from "lucide-react"
+import { motion } from "framer-motion"
+import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react"
 import { projects, type Project } from "@/data/projects"
-
-const CARD_GAP = 24
-const PADDING = 24
-const ARC_HEIGHT = 60
-
-function getCardWidth() {
-  if (typeof window === "undefined") return 340
-  return window.innerWidth < 640 ? Math.min(340, window.innerWidth - 48) : 420
-}
 
 const categories = [
   { value: "all", label: "Tous" },
@@ -31,45 +15,6 @@ const categories = [
 ] as const
 
 type CategoryValue = (typeof categories)[number]["value"]
-
-function ArcCard({
-  children,
-  index,
-  trackX,
-}: {
-  readonly children: React.ReactNode
-  readonly index: number
-  readonly trackX: MotionValue<number>
-}) {
-  // Use MotionValues instead of useState to avoid setState-during-render
-  const cardY = useMotionValue(0)
-  const cardScale = useMotionValue(1)
-
-  useMotionValueEvent(trackX, "change", (latestX) => {
-    if (typeof window === "undefined") return
-    const cardW = getCardWidth()
-    const viewportCenter = window.innerWidth / 2
-    const cardLeft = PADDING + index * (cardW + CARD_GAP) + latestX
-    const cardCenter = cardLeft + cardW / 2
-    const distFromCenter = (cardCenter - viewportCenter) / viewportCenter
-    const clamped = Math.max(-1, Math.min(1, distFromCenter))
-    cardY.set(-ARC_HEIGHT * (1 - clamped * clamped))
-    cardScale.set(0.96 + 0.08 * (1 - clamped * clamped))
-  })
-
-  return (
-    <motion.div
-      className="shrink-0"
-      style={{
-        y: cardY,
-        scale: cardScale,
-        willChange: "transform",
-      }}
-    >
-      {children}
-    </motion.div>
-  )
-}
 
 function ProjectCardContent({ project }: { readonly project: Project }) {
   return (
@@ -124,76 +69,61 @@ function ProjectCardContent({ project }: { readonly project: Project }) {
 }
 
 export function ProjectsSection() {
-  const containerRef = useRef<HTMLElement>(null)
+  const trackRef = useRef<HTMLDivElement>(null)
   const [activeCategory, setActiveCategory] = useState<CategoryValue>("all")
-  const [scrollRange, setScrollRange] = useState(0)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(true)
 
   const filteredProjects =
     activeCategory === "all"
       ? projects
       : projects.filter((p) => p.category === activeCategory)
 
-  const totalCards = filteredProjects.length + 1
+  function updateScrollButtons() {
+    const el = trackRef.current
+    if (!el) return
+    setCanScrollLeft(el.scrollLeft > 10)
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10)
+  }
 
-  useEffect(() => {
-    const measure = () => {
-      const cardW = getCardWidth()
-      const totalWidth =
-        totalCards * cardW + (totalCards - 1) * CARD_GAP + PADDING * 2
-      const viewportWidth = window.innerWidth
-      setScrollRange(Math.max(0, totalWidth - viewportWidth))
-    }
-    measure()
-    window.addEventListener("resize", measure)
-    return () => window.removeEventListener("resize", measure)
-  }, [totalCards])
+  function scrollBy(direction: "left" | "right") {
+    const el = trackRef.current
+    if (!el) return
+    const cardWidth = window.innerWidth < 640 ? 340 : 420
+    const amount = direction === "left" ? -cardWidth - 24 : cardWidth + 24
+    el.scrollBy({ left: amount, behavior: "smooth" })
+  }
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  })
-
-  // Use callback form so it always reads the latest scrollRange
-  const scrollRangeRef = useRef(0)
-  scrollRangeRef.current = scrollRange
-  const x = useTransform(scrollYProgress, (v) => -v * scrollRangeRef.current)
-
-  const sectionHeight = Math.max(
-    200,
-    100 + Math.ceil(totalCards / 2.5) * 100
-  )
 
   return (
-    <section
-      ref={containerRef}
-      id="projets"
-      className="relative"
-      style={{ height: `${sectionHeight}vh` }}
-    >
-      <div className="sticky top-0 flex h-screen flex-col overflow-hidden pt-24">
-        <div className="px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="mb-6 flex flex-col items-center gap-4 sm:flex-row sm:items-end sm:justify-between"
-          >
-            <div>
-              <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                Projets sélectionnés
-              </h2>
-              <p className="mt-2 text-muted-foreground">
-                {filteredProjects.length} projets · scroll pour explorer
-              </p>
-            </div>
+    <section id="projets" className="relative py-20">
+      <div className="px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+          className="mb-8 flex flex-col items-center gap-4 sm:flex-row sm:items-end sm:justify-between"
+        >
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              Projets sélectionnés
+            </h2>
+            <p className="mt-2 text-muted-foreground">
+              {filteredProjects.length} projets · glissez pour explorer
+            </p>
+          </div>
 
+          <div className="flex items-center gap-3">
             <div className="glass neu-shadow-sm flex gap-1 overflow-x-auto rounded-2xl p-1.5">
               {categories.map((cat) => (
                 <button
                   key={cat.value}
                   type="button"
-                  onClick={() => setActiveCategory(cat.value)}
+                  onClick={() => {
+                    setActiveCategory(cat.value)
+                    trackRef.current?.scrollTo({ left: 0, behavior: "smooth" })
+                  }}
                   className={`cursor-pointer whitespace-nowrap rounded-xl px-4 py-2 text-sm font-medium transition-all duration-300 ${
                     activeCategory === cat.value
                       ? "bg-primary text-primary-foreground shadow-sm"
@@ -204,32 +134,57 @@ export function ProjectsSection() {
                 </button>
               ))}
             </div>
-          </motion.div>
-        </div>
 
-        <div className="flex flex-1 items-center overflow-hidden">
-          <motion.div style={{ x }} className="flex items-end gap-6 px-6">
-            {filteredProjects.map((project, i) => (
-              <ArcCard key={project.url} index={i} trackX={x}>
-                <ProjectCardContent project={project} />
-              </ArcCard>
-            ))}
+            <div className="hidden gap-1.5 sm:flex">
+              <button
+                type="button"
+                onClick={() => scrollBy("left")}
+                disabled={!canScrollLeft}
+                className="rounded-xl border border-border p-2 text-muted-foreground transition-all duration-200 hover:border-foreground/20 hover:text-foreground disabled:opacity-30 disabled:hover:border-border disabled:hover:text-muted-foreground"
+                aria-label="Projet précédent"
+              >
+                <ChevronLeft size={18} />
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollBy("right")}
+                disabled={!canScrollRight}
+                className="rounded-xl border border-border p-2 text-muted-foreground transition-all duration-200 hover:border-foreground/20 hover:text-foreground disabled:opacity-30 disabled:hover:border-border disabled:hover:text-muted-foreground"
+                aria-label="Projet suivant"
+              >
+                <ChevronRight size={18} />
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      </div>
 
-            {/* End card — CTA */}
-            <ArcCard index={filteredProjects.length} trackX={x}>
-              <div className="flex h-[440px] w-[calc(100vw-48px)] max-w-[340px] shrink-0 flex-col items-center justify-center rounded-2xl glass neu-shadow sm:h-[480px] sm:max-w-[420px]">
-                <p className="mb-4 text-lg font-semibold text-foreground">
-                  Un projet en tête ?
-                </p>
-                <a
-                  href="#contact"
-                  className="inline-flex cursor-pointer items-center gap-2 rounded-2xl bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:shadow-lg"
-                >
-                  Discutons-en
-                </a>
-              </div>
-            </ArcCard>
-          </motion.div>
+      {/* Horizontal scroll track */}
+      <div
+        ref={trackRef}
+        onScroll={updateScrollButtons}
+        data-lenis-prevent
+        className="flex gap-6 overflow-x-auto px-6 pb-4 scrollbar-hide"
+      >
+        {filteredProjects.map((project) => (
+          <div key={project.url} className="shrink-0">
+            <ProjectCardContent project={project} />
+          </div>
+        ))}
+
+        {/* End card — CTA */}
+        <div className="shrink-0">
+          <div className="flex h-[440px] w-[calc(100vw-48px)] max-w-[340px] shrink-0 flex-col items-center justify-center rounded-2xl glass neu-shadow sm:h-[480px] sm:max-w-[420px]">
+            <p className="mb-4 text-lg font-semibold text-foreground">
+              Un projet en tête ?
+            </p>
+            <a
+              href="#contact"
+              className="inline-flex cursor-pointer items-center gap-2 rounded-2xl bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:shadow-lg"
+            >
+              Discutons-en
+            </a>
+          </div>
         </div>
       </div>
     </section>
