@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { motion } from "framer-motion"
 import {
   Code2,
@@ -154,21 +155,38 @@ export function AboutPage() {
   return (
     <div className="px-6 pt-32 pb-24">
       <div className="mx-auto max-w-5xl">
-        {/* Header */}
+        {/* Header with photo */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-20"
+          className="mb-20 flex flex-col items-start gap-10 md:flex-row md:items-center md:gap-16"
         >
-          <p className="mb-3 text-sm font-medium uppercase tracking-widest text-muted-foreground">
-            À propos
-          </p>
-          <h1 className="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl">
-            Créer des expériences
-            <br />
-            qui marquent
-          </h1>
+          <div className="flex-1">
+            <p className="mb-3 text-sm font-medium uppercase tracking-widest text-muted-foreground">
+              À propos
+            </p>
+            <h1 className="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl">
+              Créer des expériences
+              <br />
+              qui marquent
+            </h1>
+          </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="shrink-0"
+          >
+            <Image
+              src="/louis-de-caumont.webp"
+              alt="Louis de Caumont"
+              width={280}
+              height={327}
+              priority
+              className="rounded-2xl"
+            />
+          </motion.div>
         </motion.div>
 
         {/* Scrollytelling intro */}
@@ -263,7 +281,7 @@ export function AboutPage() {
         </div>
 
         {/* Timeline */}
-        <div>
+        <div className="mb-24">
           <h2 className="mb-8 text-sm font-medium uppercase tracking-widest text-muted-foreground">
             Parcours
           </h2>
@@ -289,6 +307,124 @@ export function AboutPage() {
                     {item.description}
                   </p>
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Comment je travaille */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-24"
+        >
+          <h2 className="mb-4 text-sm font-medium uppercase tracking-widest text-muted-foreground">
+            Comment je travaille
+          </h2>
+          <p className="mb-8 max-w-2xl text-base leading-relaxed text-muted-foreground">
+            Chaque projet est unique. Selon les besoins, je m&apos;appuie sur
+            des partenaires de confiance pour garantir un haut niveau de qualité
+            sur chaque volet. Vous gardez un interlocuteur unique du premier
+            échange à la livraison.
+          </p>
+          <div className="grid gap-6 sm:grid-cols-2">
+            {[
+              {
+                icon: Code2,
+                title: "Développement",
+                description:
+                  "Architecture, code et déploiement. Next.js, React, Flutter, Node.js. Du site vitrine à la plateforme SaaS.",
+              },
+              {
+                icon: Palette,
+                title: "Direction artistique",
+                description:
+                  "Identités visuelles, maquettes UI/UX et assets graphiques. Chaque projet bénéficie d\u2019un regard créatif dédié.",
+              },
+              {
+                icon: Zap,
+                title: "SEO & Performance",
+                description:
+                  "Optimisation technique, stratégie de contenu et analytics. Chaque site est construit pour être visible et performant.",
+              },
+              {
+                icon: Users,
+                title: "Accompagnement",
+                description:
+                  "Suivi personnalisé tout au long du projet et après la livraison. Formation, maintenance et évolutions.",
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="glass neu-shadow rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+              >
+                <div className="mb-4 inline-flex rounded-lg bg-muted p-2.5">
+                  <item.icon size={22} className="text-foreground" />
+                </div>
+                <h3 className="mb-2 text-base font-semibold text-foreground">
+                  {item.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {item.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Mes valeurs */}
+        <div>
+          <motion.h2
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="mb-8 text-sm font-medium uppercase tracking-widest text-muted-foreground"
+          >
+            Mes valeurs
+          </motion.h2>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                title: "Sur mesure",
+                description:
+                  "Pas de templates. Chaque ligne de code est écrite pour votre projet.",
+              },
+              {
+                title: "Transparence",
+                description:
+                  "Communication claire, devis détaillés, pas de surprises en cours de route.",
+              },
+              {
+                title: "Qualité",
+                description:
+                  "Code propre, tests, performance. Pas de compromis sur la qualité technique.",
+              },
+              {
+                title: "Réactivité",
+                description:
+                  "Réponse sous 48h, livraisons dans les délais, disponibilité réelle.",
+              },
+            ].map((value, i) => (
+              <motion.div
+                key={value.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="glass neu-shadow-sm rounded-2xl p-6"
+              >
+                <h3 className="mb-2 text-base font-semibold text-foreground">
+                  {value.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {value.description}
+                </p>
               </motion.div>
             ))}
           </div>
