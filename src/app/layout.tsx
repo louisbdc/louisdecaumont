@@ -82,6 +82,7 @@ export default function RootLayout({
               name: "Louis de Caumont",
               jobTitle: "Développeur Web & Mobile Freelance",
               url: "https://louisdecaumont.fr",
+              image: "https://louisdecaumont.fr/og-image.png",
               sameAs: [
                 "https://github.com/louisbdc",
                 "https://linkedin.com/in/epitech",
@@ -100,6 +101,30 @@ export default function RootLayout({
                 "@type": "PostalAddress",
                 addressLocality: "Lyon",
                 addressCountry: "FR",
+              },
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Louis de Caumont",
+              url: "https://louisdecaumont.fr",
+              description:
+                "Louis de Caumont, développeur web freelance à Lyon. Création de sites performants sur mesure.",
+              publisher: {
+                "@type": "Person",
+                name: "Louis de Caumont",
+                image: "https://louisdecaumont.fr/og-image.png",
+                logo: {
+                  "@type": "ImageObject",
+                  url: "https://louisdecaumont.fr/logo.png",
+                  width: 512,
+                  height: 512,
+                },
               },
             }),
           }}
