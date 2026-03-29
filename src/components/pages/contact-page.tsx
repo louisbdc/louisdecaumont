@@ -51,7 +51,7 @@ const contactLinks: readonly ContactLink[] = [
 ]
 
 const info = [
-  { icon: MapPin, label: "Localisation", value: "Paris, France" },
+  { icon: MapPin, label: "Localisation", value: "Lyon, France" },
   { icon: Clock, label: "Disponibilité", value: "Sous 48h" },
 ]
 
