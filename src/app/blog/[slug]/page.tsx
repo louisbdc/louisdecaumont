@@ -54,13 +54,13 @@ export default async function BlogPostPage({ params }: PageProps) {
       name: "Louis de Caumont",
       url: "https://louisdecaumont.fr",
     },
-    image: "https://www.louisdecaumont.fr/og-image.png",
+    image: "https://louisdecaumont.fr/og-image.png",
     publisher: {
       "@type": "Organization",
       name: "Louis de Caumont",
       logo: {
         "@type": "ImageObject",
-        url: "https://www.louisdecaumont.fr/logo.png",
+        url: "https://louisdecaumont.fr/logo.png",
       },
     },
     mainEntityOfPage: {
