@@ -7,6 +7,7 @@ import { Footer } from "@/components/footer"
 import { MotionProvider } from "@/components/motion-provider"
 import { BackgroundGlow } from "@/components/background-glow"
 import { SmoothScroll } from "@/components/smooth-scroll"
+import { CookieConsent } from "@/components/cookie-consent"
 
 const inter = Inter({
   variable: "--font-inter",
@@ -61,17 +62,26 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${inter.variable} h-full antialiased`}>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('consent', 'default', {
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'analytics_storage': 'denied'
+              });
+            `,
+          }}
+        />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-RB71B6FRPL"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-RB71B6FRPL');
-          `}
+          {`gtag('js', new Date()); gtag('config', 'G-RB71B6FRPL');`}
         </Script>
         <script
           type="application/ld+json"
@@ -138,6 +148,7 @@ export default function RootLayout({
           <main id="main-content" className="relative z-10 flex-1">{children}</main>
           <Footer />
         </MotionProvider>
+        <CookieConsent />
       </body>
     </html>
   )

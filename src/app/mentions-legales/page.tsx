@@ -44,9 +44,10 @@ export default function MentionsLegales() {
               Politique de confidentialité
             </h2>
             <p>
-              Ce site ne collecte aucune donnée personnelle de manière
-              automatique. Aucun cookie de tracking, aucun outil d&apos;analytics
-              tiers n&apos;est utilisé.
+              Ce site utilise Google Analytics 4 pour mesurer son audience
+              (voir section &laquo;&nbsp;Cookies&nbsp;&raquo; ci-dessous). Aucune
+              autre donnée personnelle n&apos;est collectée de manière
+              automatique.
             </p>
             <p className="mt-3">
               Si vous utilisez le formulaire de contact, les informations
@@ -83,17 +84,28 @@ export default function MentionsLegales() {
               Cookies et mesure d&apos;audience
             </h2>
             <p>
-              Ce site utilise Google Analytics 4 pour mesurer l&apos;audience
-              et comprendre comment les visiteurs interagissent avec le contenu.
-              Google Analytics collecte des données anonymisées telles que les
-              pages visitées, la durée de la session et le type d&apos;appareil
-              utilisé. Ces informations servent uniquement à améliorer
-              l&apos;expérience utilisateur et le contenu du site.
+              Ce site utilise Google Analytics 4 (GA4) pour mesurer
+              l&apos;audience et comprendre comment les visiteurs interagissent
+              avec le contenu. GA4 peut déposer des cookies de mesure
+              (identifiants anonymes : <code>_ga</code>,{" "}
+              <code>_ga_*</code>) pour comptabiliser les visites et les pages
+              consultées.
             </p>
             <p className="mt-3">
-              Aucun cookie publicitaire n&apos;est déposé. Vous pouvez
-              désactiver le suivi Google Analytics en installant le module
-              complémentaire de navigateur disponible sur le site de Google.
+              Conformément au RGPD et à la directive ePrivacy, ces cookies ne
+              sont déposés qu&apos;après votre consentement explicite. Lors de
+              votre première visite, un bandeau vous propose
+              d&apos;accepter ou de refuser les cookies d&apos;analyse. Votre
+              choix est enregistré et respecté lors de vos visites suivantes.
+            </p>
+            <p className="mt-3">
+              Aucun cookie publicitaire n&apos;est déposé. Aucune donnée
+              n&apos;est partagée à des fins de publicité ciblée.
+            </p>
+            <p className="mt-3">
+              Vous pouvez modifier votre choix à tout moment en cliquant sur
+              le lien &laquo;&nbsp;Gérer les cookies&nbsp;&raquo; dans le pied
+              de page du site.
             </p>
           </section>
 
@@ -114,7 +126,7 @@ export default function MentionsLegales() {
               Mise à jour
             </h2>
             <p>
-              Cette page a été mise à jour le 25 mars 2026. Louis de Caumont
+              Cette page a été mise à jour le 29 mars 2026. Louis de Caumont
               se réserve le droit de modifier ces mentions légales et cette
               politique de confidentialité à tout moment. Les modifications
               prennent effet dès leur publication sur cette page.

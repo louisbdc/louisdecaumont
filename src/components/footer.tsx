@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { CookieSettingsButton } from "@/components/cookie-settings-button"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -23,6 +24,8 @@ export function Footer() {
           >
             Mentions légales & Privacy Policy
           </Link>
+          <span className="text-muted-foreground/30">|</span>
+          <CookieSettingsButton />
           <span className="text-muted-foreground/30">|</span>
           <p className="text-sm text-muted-foreground">
             Fait avec Next.js & Tailwind CSS
