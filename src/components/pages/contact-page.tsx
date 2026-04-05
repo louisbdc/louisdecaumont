@@ -1,8 +1,9 @@
 "use client"
 
-import type { ComponentType, SVGProps } from "react"
+import { useState, useRef, type ComponentType, type SVGProps, type FormEvent } from "react"
 import { motion } from "framer-motion"
-import { Mail, ArrowUpRight, MapPin, Clock } from "lucide-react"
+import { Mail, ArrowUpRight, MapPin, Clock, Loader2, CheckCircle, AlertCircle } from "lucide-react"
+import emailjs from "@emailjs/browser"
 
 function GithubIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -55,7 +56,70 @@ const info = [
   { icon: Clock, label: "Disponibilité", value: "Sous 48h" },
 ]
 
+type FormStatus = "idle" | "loading" | "success" | "error"
+
 export function ContactPage() {
+  const formRef = useRef<HTMLFormElement>(null)
+  const [status, setStatus] = useState<FormStatus>("idle")
+  const [errorMessage, setErrorMessage] = useState("")
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    if (!formRef.current) return
+
+    setStatus("loading")
+    setErrorMessage("")
+
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
+    const adminTemplateId = process.env.NEXT_PUBLIC_EMAILJS_ADMIN_TEMPLATE_ID
+    const autoreplyTemplateId = process.env.NEXT_PUBLIC_EMAILJS_AUTOREPLY_TEMPLATE_ID
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+
+    if (!serviceId || !adminTemplateId || !autoreplyTemplateId || !publicKey) {
+      setStatus("error")
+      setErrorMessage("Configuration du formulaire manquante.")
+      return
+    }
+
+    const formData = new FormData(formRef.current)
+    const fromName = formData.get("name")
+    const fromEmail = formData.get("email")
+    const subject = formData.get("subject")
+    const message = formData.get("message")
+
+    if (!fromName || !fromEmail || !subject || !message) {
+      setStatus("error")
+      setErrorMessage("Veuillez remplir tous les champs.")
+      return
+    }
+
+    const templateParams = {
+      from_name: fromName as string,
+      from_email: fromEmail as string,
+      subject: subject as string,
+      message: message as string,
+      reply_to: fromEmail as string,
+    }
+
+    try {
+      await emailjs.send(serviceId, adminTemplateId, templateParams, publicKey)
+
+      try {
+        await emailjs.send(serviceId, autoreplyTemplateId, templateParams, publicKey)
+      } catch {
+        // Auto-reply failure is non-blocking
+      }
+
+      setStatus("success")
+      formRef.current.reset()
+    } catch (err) {
+      setStatus("error")
+      setErrorMessage(
+        err instanceof Error ? err.message : "Une erreur est survenue. Veuillez réessayer."
+      )
+    }
+  }
+
   return (
     <div className="px-6 pt-32 pb-24">
       <div className="mx-auto max-w-5xl">
@@ -98,9 +162,9 @@ export function ContactPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
+            ref={formRef}
+            onSubmit={handleSubmit}
             className="glass neu-shadow flex flex-col gap-5 rounded-2xl p-8"
-            action="https://formspree.io/f/placeholder"
-            method="POST"
           >
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
@@ -173,10 +237,40 @@ export function ContactPage() {
 
             <button
               type="submit"
-              className="mt-2 cursor-pointer rounded-2xl bg-primary px-7 py-3.5 text-sm font-medium text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:shadow-lg"
+              disabled={status === "loading"}
+              className="mt-2 cursor-pointer rounded-2xl bg-primary px-7 py-3.5 text-sm font-medium text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-60"
             >
-              Envoyer le message
+              {status === "loading" ? (
+                <span className="flex items-center justify-center gap-2">
+                  <Loader2 size={16} className="animate-spin" />
+                  Envoi en cours...
+                </span>
+              ) : (
+                "Envoyer le message"
+              )}
             </button>
+
+            {status === "success" && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center gap-2 rounded-xl bg-emerald-50 px-4 py-3 text-sm text-emerald-700"
+              >
+                <CheckCircle size={16} />
+                Message envoyé avec succès ! Je reviens vers vous sous 48h.
+              </motion.div>
+            )}
+
+            {status === "error" && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center gap-2 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700"
+              >
+                <AlertCircle size={16} />
+                {errorMessage}
+              </motion.div>
+            )}
           </motion.form>
 
           {/* Sidebar */}
