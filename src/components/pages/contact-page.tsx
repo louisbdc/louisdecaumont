@@ -72,10 +72,9 @@ export function ContactPage() {
 
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
     const adminTemplateId = process.env.NEXT_PUBLIC_EMAILJS_ADMIN_TEMPLATE_ID
-    const autoreplyTemplateId = process.env.NEXT_PUBLIC_EMAILJS_AUTOREPLY_TEMPLATE_ID
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
-    if (!serviceId || !adminTemplateId || !autoreplyTemplateId || !publicKey) {
+    if (!serviceId || !adminTemplateId || !publicKey) {
       setStatus("error")
       setErrorMessage("Configuration du formulaire manquante.")
       return
@@ -103,12 +102,6 @@ export function ContactPage() {
 
     try {
       await emailjs.send(serviceId, adminTemplateId, templateParams, publicKey)
-
-      try {
-        await emailjs.send(serviceId, autoreplyTemplateId, templateParams, publicKey)
-      } catch {
-        // Auto-reply failure is non-blocking
-      }
 
       setStatus("success")
       formRef.current.reset()
