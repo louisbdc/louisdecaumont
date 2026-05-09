@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { getAllPosts } from "@/lib/blog"
 import { ArrowRight, Clock, Calendar } from "lucide-react"
+import { Breadcrumb } from "@/components/breadcrumb"
 
 export const metadata: Metadata = {
   title: "Blog Dev Web, SEO & Performance — Louis de Caumont",
@@ -31,9 +32,10 @@ export default function BlogPage() {
 
   return (
     <section className="mx-auto max-w-4xl px-6 pt-32 pb-20">
+      <Breadcrumb items={[{ label: "Blog" }]} />
       <div className="mb-16">
         <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-          Blog
+          Blog : développement web, Next.js et SEO
         </h1>
         <p className="mt-4 text-lg text-muted-foreground">
           Guides pratiques sur le développement web, le SEO et la performance.

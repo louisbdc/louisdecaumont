@@ -1,0 +1,242 @@
+---
+title: "Pourquoi votre site est lent : diagnostic et solutions en 2026"
+description: "Les 7 causes les plus fréquentes d'un site web lent, comment les diagnostiquer avec PageSpeed et Lighthouse, et les solutions concrètes pour passer sous la barre des 2 secondes."
+date: "2026-05-09"
+keywords: ["site lent", "pourquoi mon site est lent", "optimiser vitesse site web", "site lent solution", "site web lent que faire", "améliorer vitesse site"]
+cover: "/photos/blog-site-lent.jpg"
+coverAlt: "Mur blanc lumineux avec une porte ouverte sombre, métaphore d'un passage vers une solution rapide pour un site web lent"
+coverCredit:
+  photographer: "Drew Patrick Miller"
+  photographerUrl: "https://unsplash.com/@drewpatrickmiller?utm_source=louisdecaumont.fr&utm_medium=referral"
+  photoUrl: "https://unsplash.com/photos/white-wall-paint-with-opened-door-15oMQ1S9de0?utm_source=louisdecaumont.fr&utm_medium=referral"
+  source: "Unsplash"
+faq:
+  - question: "Quel temps de chargement est acceptable en 2026 ?"
+    answer: "Sous 2,5 secondes pour le LCP (Largest Contentful Paint) en mobile, c'est le seuil défini par Google pour passer le test Core Web Vitals. En dessous d'1,5 seconde, vous êtes excellent. Au-delà de 4 secondes, vous perdez 40 % de vos visiteurs avant qu'ils n'aient vu votre contenu, selon une étude Google."
+  - question: "Comment savoir si mon site est lent ?"
+    answer: "Trois outils gratuits : PageSpeed Insights (Google), Lighthouse intégré à Chrome DevTools, et le rapport Core Web Vitals dans Google Search Console. Le plus fiable pour la perception réelle des utilisateurs est le rapport CrUX dans Search Console, qui mesure les performances de vrais visiteurs sur les 28 derniers jours."
+  - question: "Pourquoi mon site WordPress est-il toujours lent malgré les plugins de cache ?"
+    answer: "Les plugins de cache (WP Rocket, W3 Total Cache) améliorent les choses, mais ne règlent pas la cause racine. Un site WordPress avec 25 plugins, une base de données obèse, des requêtes SQL non optimisées et un thème mal codé restera intrinsèquement plus lent qu'un site Next.js statique. Le cache déguise le problème, ne le résout pas."
+  - question: "Faut-il refaire mon site ou l'optimiser ?"
+    answer: "Si votre LCP est entre 2,5 et 4 secondes et le site fait moins de cinq ans, l'optimisation est rentable (1 000 à 3 000 EUR pour gagner 30 à 50 %). Si vous êtes au-delà de 5 secondes, ou que la stack est obsolète (PHP 7, jQuery, thème WordPress vieillissant), une refonte complète sera plus rapide et plus durable."
+  - question: "Quel impact a la vitesse sur mes ventes ?"
+    answer: "Sur un e-commerce : chaque seconde de chargement supplémentaire fait perdre 7 % de conversion (étude Akamai). Pour un site qui génère 5 000 EUR de chiffre d'affaires par mois, passer de 4 à 2 secondes peut représenter 700 à 1 000 EUR de chiffre d'affaires gagné. L'investissement dans la performance est presque toujours rentable."
+  - question: "Comment Google mesure-t-il la vitesse de mon site ?"
+    answer: "Google utilise les Core Web Vitals : LCP (Largest Contentful Paint, vitesse perçue), INP (Interaction to Next Paint, réactivité, qui a remplacé FID), et CLS (Cumulative Layout Shift, stabilité visuelle). Ces trois métriques sont des facteurs de classement officiels depuis 2021. Un site qui passe le test des CWV reçoit un boost de visibilité par rapport aux concurrents qui échouent."
+  - question: "Mon hébergeur est-il responsable de la lenteur ?"
+    answer: "Partiellement. Un hébergeur mutualisé low-cost (1&1, OVH Perso) ajoute facilement 1 à 2 secondes de TTFB (Time to First Byte). Passer à Vercel, Netlify ou un VPS dédié peut diviser le temps de réponse serveur par 3 à 5. Mais l'hébergeur ne corrige pas un site mal codé : c'est un facteur, pas une solution unique."
+  - question: "Combien coûte une optimisation de performance ?"
+    answer: "Entre 1 000 et 5 000 EUR pour une optimisation ciblée (compression images, minification CSS/JS, cache, hébergement) qui fait gagner 30 à 60 % de vitesse. Au-delà, l'investissement bascule sur une refonte (4 000 à 15 000 EUR) qui apporte des gains plus durables et résout des problèmes structurels."
+  - question: "Quels outils utilisez-vous pour optimiser la vitesse ?"
+    answer: "PageSpeed Insights et Chrome Lighthouse pour le diagnostic. WebPageTest pour les analyses approfondies. Sur mes projets Next.js, j'utilise les outils intégrés : optimisation d'images automatique, code splitting, prefetching des liens, et déploiement Vercel Edge pour minimiser la latence géographique."
+---
+
+Marc dirige une boutique en ligne de produits artisanaux dans le Beaujolais. Site WordPress fait par une agence en 2020. Black Friday 2025 : il prépare une campagne ads à 8 000 EUR. Trois jours après le lancement, son taux de conversion est à 0,8 % au lieu des 3 % habituels. Quand il regarde les analytics, il voit un détail qui le glace : le bounce rate mobile est passé de 35 % à 72 %. Son site charge en 6,4 secondes sur mobile.
+
+Cette situation, je la rencontre une fois par mois. Un site qui fonctionnait correctement il y a deux ou trois ans devient, sans qu'on s'en rende compte, un frein business. La concurrence accélère, Google durcit ses critères, les utilisateurs deviennent moins patients. Et un jour, on découvre qu'on perd des ventes sans comprendre pourquoi.
+
+Dans cet article, je détaille :
+
+- **Comment mesurer** la vitesse de votre site avec les bons outils
+- **Les 7 causes** les plus fréquentes d'un site lent en 2026
+- **Les solutions concrètes** pour chaque cause, avec leurs coûts
+- **Quand optimiser et quand refondre** : la décision business
+
+Pas de jargon technique inutile. Du diagnostic concret et des actions chiffrées.
+
+## Comment mesurer la vitesse de votre site
+
+Avant de toucher à quoi que ce soit, il faut savoir où on en est. Trois outils gratuits suffisent.
+
+### PageSpeed Insights (le standard)
+
+Le plus simple et le plus utilisé. Tapez `https://pagespeed.web.dev/`, entrez votre URL, attendez 30 secondes. Vous obtenez un score sur 100 (mobile et desktop séparément) et le détail des métriques Core Web Vitals.
+
+**Comment lire le résultat :**
+- Score 90+ : excellent, pas d'action urgente
+- Score 50-89 : à améliorer, gains possibles
+- Score sous 50 : critique, refonte ou optimisation lourde nécessaire
+
+### Lighthouse (pour le détail technique)
+
+Intégré à Chrome. Clic droit sur la page → Inspecter → onglet Lighthouse → Generate report. Plus détaillé que PageSpeed Insights, montre exactement quels fichiers ralentissent le site et combien chacun coûte en millisecondes.
+
+### Google Search Console (pour le ressenti utilisateur)
+
+Le plus fiable des trois. Section "Signaux Web essentiels" → vous voyez le pourcentage de pages "Bonnes", "À améliorer", "Médiocres" sur les 28 derniers jours, basé sur les données réelles de Chrome (CrUX). C'est ce que Google utilise pour son algorithme de classement.
+
+**Lecture rapide :** si plus de 25 % de vos pages mobiles sont en "Médiocre", vous avez un problème SEO.
+
+## Les 7 causes les plus fréquentes
+
+Voici, par ordre de fréquence sur les sites que j'audite, les causes principales de lenteur.
+
+### Cause 1 : images non optimisées
+
+**Symptôme :** LCP au-delà de 4 secondes, images qui apparaissent visiblement en deux temps.
+
+**Pourquoi :** une image en 4 000 × 3 000 pixels en JPEG haute qualité fait 2 à 4 Mo. Sur mobile en 4G, ça prend 2 à 4 secondes à télécharger.
+
+**Solution :**
+- Compresser toutes les images (TinyPNG, Squoosh)
+- Convertir en WebP ou AVIF (gain typique : 50 à 80 %)
+- Servir des tailles responsives (srcset)
+- Lazy loading sur tout ce qui est sous le pli
+
+**Coût :** 200 à 800 EUR pour un site avec 50 à 200 images. Gain typique : -1 à -2 secondes de LCP.
+
+### Cause 2 : trop de plugins WordPress
+
+**Symptôme :** site qui ralentit progressivement avec le temps, malgré un cache actif.
+
+**Pourquoi :** chaque plugin charge ses propres CSS/JS sur toutes les pages. Un site avec 25 plugins peut servir 80 à 120 fichiers à chaque visite.
+
+**Solution :**
+- Audit des plugins actifs (combien sont vraiment utilisés)
+- Suppression de tous les plugins non essentiels
+- Remplacement de plugins lourds par du code custom léger
+- Désactivation des CSS/JS plugins page par page (avec Asset CleanUp)
+
+**Coût :** 800 à 2 000 EUR pour un audit + nettoyage complet. Gain typique : -30 à -50 % de temps de chargement.
+
+### Cause 3 : hébergement insuffisant
+
+**Symptôme :** TTFB (Time to First Byte) supérieur à 1 seconde, latence visible dès la première requête.
+
+**Pourquoi :** un hébergement mutualisé bas de gamme partage les ressources serveur entre des centaines de sites. Aux heures de pointe, le serveur est saturé.
+
+**Solution :**
+- Migration vers Vercel (gratuit pour les petits sites Next.js)
+- Migration vers OVH Performance ou Cloudways (50 à 200 EUR/mois)
+- Pour gros sites : VPS dédié ou Kubernetes (200 à 1 000 EUR/mois)
+
+**Coût :** quelques dizaines d'euros par mois en plus, mais souvent compensés par les économies de plugins de cache. Gain typique : -0,5 à -2 secondes de TTFB.
+
+### Cause 4 : JavaScript non optimisé
+
+**Symptôme :** INP élevé (au-delà de 200 ms), interface qui "freeze" au premier clic ou scroll.
+
+**Pourquoi :** le navigateur télécharge et exécute tout le JavaScript avant de pouvoir réagir aux actions utilisateur. Si vous chargez 500 Ko de JS à chaque page, l'expérience devient saccadée sur les téléphones d'entrée de gamme.
+
+**Solution :**
+- Code splitting (charger le JS uniquement quand nécessaire)
+- Tree shaking pour éliminer le code mort
+- Lazy loading des composants non critiques
+- Suppression des bibliothèques non utilisées (jQuery, Underscore, Moment.js)
+
+**Coût :** 1 500 à 4 000 EUR pour une optimisation JS sérieuse. Sur Next.js, beaucoup de ces optimisations sont natives.
+
+### Cause 5 : CSS bloquant
+
+**Symptôme :** page blanche pendant 1 à 2 secondes au chargement.
+
+**Pourquoi :** le navigateur télécharge tout le CSS avant d'afficher quoi que ce soit. Si vos feuilles de style sont volumineuses ou hébergées sur un CDN lent, l'utilisateur voit du blanc.
+
+**Solution :**
+- Critical CSS inliné dans le HTML pour le contenu above-the-fold
+- CSS différé pour le reste
+- Suppression des CSS de plugins non utilisés
+- Minification et compression Brotli
+
+**Coût :** 500 à 1 500 EUR. Gain typique : -0,5 à -1 seconde de FCP (First Contentful Paint).
+
+### Cause 6 : polices web mal chargées
+
+**Symptôme :** texte qui apparaît en police système puis bascule visiblement sur la police custom (FOUT/FOIT).
+
+**Pourquoi :** les polices Google Fonts ou Adobe Fonts sont téléchargées depuis un serveur tiers, parfois lent. Le navigateur attend la police avant d'afficher le texte.
+
+**Solution :**
+- Hébergement des polices en local (avec next/font sur Next.js)
+- Préchargement de la police principale (`<link rel="preload">`)
+- font-display: swap pour afficher d'abord en police système
+- Réduction du nombre de polices différentes
+
+**Coût :** 200 à 500 EUR. Gain typique : -0,3 à -0,8 seconde de LCP.
+
+### Cause 7 : scripts tiers excessifs
+
+**Symptôme :** site qui ralentit après chaque ajout d'outil marketing (chat, analytics, ads, A/B testing).
+
+**Pourquoi :** chaque script tiers ajoute des requêtes externes, du JavaScript, et parfois des CSS. Cinq outils marketing peuvent ajouter 1 à 3 secondes de chargement.
+
+**Solution :**
+- Audit des scripts (lesquels sont vraiment utiles)
+- Chargement différé pour tout ce qui n'est pas critique (Google Tag Manager en async)
+- Self-hosting de Google Analytics avec Google Tag Manager Server-Side
+- Remplacement des chats lourds (Intercom, Zendesk) par des alternatives légères (Crisp, Tawk)
+
+**Coût :** 500 à 1 500 EUR pour un audit complet. Gain typique : -0,5 à -1,5 seconde.
+
+**Vous reconnaissez plusieurs symptômes ?** Un audit ciblé permet de hiérarchiser les chantiers. [Discutons-en gratuitement](https://louisdecaumont.fr/contact) avant d'investir dans des optimisations qui ne servent pas le bon problème.
+
+## WordPress vs Next.js : l'impact sur la vitesse
+
+Pour des raisons structurelles, certaines stacks sont intrinsèquement plus rapides que d'autres.
+
+| Métrique | WordPress moyen | Next.js statique |
+|---|---|---|
+| Temps de réponse serveur (TTFB) | 600-1 500 ms | 50-200 ms |
+| LCP mobile | 3-6 s | 0,8-1,8 s |
+| INP | 200-500 ms | 50-150 ms |
+| Score PageSpeed mobile | 30-60 | 85-100 |
+| Maintenance technique | 500-2 000 EUR/an | 0-240 EUR/an |
+
+Cette différence vient de l'architecture : WordPress génère chaque page à la volée en consultant une base de données, là où Next.js sert des pages pré-rendues en HTML statique.
+
+Pour le détail complet de la comparaison, lisez [Next.js vs WordPress : le guide 2026](https://louisdecaumont.fr/blog/next-js-vs-wordpress).
+
+## Quand optimiser et quand refondre
+
+Les optimisations ciblées ont des limites. Voici la matrice de décision que j'utilise.
+
+### Cas 1 : optimiser
+
+- LCP entre 2,5 et 4 secondes
+- Score PageSpeed entre 50 et 80
+- Site sur une stack moderne (PHP 8, jQuery limité)
+- Budget contraint
+- Pas de refonte design en parallèle
+
+**Investissement : 1 000 à 3 000 EUR**. Gain attendu : passer en zone verte sur Core Web Vitals dans 80 % des cas.
+
+### Cas 2 : refondre
+
+- LCP au-delà de 4 secondes
+- Score PageSpeed sous 50
+- Stack obsolète (PHP 7, thème WordPress acheté il y a 5 ans, jQuery dominant)
+- Refonte design également souhaitée
+- Budget pour 6 000 à 15 000 EUR
+
+**Investissement : 4 000 à 15 000 EUR**. Gain attendu : passer durablement en zone verte, avec des Core Web Vitals excellents pour les 5 prochaines années.
+
+Pour décider, lisez [Migrer un site WordPress vers Next.js : la méthode complète](https://louisdecaumont.fr/blog/migrer-wordpress-vers-next-js) qui détaille la procédure.
+
+## Le coût d'un site lent
+
+Un site qui charge en 5 secondes au lieu de 2 secondes ne coûte pas que de la frustration. Voici les chiffres réels.
+
+| Impact | Magnitude (étude Akamai/Google) |
+|---|---|
+| Perte de conversion par seconde supplémentaire | -7 % |
+| Augmentation du bounce rate (1s vs 3s) | +32 % |
+| Augmentation du bounce rate (1s vs 6s) | +106 % |
+| Perte de positions Google moyenne | -3 à -8 places |
+| Réduction des pages indexées (crawl budget) | -20 à -40 % |
+
+Pour un site e-commerce qui génère 100 000 EUR de chiffre d'affaires par an, passer de 4 à 2 secondes peut représenter 14 000 à 21 000 EUR de chiffre d'affaires gagné. L'investissement dans la performance est presque toujours rentable.
+
+## Ce que je propose
+
+Sur mes projets, la performance n'est pas une option, c'est un livrable systématique. Chaque site est livré avec :
+
+- Score PageSpeed mobile au-dessus de 90
+- LCP sous 1,5 seconde sur connexion 4G
+- Core Web Vitals au vert sur 100 % des pages
+- Audit Lighthouse documenté dans la livraison
+
+Si vous voulez optimiser un site existant ou comparer une refonte vs une optimisation, voir la page [Développeur Web Freelance à Lyon](https://louisdecaumont.fr/developpeur-web-freelance-lyon).
+
+---
+
+**Site lent, ventes en baisse ?** Échange gratuit de 30 minutes pour diagnostiquer la cause et estimer le ROI d'une optimisation. [Me contacter](https://louisdecaumont.fr/contact).

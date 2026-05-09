@@ -13,6 +13,7 @@ import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 import { Menu, X } from "lucide-react"
 
 const navLinks = [
+  { href: "/developpeur-web-freelance-lyon", label: "Freelance Lyon" },
   { href: "/a-propos", label: "À propos" },
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },

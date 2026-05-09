@@ -19,6 +19,7 @@ const floatingScreenshots = [
     from: { x: -120, y: 40, rotate: -8 },
     to: { x: 0, y: 0, rotate: -6 },
     delay: 0.3,
+    priority: true,
   },
   {
     src: "/screenshots/nutritionniste-paris.webp",
@@ -28,6 +29,7 @@ const floatingScreenshots = [
     from: { x: 120, y: -60, rotate: 6 },
     to: { x: 0, y: 0, rotate: 4 },
     delay: 0.5,
+    priority: false,
   },
   {
     src: "/screenshots/arthur-de-haut-de-sigy.webp",
@@ -37,6 +39,7 @@ const floatingScreenshots = [
     from: { x: -80, y: 60, rotate: 4 },
     to: { x: 0, y: 0, rotate: 3 },
     delay: 0.7,
+    priority: false,
   },
   {
     src: "/screenshots/atelier-kunz.webp",
@@ -46,6 +49,7 @@ const floatingScreenshots = [
     from: { x: 100, y: 50, rotate: -5 },
     to: { x: 0, y: 0, rotate: -3 },
     delay: 0.6,
+    priority: false,
   },
   {
     src: "/screenshots/joconde-retraite.webp",
@@ -55,6 +59,7 @@ const floatingScreenshots = [
     from: { x: 0, y: -100, rotate: 2 },
     to: { x: 0, y: 0, rotate: 1 },
     delay: 0.9,
+    priority: false,
   },
   {
     src: "/screenshots/renov-route.webp",
@@ -64,6 +69,7 @@ const floatingScreenshots = [
     from: { x: 60, y: 80, rotate: -3 },
     to: { x: 0, y: 0, rotate: -2 },
     delay: 0.8,
+    priority: false,
   },
 ]
 
@@ -141,7 +147,8 @@ export function Hero() {
                 width={320}
                 height={200}
                 className="h-auto w-full object-cover"
-                priority
+                priority={shot.priority}
+                loading={shot.priority ? undefined : "lazy"}
               />
             </div>
           </motion.div>
@@ -159,7 +166,11 @@ export function Hero() {
           className="mb-4"
         >
           <h1 className="text-[clamp(3rem,10vw,9rem)] font-black leading-[0.9] tracking-tighter text-foreground">
+            <span className="sr-only">
+              Louis de Caumont — Développeur web freelance à Lyon, expert Next.js et React
+            </span>
             <motion.span
+              aria-hidden="true"
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -172,6 +183,7 @@ export function Hero() {
               LOUIS
             </motion.span>
             <motion.span
+              aria-hidden="true"
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -263,7 +275,8 @@ export function Hero() {
                 width={320}
                 height={200}
                 className="h-auto w-full object-cover"
-                priority
+                priority={shot.priority}
+                loading={shot.priority ? undefined : "lazy"}
               />
             </div>
           </motion.div>

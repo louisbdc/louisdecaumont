@@ -1,0 +1,201 @@
+---
+title: "Migrer un site WordPress vers Next.js : la méthode complète"
+description: "Méthode pas à pas pour migrer un site WordPress vers Next.js sans perdre votre référencement. Étapes, pièges à éviter, délais et coûts réels."
+date: "2026-05-09"
+keywords: ["migration wordpress next.js", "migrer wordpress vers next js", "refonte wordpress", "passer de wordpress à next.js", "wordpress vers nextjs"]
+cover: "/photos/blog-migration-wp-nextjs.jpg"
+coverAlt: "Bâtiment moderne en contre-plongée noir et blanc, illustrant la transformation architecturale d'un projet web"
+coverCredit:
+  photographer: "Pierre-Axel Cotteret"
+  photographerUrl: "https://unsplash.com/@pierreaxel_?utm_source=louisdecaumont.fr&utm_medium=referral"
+  photoUrl: "https://unsplash.com/photos/black-and-white-concrete-building-LANDkIpm7iI?utm_source=louisdecaumont.fr&utm_medium=referral"
+  source: "Unsplash"
+faq:
+  - question: "Combien de temps prend une migration WordPress vers Next.js ?"
+    answer: "Entre quatre et huit semaines pour un site vitrine de 10 à 30 pages. Trois semaines pour un petit site de cinq pages bien structuré. Jusqu'à six mois pour un site éditorial complexe avec plusieurs milliers d'articles. La phase la plus longue est l'export et la restructuration du contenu."
+  - question: "Vais-je perdre mon référencement après la migration ?"
+    answer: "Pas si la migration est bien préparée. Les positions Google se maintiennent à 95 % près à condition de respecter trois règles : conserver les mêmes URLs (ou faire des redirections 301 systématiques), garder le contenu existant intact, et préserver la structure sémantique. Les chutes durent généralement deux à six semaines avant de revenir au niveau d'origine."
+  - question: "Mon contenu WordPress sera-t-il automatiquement transféré ?"
+    answer: "Le contenu peut être exporté via l'API REST WordPress ou via un export XML. Pour un site avec moins de 100 articles, c'est rapide. Au-delà, il faut un script de migration personnalisé qui transforme le HTML WordPress en MDX ou en données structurées exploitables par Next.js."
+  - question: "Faut-il garder WordPress comme back-office ?"
+    answer: "C'est une option courante : le WordPress headless. Vous gardez l'interface d'édition familière, et Next.js consomme les données via l'API REST. Cette approche permet une migration progressive et limite la résistance au changement. Mais elle réduit certains gains de performance par rapport à un Next.js 100 % statique."
+  - question: "Combien coûte une migration WordPress vers Next.js ?"
+    answer: "Entre 4 000 et 15 000 EUR selon la taille du site, le nombre de fonctionnalités à reproduire et le volume de contenu à migrer. Un site vitrine standard se situe autour de 6 000 à 9 000 EUR. La migration est plus chère qu'une création neuve à périmètre équivalent, à cause du travail de reverse engineering et de la préservation SEO."
+  - question: "Que faire de mes plugins WordPress après la migration ?"
+    answer: "Chaque plugin est remplacé par une fonction native Next.js ou un service tiers. Yoast SEO devient inutile car Next.js gère nativement les balises meta et le sitemap. Contact Form 7 est remplacé par un formulaire React + un service comme Resend ou EmailJS. WooCommerce devient Stripe ou Shopify Headless selon le besoin."
+  - question: "Mon site sera-t-il vraiment plus rapide ?"
+    answer: "Oui, dans la quasi-totalité des cas. Un site WordPress moyen charge en 3 à 6 secondes. Le même contenu en Next.js avec génération statique charge en 0,5 à 1,5 seconde. Le score Lighthouse passe typiquement de 40-60 à 90+. Les Core Web Vitals deviennent verts d'office."
+  - question: "Puis-je migrer mon site moi-même ?"
+    answer: "Si vous êtes développeur, oui, en suivant la méthode ci-dessous. Mais la partie SEO (redirections, structure, audit avant/après) demande une expertise spécifique. Une mauvaise migration peut faire perdre 30 à 50 % du trafic organique pendant des mois. Pour un site qui génère du chiffre d'affaires, faire appel à un freelance spécialisé est souvent rentable."
+  - question: "Quand est-ce qu'il ne faut pas migrer ?"
+    answer: "Quand votre site est purement éditorial avec une équipe non technique de cinq rédacteurs ou plus, WordPress reste pertinent. Quand vous dépendez de plugins très spécifiques sans équivalent moderne. Quand votre budget est inférieur à 5 000 EUR : mieux vaut optimiser le WordPress existant. Et si votre site fonctionne bien et n'a pas de problème de performance ou de sécurité, la migration peut être prématurée."
+---
+
+Antoine gère un cabinet de conseil en management à Lyon. Son site WordPress, créé en 2021 par une agence, génère 30 à 40 leads qualifiés par mois. Mais en mars 2026, il commence à perdre du trafic sans raison apparente. PageSpeed Insights crache 32 sur mobile. Trois plugins de sécurité se contredisent. La page d'accueil charge en 7,2 secondes. Quand il me contacte, il pose une question simple : "Est-ce que ça vaut le coup de tout refaire en Next.js, ou je continue à patcher ?"
+
+Cette question revient souvent. Migrer un site WordPress vers Next.js n'est pas une décision triviale. C'est un investissement qui se justifie par des gains mesurables, mais qui peut aussi se passer mal si la méthode n'est pas rigoureuse.
+
+Dans cet article, je détaille :
+
+- **Quand migrer** vers Next.js, et quand rester sur WordPress
+- **La méthode en six étapes** que j'utilise sur tous mes projets de refonte
+- **Les pièges SEO** à éviter pour ne pas perdre vos positions Google
+- **Les coûts et délais** réels selon la taille du site
+
+Pas de discours commercial. Juste la méthode que j'applique sur mes projets de migration, avec les chiffres et les outils.
+
+## Pourquoi migrer (et pourquoi pas)
+
+Avant de toucher à quoi que ce soit, il faut être sûr que la migration en vaut la peine. Voici les quatre raisons qui justifient une migration, et trois cas où il vaut mieux s'abstenir.
+
+### Les quatre bonnes raisons de migrer
+
+**1. La performance.** Un site WordPress avec dix plugins charge en 3 à 6 secondes. Le même contenu en Next.js charge en 0,5 à 1,5 seconde. Sur mobile, où 60 % du trafic web se passe en 2026, chaque seconde de chargement coûte 7 % de conversion selon une étude Akamai. Pour un e-commerce, c'est immédiatement chiffrable.
+
+**2. La sécurité.** WordPress est la cible de 90 % des attaques sur les CMS selon Sucuri. Les vecteurs sont connus : plugins obsolètes, base de données exposée, page d'administration publique, mise à jour PHP en retard. Un site Next.js statique sur Vercel n'a aucun de ces vecteurs : pas de base de données accessible, pas de PHP, pas d'admin public.
+
+**3. Les coûts récurrents.** WordPress génère 500 à 2 500 EUR par an de maintenance (mises à jour, plugins premium, hébergement performant, monitoring sécurité). Next.js sur Vercel : 0 à 240 EUR par an. Sur trois ans, l'écart paie une partie de la migration.
+
+**4. Le SEO technique.** Next.js intègre nativement ce que WordPress demande dix plugins pour faire : sitemap automatique, balises meta dynamiques, données structurées JSON-LD, URLs propres, hreflang, canonical, performance. Ces signaux techniques pèsent dans le classement Google, surtout depuis l'introduction des Core Web Vitals comme facteur de ranking.
+
+### Les trois cas où il ne faut pas migrer
+
+**Vous avez une équipe éditoriale de plus de cinq rédacteurs non techniques.** WordPress est un excellent CMS pour la production de contenu en équipe. Tant que vos rédacteurs gardent une interface familière, la migration peut créer plus de friction qu'elle ne résout de problèmes.
+
+**Votre site dépend de plugins très spécifiques sans équivalent moderne.** Certains plugins niche (booking complexes, intégrations métier rares) n'ont pas d'équivalent direct dans l'écosystème Next.js. Reproduire la fonctionnalité demande du développement sur mesure, parfois plus cher que toute la migration.
+
+**Votre site fonctionne et votre budget est limité.** Si votre site WordPress charge correctement, n'a pas eu d'incident de sécurité et coûte peu en maintenance, la migration n'est pas une priorité. Investissez plutôt dans le contenu ou le marketing.
+
+**Votre projet en tête ?** Si vous hésitez sur la pertinence d'une migration, [parlons-en gratuitement](https://louisdecaumont.fr/contact). Trente minutes suffisent pour évaluer si l'opération est rentable pour votre cas.
+
+## La méthode en six étapes
+
+Toutes mes migrations suivent la même séquence. Sauter une étape, c'est s'exposer à perdre du trafic ou du contenu.
+
+### Étape 1 : audit du site existant
+
+**Durée : 2 à 4 jours**
+
+Avant de coder quoi que ce soit, je documente l'existant. Cinq éléments à cartographier :
+
+- **Toutes les URLs indexées** dans Google Search Console (export complet)
+- **Le top des pages par trafic** sur les douze derniers mois (Google Analytics)
+- **Le top des mots-clés** où le site se classe (Search Console)
+- **Les plugins actifs** et leur fonction métier
+- **Les intégrations externes** (CRM, mail, paiement, calendrier)
+
+Cet inventaire conditionne tout le reste. Une URL oubliée à cette étape, c'est une page qui finira en 404 le jour de la mise en ligne.
+
+### Étape 2 : architecture cible et maquettes Figma
+
+**Durée : 1 à 3 semaines**
+
+Je conçois l'arborescence du nouveau site. Trois principes :
+
+- **Conserver les URLs existantes** quand c'est possible. Si l'ancien site a `/services/audit-strategique`, le nouveau aussi.
+- **Limiter les redirections** aux URLs qui changent vraiment (rares).
+- **Penser mobile-first** dès Figma, parce que 60 % des visiteurs scrollent au pouce.
+
+Le design est validé sur Figma avant tout développement. Cette discipline évite 80 % des allers-retours en cours de dev.
+
+### Étape 3 : export et migration du contenu
+
+**Durée : 3 jours à 2 semaines selon le volume**
+
+Pour les petits sites (moins de 50 pages), l'export XML WordPress + un script de conversion Markdown suffit. Pour les sites plus larges, j'utilise l'API REST WordPress (`/wp-json/wp/v2/posts`) avec un script Node.js qui :
+
+- Extrait chaque article au format JSON
+- Convertit le HTML en MDX en préservant la structure sémantique
+- Récupère et optimise les images (WebP, dimensions explicites)
+- Préserve les métadonnées (auteur, date, catégories, balises)
+
+Le contenu textuel est conservé à l'identique. C'est non négociable pour le SEO.
+
+### Étape 4 : développement en Next.js
+
+**Durée : 2 à 6 semaines selon le périmètre**
+
+Le code Next.js est écrit en parallèle de la migration de contenu. Stack standard :
+
+- **Next.js 16+** avec App Router et Server Components
+- **TypeScript** pour la robustesse et l'auto-complétion
+- **Tailwind CSS** pour le design système
+- **MDX** pour le contenu éditorial typé
+- **next-mdx-remote** pour la génération statique
+
+Chaque page est testée individuellement sur une preview Vercel partagée avec le client. Pas de surprise au moment du basculement.
+
+### Étape 5 : plan de redirections 301
+
+**Durée : 1 à 2 jours**
+
+C'est l'étape la plus critique. Une URL qui change sans redirection, c'est un signal Google "page disparue" et la perte de l'autorité accumulée.
+
+Pour chaque URL de l'ancien site qui change :
+
+- Une redirection 301 (permanente) vers la nouvelle URL
+- Configurée dans `next.config.ts` ou via Vercel Edge Middleware
+- Testée automatiquement avec un script qui vérifie chaque ancienne URL
+
+Sur un site avec 200 URLs, comptez 3 à 5 heures pour produire le mapping complet et le tester.
+
+### Étape 6 : mise en ligne et monitoring
+
+**Durée : 1 jour de bascule + 4 semaines de surveillance**
+
+Le déploiement se fait en trois phases :
+
+1. **DNS staging** : pointer un sous-domaine `new.exemple.com` sur Next.js
+2. **Tests grandeur nature** : valider chaque parcours utilisateur, chaque formulaire, chaque page
+3. **Bascule DNS** : le domaine principal pointe sur Vercel
+
+Dans les semaines suivantes, je surveille trois indicateurs dans Google Search Console : couverture (les pages doivent rester indexées), performance (les positions doivent revenir à leur niveau d'origine sous quatre semaines), Core Web Vitals (qui doivent passer au vert).
+
+## Les pièges SEO à éviter
+
+Trois erreurs reviennent dans les migrations ratées.
+
+### Erreur 1 : changer les URLs sans redirection
+
+C'est la cause numéro un de chute de trafic. Si l'ancienne page est `/blog/seo-2025` et la nouvelle `/articles/seo-2025`, sans redirection 301 vous perdez l'autorité accumulée. Toutes les positions liées à cette page basculent en 404 dans Google.
+
+### Erreur 2 : oublier les images dans Search Console
+
+WordPress sert souvent des images depuis `/wp-content/uploads/`. Si le nouveau site les sert depuis `/images/`, sans redirection les images disparaissent de Google Images. Pour un site qui génère du trafic via la recherche d'images, c'est une perte sèche.
+
+### Erreur 3 : changer la structure sémantique
+
+Si l'ancien site avait un `<h1>` sur chaque page de blog avec le titre de l'article, le nouveau site doit faire pareil. Changer la hiérarchie des titres (h1, h2, h3) modifie l'interprétation Google de la page et peut faire chuter ses positions.
+
+Pour un comparatif détaillé entre Next.js et WordPress sur tous les critères techniques, lisez [Next.js vs WordPress : le guide 2026](https://louisdecaumont.fr/blog/next-js-vs-wordpress).
+
+## Combien ça coûte, combien ça prend
+
+Voici les fourchettes que je pratique, basées sur 12+ projets livrés.
+
+| Type de migration | Durée | Budget |
+|---|---|---|
+| Site vitrine simple (5-10 pages) | 3-5 semaines | 4 000 - 7 000 EUR |
+| Site vitrine avancé (20-30 pages, blog) | 5-8 semaines | 7 000 - 12 000 EUR |
+| Site éditorial (100+ articles) | 8-16 semaines | 12 000 - 25 000 EUR |
+| E-commerce WooCommerce vers Next.js + Stripe | 8-12 semaines | 15 000 - 30 000 EUR |
+
+Pour comprendre comment se construisent ces tarifs, lisez [Prix d'un site internet en 2026](https://louisdecaumont.fr/blog/combien-coute-un-site-internet) qui détaille les fourchettes par type de prestataire.
+
+Le retour sur investissement se mesure sur deux axes : économies de maintenance (500 à 2 500 EUR par an) et gains de conversion liés à la performance (souvent +10 à +30 % sur les e-commerces dans les six mois). La migration s'amortit généralement entre 12 et 24 mois.
+
+## Ce que je propose
+
+Je conçois et exécute des migrations WordPress vers Next.js avec un engagement clair : zéro perte de référencement organique. Chaque projet inclut :
+
+- L'audit complet de l'existant (URLs, plugins, intégrations)
+- Le design Figma de chaque écran
+- La migration intégrale du contenu sans modification éditoriale
+- Le plan de redirections 301 testé URL par URL
+- La mise en ligne et quatre semaines de monitoring SEO
+
+Pour les détails de méthode et les autres services, voir la page [Développeur Web Freelance à Lyon](https://louisdecaumont.fr/developpeur-web-freelance-lyon).
+
+---
+
+**Vous envisagez une migration ?** Échange gratuit de 30 minutes pour évaluer la faisabilité, le budget et les risques. [Me contacter](https://louisdecaumont.fr/contact).

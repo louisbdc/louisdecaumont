@@ -10,6 +10,13 @@ export interface FAQ {
   answer: string
 }
 
+export interface PhotoCredit {
+  photographer: string
+  photographerUrl: string
+  photoUrl: string
+  source: string
+}
+
 export interface BlogPost {
   slug: string
   title: string
@@ -19,6 +26,9 @@ export interface BlogPost {
   faq: FAQ[]
   readingTime: string
   content: string
+  cover?: string
+  coverAlt?: string
+  coverCredit?: PhotoCredit
 }
 
 export interface BlogPostMeta {
@@ -28,6 +38,8 @@ export interface BlogPostMeta {
   date: string
   keywords: string[]
   readingTime: string
+  cover?: string
+  coverAlt?: string
 }
 
 function getPostFiles(): string[] {
@@ -52,6 +64,9 @@ export function getPostBySlug(slug: string): BlogPost | null {
     faq: data.faq ?? [],
     readingTime: stats.text.replace("read", "de lecture"),
     content,
+    cover: data.cover,
+    coverAlt: data.coverAlt,
+    coverCredit: data.coverCredit,
   }
 }
 
@@ -72,6 +87,8 @@ export function getAllPosts(): BlogPostMeta[] {
       date: data.date ?? "",
       keywords: data.keywords ?? [],
       readingTime: stats.text.replace("read", "de lecture"),
+      cover: data.cover,
+      coverAlt: data.coverAlt,
     }
   })
 

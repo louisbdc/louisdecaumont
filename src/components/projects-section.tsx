@@ -163,7 +163,6 @@ export function ProjectsSection() {
       <div
         ref={trackRef}
         onScroll={updateScrollButtons}
-        data-lenis-prevent
         className="flex gap-6 overflow-x-auto px-6 pb-4 scrollbar-hide"
       >
         {filteredProjects.map((project) => (

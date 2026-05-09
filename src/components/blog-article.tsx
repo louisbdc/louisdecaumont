@@ -1,10 +1,11 @@
+import Image from "next/image"
 import Link from "next/link"
 import { MDXRemote } from "next-mdx-remote/rsc"
 import remarkGfm from "remark-gfm"
 import { BlogArticleHeader } from "@/components/blog-article-header"
 import { BlogArticleCTA } from "@/components/blog-article-cta"
 import { BlogFAQ } from "@/components/blog-faq"
-import { BlogBreadcrumb } from "@/components/blog-breadcrumb"
+import { Breadcrumb } from "@/components/breadcrumb"
 import type { BlogPost } from "@/lib/blog"
 
 const mdxComponents = {
@@ -100,8 +101,51 @@ const mdxComponents = {
 export function BlogArticle({ post }: Readonly<{ post: BlogPost }>) {
   return (
     <article className="mx-auto max-w-3xl px-6 pt-32 pb-20">
-      <BlogBreadcrumb title={post.title} />
+      <Breadcrumb
+        items={[
+          { label: "Blog", href: "/blog" },
+          { label: post.title },
+        ]}
+      />
       <BlogArticleHeader post={post} />
+
+      {post.cover && (
+        <figure className="mb-10">
+          <div className="overflow-hidden rounded-2xl border border-border">
+            <Image
+              src={post.cover}
+              alt={post.coverAlt ?? post.title}
+              width={1080}
+              height={720}
+              className="h-auto w-full object-cover"
+              priority
+              sizes="(max-width: 768px) 100vw, 768px"
+            />
+          </div>
+          {post.coverCredit && (
+            <figcaption className="mt-2 text-xs text-muted-foreground">
+              Photo de{" "}
+              <a
+                href={post.coverCredit.photographerUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-muted-foreground/40 underline-offset-2 hover:text-foreground"
+              >
+                {post.coverCredit.photographer}
+              </a>{" "}
+              sur{" "}
+              <a
+                href={post.coverCredit.photoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-muted-foreground/40 underline-offset-2 hover:text-foreground"
+              >
+                {post.coverCredit.source}
+              </a>
+            </figcaption>
+          )}
+        </figure>
+      )}
 
       <hr className="mb-10 border-border" />
 

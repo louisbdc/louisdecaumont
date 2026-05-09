@@ -1,0 +1,220 @@
+---
+title: "Site web vs application web : quelle solution pour votre business"
+description: "Quelle différence entre un site web et une application web ? Critères de choix, exemples concrets, coûts et délais. Le guide pour décideurs en 2026."
+date: "2026-05-09"
+keywords: ["site web vs application web", "différence site et application", "site ou application web", "qu'est-ce qu'une application web", "saas vs site vitrine"]
+cover: "/photos/blog-site-vs-app.jpg"
+coverAlt: "Deux immeubles modernes en miroir noir et blanc, métaphore du choix entre un site web et une application web"
+coverCredit:
+  photographer: "Jonas Off"
+  photographerUrl: "https://unsplash.com/@jonas_off?utm_source=louisdecaumont.fr&utm_medium=referral"
+  photoUrl: "https://unsplash.com/photos/xslLy5h-Yzk?utm_source=louisdecaumont.fr&utm_medium=referral"
+  source: "Unsplash"
+faq:
+  - question: "Quelle est la différence entre un site web et une application web ?"
+    answer: "Un site web est consulté : il présente du contenu (informations, articles, catalogue) sans interaction complexe. Une application web est utilisée : l'utilisateur s'y connecte, manipule des données, accomplit des tâches. Une page de présentation d'un cabinet médical est un site, son outil de prise de rendez-vous en ligne est une application web."
+  - question: "Faut-il un site web avant de lancer une application web ?"
+    answer: "Oui dans la quasi-totalité des cas. L'application web a besoin d'un site marketing pour expliquer le produit, attirer les utilisateurs, faire du SEO et générer des leads. Sauf cas très spécifiques (B2B grands comptes, app distribuée par partenariat), tout SaaS commence par un site vitrine."
+  - question: "Combien coûte une application web vs un site web ?"
+    answer: "Un site vitrine sur mesure coûte 3 000 à 15 000 EUR. Une application web (MVP SaaS) commence à 8 000 EUR pour un projet simple, et peut monter à 40 000 EUR pour une V1 complète avec authentification, paiement, dashboard. Le rapport est typiquement de 1 pour 4 à 1 pour 10 entre les deux."
+  - question: "Une application web nécessite-t-elle des compétences différentes ?"
+    answer: "Oui. Un site web demande front-end et SEO. Une application web ajoute back-end, base de données, authentification, sécurité, scaling, et souvent paiement. C'est pourquoi les freelances qui font des sites vitrines ne sont pas tous capables de livrer une application web, et inversement."
+  - question: "Une application web peut-elle remplacer une application mobile ?"
+    answer: "Pour la majorité des cas, oui. Une web app moderne (PWA, Progressive Web App) installable sur l'écran d'accueil, fonctionnant hors-ligne et envoyant des notifications, couvre 80 pourcents des besoins d'une app native. L'app native devient nécessaire si vous avez besoin d'accéder à des fonctions matérielles spécifiques (caméra avancée, géolocalisation continue, capteurs biométriques)."
+  - question: "Qu'est-ce qu'un SaaS ?"
+    answer: "SaaS signifie Software as a Service. C'est une application web vendue par abonnement, accessible depuis n'importe quel navigateur. Les exemples : Notion, Slack, Stripe, Mailchimp, Shopify. Tous fonctionnent dans le navigateur et facturent au mois ou à l'année."
+  - question: "Combien de temps pour développer une application web ?"
+    answer: "Entre 6 semaines et 6 mois selon le périmètre. Un MVP minimaliste (authentification, dashboard simple, une fonctionnalité métier) sort en 6 à 10 semaines. Une V1 complète avec paiement récurrent, gestion utilisateurs, API publique, demande 3 à 6 mois. Pour le détail, voir mon article sur les délais de création."
+  - question: "Quelle stack technique pour une application web en 2026 ?"
+    answer: "Pour le front : Next.js avec TypeScript et Tailwind CSS. Pour le back : Node.js + Express ou Fastify, ou alors les API routes Next.js directement. Pour la base de données : PostgreSQL avec Prisma. Pour l'authentification : NextAuth ou Clerk. Pour les paiements : Stripe. Pour l'hébergement : Vercel + Supabase ou Railway. Cette stack couvre 90 pourcents des besoins SaaS."
+---
+
+Marie a fondé une plateforme de coaching professionnel en juillet 2025. Elle voulait "un site avec un espace membre". Son agence lui a livré, après quatre mois et 18 000 EUR, un site WordPress avec un plugin d'espace utilisateur. Six mois plus tard, le plugin n'est plus mis à jour, l'espace membre crashe sur certains navigateurs, et l'authentification a été piratée. Quand elle me contacte en mars 2026, elle réalise un truc simple : elle ne voulait pas un site, elle voulait une application web. Personne ne lui a expliqué la différence.
+
+Cette confusion site web / application web est la source de la majorité des projets ratés que je récupère. Pas par malveillance des prestataires : par incompréhension de ce que veut vraiment le client.
+
+Dans cet article, je clarifie :
+
+- **La vraie différence** entre un site web et une application web
+- **Quand il vous faut quoi**, avec des exemples concrets
+- **Combien ça coûte et combien ça prend** dans chaque cas
+- **Comment combiner les deux** intelligemment
+
+Pas de jargon. Du concret pour décideurs.
+
+## La vraie différence en une phrase
+
+**Un site web est consulté. Une application web est utilisée.**
+
+C'est la distinction fondamentale, et elle change tout : le coût, le délai, l'équipe, la maintenance, la stratégie SEO.
+
+### Ce qu'est un site web
+
+Un site web délivre de l'information. L'utilisateur arrive, consomme du contenu, repart. L'interaction se limite à : naviguer entre les pages, scroller, cliquer sur des liens, remplir un formulaire de contact.
+
+**Exemples typiques :**
+- Site vitrine d'une entreprise
+- Blog éditorial
+- Portfolio
+- Site institutionnel
+- Page de produit (pas de tunnel d'achat)
+- Catalogue en ligne (sans panier ni compte utilisateur)
+
+### Ce qu'est une application web
+
+Une application web délivre une fonctionnalité. L'utilisateur s'y connecte, accomplit une tâche, manipule des données qui lui appartiennent.
+
+**Exemples typiques :**
+- Outil de gestion de projet (Notion, Trello)
+- Plateforme de paiement (Stripe Dashboard)
+- Espace client de banque
+- Outil de réservation
+- Plateforme SaaS B2B
+- Réseau social
+- E-commerce avec compte utilisateur, panier, suivi de commande
+
+### La zone grise
+
+Beaucoup de produits sont à mi-chemin. Un blog avec un compte utilisateur pour commenter, un site e-commerce avec un panier, un catalogue avec un calculateur de tarif personnalisé.
+
+**Règle pratique :** dès qu'il y a authentification, base de données utilisateur ou logique métier complexe, vous êtes dans le territoire de l'application web. Vous aurez besoin de back-end, de sécurité, de scaling, et donc d'un budget plus conséquent.
+
+## Comparatif détaillé
+
+| Critère | Site web | Application web |
+|---|---|---|
+| **Objectif** | Informer, présenter, attirer | Permettre une action, gérer des données |
+| **Interaction** | Lecture, formulaire de contact | Authentification, manipulation de données |
+| **Complexité** | Faible à moyenne | Moyenne à très élevée |
+| **Front-end** | Next.js, React, ou WordPress | Next.js, React (avec interactivité poussée) |
+| **Back-end** | Optionnel | Obligatoire (Node.js, API REST/GraphQL) |
+| **Base de données** | Optionnelle (CMS) | Obligatoire (PostgreSQL, MongoDB) |
+| **Authentification** | Non | Oui (NextAuth, Clerk, Auth0) |
+| **Hébergement** | Vercel, Netlify | Vercel + DB hostée (Supabase, PlanetScale) |
+| **Maintenance technique** | Légère | Régulière (sécurité, scaling, logs) |
+| **Délai création** | 3-12 semaines | 6 semaines à 6+ mois |
+| **Budget initial** | 3 000 - 15 000 EUR | 8 000 - 50 000+ EUR |
+| **Coûts récurrents** | 50-500 EUR/an | 600-12 000 EUR/an |
+
+Pour les fourchettes de prix détaillées, lisez [Prix d'un site internet en 2026](https://louisdecaumont.fr/blog/combien-coute-un-site-internet).
+
+## Quand il vous faut un site web
+
+Vous avez besoin d'un site web (et pas d'une application) si :
+
+- Votre objectif est de vous faire connaître ou de générer des leads
+- Vos visiteurs ne se "connectent" pas
+- Vous n'avez pas de logique métier dans votre offre digitale
+- Votre business model n'est pas l'usage d'un outil
+
+**Exemples concrets :**
+
+- Cabinet d'avocats à Lyon → site vitrine
+- Restaurant gastronomique → site vitrine + réservation simple par formulaire
+- Photographe portfolio → site vitrine
+- Cabinet médical avec présentation → site vitrine + lien vers Doctolib pour la prise de rendez-vous
+- Marque de cosmétique en lancement → site vitrine + landing page produit
+
+Dans tous ces cas, ajouter une "application" serait sur-ingénierie. Le site fait le job.
+
+## Quand il vous faut une application web
+
+Vous avez besoin d'une application web si :
+
+- Vos utilisateurs accomplissent une tâche récurrente sur votre plateforme
+- Vous avez besoin d'authentification (comptes utilisateurs)
+- Vous gérez des données personnelles ou métier
+- Votre modèle économique repose sur l'usage d'un outil
+- Vous facturez par abonnement (SaaS)
+
+**Exemples concrets :**
+
+- Plateforme de coaching avec espace membre privé
+- Outil de gestion de planning pour PME
+- Marketplace mettant en relation prestataires et clients
+- Outil B2B avec intégration API à l'ERP du client
+- Réseau social niche
+- Plateforme de formation en ligne avec progression utilisateur
+- E-commerce avec gestion fine du compte client (suivi, retours, abonnements)
+
+Dans ces cas, un "site web amélioré avec un plugin" est une fausse économie : ça crashera dans les six mois.
+
+## La combinaison gagnante : site marketing + application
+
+Pour la quasi-totalité des SaaS, la stratégie optimale combine les deux :
+
+**Le site marketing** (`votredomaine.com`)
+- Présentation du produit
+- Pages services et features
+- Blog SEO pour attirer du trafic organique
+- Tunnel de conversion vers l'inscription
+- Stack : Next.js statique, génération à la build
+
+**L'application web** (`app.votredomaine.com`)
+- Authentification
+- Dashboard utilisateur
+- Logique métier
+- Paiement
+- Stack : Next.js + back-end + base de données
+
+Cette séparation permet d'optimiser chaque partie indépendamment. Le site marketing est ultra-rapide, indexable, focalisé sur la conversion. L'application est ultra-réactive, authentifiée, focalisée sur la productivité.
+
+C'est exactement le modèle utilisé par Notion, Stripe, Linear, Vercel, et la plupart des SaaS modernes.
+
+**Vous hésitez sur le bon dimensionnement ?** [Échange gratuit de 30 minutes](https://louisdecaumont.fr/contact) pour clarifier ce dont vous avez besoin avant de payer un devis trop large ou trop étroit.
+
+## Les erreurs classiques
+
+### Erreur 1 : choisir une application web par "fierté"
+
+"Mon concurrent a une plateforme, je dois en avoir une aussi." Pas forcément. Si votre concurrent utilise mal sa plateforme, c'est un boulet pour lui. Construisez ce dont vous avez besoin, pas ce que vous croyez impressionnant.
+
+### Erreur 2 : faire évoluer un site WordPress en application
+
+Ajouter des plugins d'espace membre, de paiement, de réservation à un WordPress crée un patchwork instable. Les plugins se contredisent, la sécurité s'effrite, la performance s'effondre. Au-delà de 3 plugins fonctionnels majeurs, repartez sur une vraie application web.
+
+### Erreur 3 : sous-estimer le coût récurrent d'une application
+
+Une application web coûte 100 à 1 000 EUR par mois minimum en infrastructure (base de données, serveur, monitoring), plus la maintenance évolutive (corrections, ajout de features). Si votre modèle économique ne supporte pas ces 1 200 à 12 000 EUR par an, c'est un signal de revoir le périmètre.
+
+### Erreur 4 : développer une app native quand une PWA suffit
+
+Une application native iOS + Android coûte 30 000 à 100 000 EUR. Une PWA (Progressive Web App) couvre 80 pourcents des besoins pour 8 000 à 25 000 EUR. Pour 90 pourcents des projets B2B, la PWA est le bon choix.
+
+## Comment décider rapidement
+
+Voici les questions à vous poser dans l'ordre.
+
+1. **Mes utilisateurs vont-ils s'authentifier régulièrement ?**
+   - Non → site web
+   - Oui → application web
+
+2. **Vais-je gérer des données qui appartiennent à l'utilisateur ?**
+   - Non → site web suffit
+   - Oui → application web
+
+3. **Mon modèle économique repose-t-il sur l'usage d'un outil ?**
+   - Non → site web (avec éventuellement une intégration tierce)
+   - Oui → application web
+
+4. **Suis-je prêt à investir au moins 8 000 EUR initial + 100 EUR/mois ?**
+   - Non → restez sur un site web et utilisez des outils tiers (Calendly, Stripe Checkout, MailerLite)
+   - Oui → application web pertinente
+
+Si vous avez répondu "Oui" aux trois premières questions et "Non" à la quatrième, c'est qu'il est trop tôt. Validez votre marché avec un site + outils SaaS tiers avant d'investir dans le développement.
+
+## Les délais et coûts en détail
+
+Pour comprendre les délais de chaque type de projet, lisez [Combien de temps pour créer un site web professionnel](https://louisdecaumont.fr/blog/delai-creation-site-web). Les fourchettes y sont détaillées par type de site et par phase.
+
+Pour les coûts détaillés et la grille tarifaire, voir [Prix d'un site internet en 2026](https://louisdecaumont.fr/blog/combien-coute-un-site-internet).
+
+## Ce que je propose
+
+Je conçois et développe les deux : sites vitrines et applications web sur mesure. Chaque projet commence par un cadrage gratuit qui détermine ce dont vous avez vraiment besoin, en fonction de vos objectifs business, votre budget et votre maturité produit.
+
+Pour les détails de méthode, voir la page [Développeur Web Freelance à Lyon](https://louisdecaumont.fr/developpeur-web-freelance-lyon).
+
+---
+
+**Un projet en tête mais pas sûr du périmètre ?** Échange gratuit de 30 minutes pour clarifier ce qu'il vous faut. [Me contacter](https://louisdecaumont.fr/contact).

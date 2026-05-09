@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { Breadcrumb } from "@/components/breadcrumb"
 
 export const metadata: Metadata = {
   title: "Mentions légales & Confidentialité — Louis de Caumont",
@@ -11,6 +12,7 @@ export default function MentionsLegales() {
   return (
     <div className="px-6 pt-32 pb-24">
       <div className="mx-auto max-w-3xl">
+        <Breadcrumb items={[{ label: "Mentions légales" }]} />
         <h1 className="mb-8 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           Mentions légales & Politique de confidentialité
         </h1>

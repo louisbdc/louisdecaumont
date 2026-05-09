@@ -1,0 +1,245 @@
+---
+title: "Core Web Vitals en 2026 : le guide complet pour passer au vert"
+description: "Tout sur les Core Web Vitals en 2026 : LCP, INP, CLS. Comment les mesurer, les comprendre et passer durablement au vert sur PageSpeed et Search Console."
+date: "2026-05-09"
+keywords: ["core web vitals", "lcp", "inp", "cls", "core web vitals 2026", "optimiser core web vitals", "passer core web vitals au vert"]
+cover: "/photos/blog-cwv.jpg"
+coverAlt: "Architecture moderne en courbes blanches minimalistes, métaphore de la fluidité et de la performance d'un site optimisé"
+coverCredit:
+  photographer: "Eduardo Cano Photo Co."
+  photographerUrl: "https://unsplash.com/@eduardocanophotoco?utm_source=louisdecaumont.fr&utm_medium=referral"
+  photoUrl: "https://unsplash.com/photos/kp2PrU--Gl4?utm_source=louisdecaumont.fr&utm_medium=referral"
+  source: "Unsplash"
+faq:
+  - question: "Qu'est-ce qu'un Core Web Vital ?"
+    answer: "Les Core Web Vitals sont trois métriques officielles de Google qui mesurent l'expérience utilisateur réelle sur un site web : LCP (vitesse de chargement perçue), INP (réactivité aux interactions), et CLS (stabilité visuelle). Depuis 2021, ils sont des facteurs de classement dans l'algorithme de recherche."
+  - question: "Quels sont les seuils pour passer au vert ?"
+    answer: "LCP sous 2,5 secondes, INP sous 200 millisecondes, CLS sous 0,1. Ces seuils s'appliquent aux 75 pourcents des chargements de page. Si seulement 50 pourcents de vos visiteurs ont un bon LCP, votre page est marquée 'À améliorer' dans Search Console."
+  - question: "Pourquoi mon score Lighthouse est bon mais pas mes CWV en Search Console ?"
+    answer: "Lighthouse mesure la performance dans des conditions de laboratoire (réseau et CPU simulés). Les CWV de Search Console viennent de vrais utilisateurs sur 28 jours (CrUX). Un site rapide en lab peut être lent pour des utilisateurs réels avec un téléphone d'entrée de gamme et une 4G capricieuse. Les données terrain priment."
+  - question: "INP a remplacé FID en 2024, qu'est-ce qui change ?"
+    answer: "INP mesure la latence de toutes les interactions sur la page (clics, taps, frappes), pas seulement la première comme FID. C'est plus représentatif de l'expérience réelle : un site qui freeze après 5 minutes d'utilisation passe le test FID mais échoue à INP. La transition demande souvent une optimisation JavaScript plus poussée."
+  - question: "Comment optimiser le LCP ?"
+    answer: "Trois leviers majeurs : optimiser l'image ou le bloc principal de la page (compression, format moderne, dimensions explicites), réduire le temps de réponse serveur sous 200 ms (hébergement performant, cache), et précharger les ressources critiques. Sur un site Next.js, le composant <Image priority> et le rendu statique font 80 pourcents du travail."
+  - question: "Comment optimiser l'INP ?"
+    answer: "Réduire le JavaScript non essentiel (code splitting, suppression des bibliothèques inutiles), différer le chargement des scripts tiers (Google Tag Manager, chats, analytics), et utiliser useDeferredValue ou startTransition sur les interactions React lourdes. L'objectif est de garder le thread principal libre pour répondre aux clics utilisateur."
+  - question: "Comment optimiser le CLS ?"
+    answer: "Trois règles : toujours déclarer les dimensions explicites des images et iframes (width/height ou aspect-ratio CSS), réserver l'espace pour les bannières, popups et publicités avant qu'ils n'apparaissent, et éviter d'injecter du contenu au-dessus du contenu déjà visible. Le CLS est souvent la métrique la plus facile à corriger."
+  - question: "Mon site WordPress peut-il passer les CWV ?"
+    answer: "Oui, c'est possible avec un hébergement performant, un thème léger, peu de plugins, et un cache bien configuré. Mais c'est un combat permanent : chaque mise à jour de plugin peut tout casser. Sur Next.js avec génération statique et déploiement Vercel, les CWV sont au vert par défaut, sans optimisation manuelle."
+  - question: "Combien de temps pour faire passer un site au vert ?"
+    answer: "Pour un site avec une stack moderne mais mal optimisé : 1 à 3 jours de travail technique pour un gain typique de 30 à 50 pourcents. Pour un site WordPress hérité avec problèmes structurels : 1 à 2 semaines minimum, ou bien envisager une refonte complète qui sera plus durable. Le retour sur investissement se mesure en quelques mois grâce au gain de positions Google."
+---
+
+Sébastien dirige une plateforme de recrutement à Lyon. En février 2026, son trafic SEO chute de 22 pourcents en quatre semaines. Aucun changement éditorial, aucun problème technique apparent. Quand on plonge dans Google Search Console, on découvre la cause : 47 pourcents de ses pages mobiles sont passées en "Médiocre" sur les Core Web Vitals. Google a tout simplement déclassé les pages lentes au profit de concurrents plus rapides.
+
+Cette histoire devient banale. Depuis 2021, les Core Web Vitals sont un facteur officiel de classement Google. Depuis 2024, INP remplace FID et durcit le test. En 2026, ne pas être au vert sur les CWV, c'est laisser des positions à la concurrence chaque semaine.
+
+Dans cet article, je détaille :
+
+- **Les trois métriques CWV** : LCP, INP, CLS, leurs seuils, leur impact réel
+- **Comment mesurer** correctement les CWV (lab vs terrain)
+- **Les 5 optimisations majeures** pour chaque métrique
+- **Le plan d'action** pour faire passer un site au vert durablement
+
+Pas de théorie abstraite. Du concret, avec les chiffres et les outils.
+
+## Les trois métriques expliquées
+
+Chaque CWV mesure une dimension différente de l'expérience utilisateur. Comprendre ce que chacune teste est la base.
+
+### LCP — Largest Contentful Paint
+
+**Ce que ça mesure :** le temps que prend l'élément principal de la page (image, titre, vidéo) à devenir visible.
+
+**Seuils :**
+- Bon : sous 2,5 secondes
+- À améliorer : 2,5 à 4 secondes
+- Médiocre : au-delà de 4 secondes
+
+**Pourquoi c'est important :** c'est la perception de vitesse. Un utilisateur qui voit le contenu en 1 seconde aura l'impression que le site est rapide, même si le chargement complet prend 5 secondes en arrière-plan.
+
+### INP — Interaction to Next Paint
+
+**Ce que ça mesure :** la latence entre une interaction utilisateur (clic, tap, frappe) et la prochaine mise à jour visuelle.
+
+**Seuils :**
+- Bon : sous 200 millisecondes
+- À améliorer : 200 à 500 ms
+- Médiocre : au-delà de 500 ms
+
+**Pourquoi c'est important :** c'est la réactivité. Un site qui prend 600 ms à répondre à un clic donne l'impression d'être cassé, même s'il a chargé en 1 seconde.
+
+INP a remplacé FID en mars 2024. La différence : FID ne mesurait que la première interaction, INP mesure toutes les interactions de la session. Beaucoup de sites qui passaient FID échouent à INP.
+
+### CLS — Cumulative Layout Shift
+
+**Ce que ça mesure :** le déplacement involontaire des éléments visuels pendant le chargement.
+
+**Seuils :**
+- Bon : sous 0,1
+- À améliorer : 0,1 à 0,25
+- Médiocre : au-delà de 0,25
+
+**Pourquoi c'est important :** c'est la stabilité. Un texte qui saute parce qu'une image charge en retard, ou un bouton qui se déplace au moment où on clique, sont des frictions UX majeures.
+
+## Lab vs terrain : la grande confusion
+
+C'est l'erreur la plus fréquente : croire que Lighthouse ou PageSpeed Insights donnent les "vrais" CWV. Ils ne le font pas.
+
+**Les outils en lab** (Lighthouse local, PageSpeed Lab Data) simulent un téléphone milieu de gamme avec une 4G stable. Ils sont reproductibles mais pas représentatifs.
+
+**Les outils terrain** (Search Console, PageSpeed Insights "Real User Data", CrUX) viennent de vrais visiteurs sur 28 jours. Ils sont les seuls que Google utilise pour son classement.
+
+| Outil | Type | Utilisation |
+|---|---|---|
+| Lighthouse Chrome DevTools | Lab | Diagnostic ponctuel |
+| PageSpeed Insights | Lab + Terrain | Vue d'ensemble |
+| Google Search Console "Signaux Web essentiels" | Terrain | Source de vérité officielle |
+| Chrome User Experience Report (CrUX) | Terrain | Données brutes pour analyses |
+
+**Règle simple :** ne décrétez jamais qu'un site "passe les CWV" sans regarder les données terrain. Un score Lighthouse 100 ne garantit rien.
+
+**Site lent en réalité ?** Si Search Console montre des CWV "Médiocres" sur la majorité de vos pages, [parlons-en gratuitement](https://louisdecaumont.fr/contact). Trente minutes pour identifier la cause racine.
+
+## Les 5 optimisations majeures pour le LCP
+
+### 1. Optimiser l'image LCP
+
+Sur 80 pourcents des sites, le LCP est une image (hero, bannière, photo de produit). Trois actions :
+
+- Convertir en WebP ou AVIF (gain de 50 à 80 pourcents en poids)
+- Servir des dimensions adaptées avec `srcset`
+- Utiliser le composant `<Image priority>` de Next.js (préchargement automatique)
+
+### 2. Réduire le temps de réponse serveur (TTFB)
+
+Un TTFB au-dessus de 600 ms ruine le LCP. Pour le réduire :
+
+- Hébergement performant (Vercel, OVH Performance, Cloudways)
+- Génération statique (Next.js `export const dynamic = "force-static"`)
+- CDN devant les pages dynamiques
+
+### 3. Précharger les ressources critiques
+
+Pour les polices et CSS critiques :
+
+```html
+<link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+```
+
+Sur Next.js, `next/font` le fait automatiquement.
+
+### 4. Inliner le CSS critique
+
+Le navigateur ne peut afficher la page qu'après avoir chargé tout le CSS. Inliner le CSS critique (above-the-fold) dans le `<head>` économise 200 à 500 ms.
+
+### 5. Différer le JavaScript non essentiel
+
+Tout JS qui ne sert pas au rendu initial doit être différé. Sur Next.js, les composants client sont automatiquement code-splittés.
+
+## Les 5 optimisations majeures pour l'INP
+
+### 1. Réduire le JavaScript bundle
+
+Plus le bundle est gros, plus le navigateur passe de temps à le parser et l'exécuter. Cibles :
+- Bundle JS initial sous 100 Ko gzippé
+- Total des scripts tiers sous 200 Ko
+
+### 2. Différer les scripts tiers
+
+Google Tag Manager, chats (Crisp, Intercom), A/B testing : tous en `async` ou différés au scroll. Les charger au-dessus du fold tue l'INP.
+
+### 3. Utiliser les APIs de scheduling React
+
+Pour les interactions lourdes (filtres, tris, recherches) :
+- `useDeferredValue` pour les valeurs dérivées
+- `startTransition` pour les mises à jour non urgentes
+
+### 4. Décomposer les longues tâches
+
+Une tâche JavaScript de plus de 50 ms bloque le thread principal. Solutions :
+- `requestIdleCallback` pour les calculs non critiques
+- `setTimeout(fn, 0)` pour découper en chunks
+- Web Workers pour les calculs lourds
+
+### 5. Optimiser les event handlers
+
+Un handler de clic qui déclenche un calcul de 200 ms bloque l'INP. Mesurer chaque handler avec Performance Observer.
+
+## Les 3 optimisations majeures pour le CLS
+
+### 1. Déclarer les dimensions des médias
+
+Toujours :
+
+```html
+<img src="..." width="800" height="600" alt="..." />
+```
+
+Sur Next.js, le composant `<Image>` impose ces attributs.
+
+### 2. Réserver l'espace des éléments dynamiques
+
+Bannières cookies, ads, embeds : utiliser `min-height` ou `aspect-ratio` pour réserver l'espace avant qu'ils n'apparaissent.
+
+### 3. Éviter les insertions au-dessus du contenu
+
+Si une popup doit s'afficher, ne pas la pousser entre deux blocs déjà visibles. Préférer un overlay en `position: fixed`.
+
+## Le plan d'action en 5 étapes
+
+Voici l'ordre dans lequel j'aborde une optimisation CWV.
+
+1. **Mesurer l'état initial** — Search Console + PageSpeed Insights, screenshot des scores
+2. **Identifier la métrique la plus dégradée** — souvent LCP en mobile
+3. **Lister les 3 plus gros gains potentiels** — généralement images + TTFB + JS
+4. **Implémenter une optimisation à la fois** — ne pas tout faire en parallèle
+5. **Re-mesurer après 7 jours** — laisser les données terrain remonter
+
+**Important :** les données terrain (Search Console) prennent 28 jours pour se rafraîchir complètement. Ne paniquez pas si le score ne bouge pas après 3 jours. Patience.
+
+## Le lien direct avec le SEO
+
+Les CWV sont un facteur de classement, mais ils ne sont qu'un signal parmi des centaines. Voici l'impact réel observé sur mes projets :
+
+| État CWV | Impact observé sur les positions |
+|---|---|
+| 100 pourcents au vert | +3 à +8 positions sur les requêtes compétitives |
+| 75 pourcents au vert | Positions stables, pas de pénalité |
+| 50 pourcents médiocres | Chute de 5 à 15 positions sur 4-8 semaines |
+| 90 pourcents médiocres | Chute massive, perte de 30 à 50 pourcents du trafic |
+
+Les CWV ne créent pas un trafic explosif s'ils sont bons. Mais ils peuvent détruire le trafic existant s'ils sont mauvais.
+
+Pour comprendre les autres facteurs qui ralentissent un site, lisez [Pourquoi votre site est lent : diagnostic et solutions](https://louisdecaumont.fr/blog/pourquoi-mon-site-est-lent).
+
+## Cas WordPress vs Next.js
+
+Sur 12+ projets que j'ai migrés ou refondus, voici la comparaison des CWV avant/après.
+
+| Métrique | WordPress moyen | Next.js statique |
+|---|---|---|
+| LCP mobile (médiane) | 3,8 s | 1,2 s |
+| INP (médiane) | 280 ms | 90 ms |
+| CLS (médiane) | 0,18 | 0,02 |
+| Pourcentage pages "Bonnes" en Search Console | 40-60 % | 92-100 % |
+
+Cette différence vient de l'architecture : WordPress génère chaque page à la volée et charge des dizaines de scripts plugins, Next.js sert des pages pré-rendues avec un JS minimal.
+
+Pour le détail, lisez [Next.js vs WordPress : le guide 2026](https://louisdecaumont.fr/blog/next-js-vs-wordpress).
+
+## Ce que je propose
+
+Sur tous mes projets, les CWV sont au vert dès la livraison, et le restent. Concrètement :
+
+- LCP mobile sous 1,5 seconde sur connexion 4G
+- INP sous 100 ms même avec interactions complexes
+- CLS sous 0,05 grâce aux dimensions explicites
+- Score PageSpeed mobile au-dessus de 90 sur toutes les pages
+
+Pour les détails de méthode et les autres services, voir la page [Développeur Web Freelance à Lyon](https://louisdecaumont.fr/developpeur-web-freelance-lyon).
+
+---
+
+**CWV au rouge ?** Échange gratuit de 30 minutes pour identifier la cause et estimer le coût de l'optimisation. [Me contacter](https://louisdecaumont.fr/contact).
