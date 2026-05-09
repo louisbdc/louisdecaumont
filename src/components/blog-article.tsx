@@ -4,6 +4,7 @@ import { MDXRemote } from "next-mdx-remote/rsc"
 import remarkGfm from "remark-gfm"
 import { BlogArticleHeader } from "@/components/blog-article-header"
 import { BlogArticleCTA } from "@/components/blog-article-cta"
+import { BlogAuthorBio } from "@/components/blog-author-bio"
 import { BlogFAQ } from "@/components/blog-faq"
 import { Breadcrumb } from "@/components/breadcrumb"
 import type { BlogPost } from "@/lib/blog"
@@ -157,6 +158,7 @@ export function BlogArticle({ post }: Readonly<{ post: BlogPost }>) {
         />
       </div>
 
+      <BlogAuthorBio />
       <BlogFAQ faqs={post.faq} />
       <BlogArticleCTA />
     </article>

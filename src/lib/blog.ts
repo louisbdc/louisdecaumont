@@ -20,6 +20,7 @@ export interface PhotoCredit {
 export interface BlogPost {
   slug: string
   title: string
+  seoTitle?: string
   description: string
   date: string
   keywords: string[]
@@ -34,6 +35,7 @@ export interface BlogPost {
 export interface BlogPostMeta {
   slug: string
   title: string
+  seoTitle?: string
   description: string
   date: string
   keywords: string[]
@@ -58,6 +60,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
   return {
     slug,
     title: data.title ?? "",
+    seoTitle: data.seoTitle,
     description: data.description ?? "",
     date: data.date ?? "",
     keywords: data.keywords ?? [],
@@ -83,6 +86,7 @@ export function getAllPosts(): BlogPostMeta[] {
     return {
       slug,
       title: data.title ?? "",
+      seoTitle: data.seoTitle,
       description: data.description ?? "",
       date: data.date ?? "",
       keywords: data.keywords ?? [],

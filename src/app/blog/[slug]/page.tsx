@@ -16,12 +16,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const post = getPostBySlug(slug)
   if (!post) return {}
 
+  const metaTitle = post.seoTitle ?? post.title
   return {
-    title: `${post.title} — Louis de Caumont`,
+    title: `${metaTitle} — Louis de Caumont`,
     description: post.description,
     alternates: { canonical: `/blog/${slug}` },
     openGraph: {
-      title: post.title,
+      title: metaTitle,
       description: post.description,
       type: "article",
       locale: "fr_FR",
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
+      title: metaTitle,
       description: post.description,
       images: ["/og-image.png"],
     },

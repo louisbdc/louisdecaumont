@@ -77,26 +77,19 @@ function Counter({
   value,
   suffix,
   label,
-  delay,
 }: {
   readonly value: number
   readonly suffix: string
   readonly label: string
-  readonly delay: number
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay }}
-      className="text-center"
-    >
+    <div className="text-center">
       <span className="text-3xl font-bold text-foreground sm:text-4xl">
         {value}
         {suffix}
       </span>
       <p className="mt-1 text-sm text-muted-foreground">{label}</p>
-    </motion.div>
+    </div>
   )
 }
 
@@ -159,61 +152,26 @@ export function Hero() {
         style={{ opacity: contentOpacity, y: contentY }}
         className="relative z-10 mx-auto max-w-6xl text-center"
       >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="mb-4"
-        >
+        <div className="mb-4">
           <h1 className="text-[clamp(3rem,10vw,9rem)] font-black leading-[0.9] tracking-tighter text-foreground">
             <span className="sr-only">
               Louis de Caumont — Développeur web freelance à Lyon, expert Next.js et React
             </span>
-            <motion.span
-              aria-hidden="true"
-              initial={{ opacity: 0, y: 60 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.8,
-                delay: 0.2,
-                ease: [0.25, 0.46, 0.45, 0.94],
-              }}
-              className="block"
-            >
+            <span aria-hidden="true" className="block">
               LOUIS
-            </motion.span>
-            <motion.span
-              aria-hidden="true"
-              initial={{ opacity: 0, y: 60 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.8,
-                delay: 0.35,
-                ease: [0.25, 0.46, 0.45, 0.94],
-              }}
-              className="block text-muted-foreground/40"
-            >
+            </span>
+            <span aria-hidden="true" className="block text-muted-foreground/40">
               DE CAUMONT
-            </motion.span>
+            </span>
           </h1>
-        </motion.div>
+        </div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.2 }}
-          className="mx-auto mb-8 max-w-xl text-lg leading-relaxed text-muted-foreground"
-        >
+        <p className="mx-auto mb-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
           Développeur full-stack freelance basé à Lyon.
           Sites web, apps mobiles, plateformes SaaS sur mesure.
-        </motion.p>
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.4 }}
-          className="mb-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
-        >
+        <div className="mb-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <a
             href="#projets"
             className="inline-flex cursor-pointer items-center gap-2 rounded-2xl bg-primary px-7 py-3.5 text-sm font-medium text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:shadow-lg"
@@ -227,20 +185,15 @@ export function Hero() {
           >
             Me contacter
           </a>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.6 }}
-          className="flex flex-wrap items-center justify-center gap-8 sm:gap-12"
-        >
-          <Counter value={10} suffix="+" label="Projets livrés" delay={1.6} />
+        <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
+          <Counter value={10} suffix="+" label="Projets livrés" />
           <div className="hidden h-8 w-px bg-border sm:block" />
-          <Counter value={100} suffix="%" label="Sur mesure" delay={1.8} />
+          <Counter value={100} suffix="%" label="Sur mesure" />
           <div className="hidden h-8 w-px bg-border sm:block" />
-          <Counter value={5} suffix="+" label="Secteurs" delay={2.0} />
-        </motion.div>
+          <Counter value={5} suffix="+" label="Secteurs" />
+        </div>
       </motion.div>
 
       {/* Floating screenshots — in front of text (z-30) */}

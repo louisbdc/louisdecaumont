@@ -71,6 +71,8 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${inter.variable} h-full antialiased`}>
       <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -87,9 +89,9 @@ export default function RootLayout({
         />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-RB71B6FRPL"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`gtag('js', new Date()); gtag('config', 'G-RB71B6FRPL');`}
         </Script>
         <script

@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { CookieSettingsButton } from "@/components/cookie-settings-button"
+import { getAllPosts } from "@/lib/blog"
 
 const footerLinkClass =
   "text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
@@ -8,6 +9,7 @@ const Separator = () => <span className="text-muted-foreground/30">|</span>
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
+  const recentPosts = getAllPosts().slice(0, 3)
 
   return (
     <footer className="relative z-10 border-t border-border px-6 py-10">
@@ -53,30 +55,16 @@ export function Footer() {
               Derniers articles
             </p>
             <ul className="flex flex-col gap-2">
-              <li>
-                <Link
-                  href="/blog/migrer-wordpress-vers-next-js"
-                  className={footerLinkClass}
-                >
-                  Migrer WordPress vers Next.js
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/blog/pourquoi-mon-site-est-lent"
-                  className={footerLinkClass}
-                >
-                  Pourquoi votre site est lent
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/blog/delai-creation-site-web"
-                  className={footerLinkClass}
-                >
-                  Délai création site web
-                </Link>
-              </li>
+              {recentPosts.map((post) => (
+                <li key={post.slug}>
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className={footerLinkClass}
+                  >
+                    {post.seoTitle ?? post.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           <div>
