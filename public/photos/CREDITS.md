@@ -57,3 +57,33 @@ Unsplash, chaque photo est créditée à son auteur avec un lien retour vers son
 - **Photographe** : Jonas Off ([@jonas_off](https://unsplash.com/@jonas_off))
 - **Photo** : <https://unsplash.com/photos/xslLy5h-Yzk>
 - **Utilisation** : cover de l'article `/blog/site-web-vs-application-web`
+
+## blog-seo-local-lyon.jpg
+
+- **Photographe** : Hugo Coulbouée ([@hugoclb](https://unsplash.com/@hugoclb))
+- **Photo** : <https://unsplash.com/photos/TEwJpKA6_Hs>
+- **Utilisation** : cover de l'article `/blog/seo-local-lyon`
+
+## blog-cahier-des-charges.jpg
+
+- **Photographe** : Jakub Żerdzicki ([@jakubzerdzicki](https://unsplash.com/@jakubzerdzicki))
+- **Photo** : <https://unsplash.com/photos/4C9BS4FHGec>
+- **Utilisation** : cover de l'article `/blog/cahier-des-charges-site-web`
+
+## blog-hebergement-comparatif.jpg
+
+- **Photographe** : Mitchell Luo ([@mitchel3uo](https://unsplash.com/@mitchel3uo))
+- **Photo** : <https://unsplash.com/photos/ldDNphL6Y7o>
+- **Utilisation** : cover de l'article `/blog/hebergement-vercel-vs-netlify-vs-ovh`
+
+## blog-refonte-site.jpg
+
+- **Photographe** : Caterina Beleffi ([@caterinabeleffi](https://unsplash.com/@caterinabeleffi))
+- **Photo** : <https://unsplash.com/photos/PcMKpP0snfY>
+- **Utilisation** : cover de l'article `/blog/refonte-site-web`
+
+## blog-choisir-freelance.jpg
+
+- **Photographe** : Annie Spratt ([@anniespratt](https://unsplash.com/@anniespratt))
+- **Photo** : <https://unsplash.com/photos/yGyuDumJsSM>
+- **Utilisation** : cover de l'article `/blog/choisir-developpeur-freelance-web`

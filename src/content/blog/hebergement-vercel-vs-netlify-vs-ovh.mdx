@@ -1,0 +1,253 @@
+---
+title: "Hébergement web 2026 : Vercel vs Netlify vs OVH, le comparatif"
+seoTitle: "Vercel vs Netlify vs OVH : comparatif 2026"
+description: "Comparatif Vercel vs Netlify vs OVH pour héberger un site web en 2026 : performance, prix, simplicité, SEO. Le guide pour choisir le bon hébergeur."
+date: "2026-05-09"
+keywords: ["hébergement site web", "vercel vs netlify", "vercel vs ovh", "meilleur hébergement next.js", "hébergement français site web"]
+cover: "/photos/blog-hebergement-comparatif.jpg"
+coverAlt: "Deux immeubles modernes en verre noir et blanc face à face, illustrant le choix entre plusieurs hébergeurs web"
+coverCredit:
+  photographer: "Mitchell Luo"
+  photographerUrl: "https://unsplash.com/@mitchel3uo?utm_source=louisdecaumont.fr&utm_medium=referral"
+  photoUrl: "https://unsplash.com/photos/ldDNphL6Y7o?utm_source=louisdecaumont.fr&utm_medium=referral"
+  source: "Unsplash"
+faq:
+  - question: "Quel est le meilleur hébergeur pour un site Next.js ?"
+    answer: "Vercel, sans hésitation, pour la simplicité et l'optimisation native (Vercel a été créé par les développeurs de Next.js). Netlify est une excellente alternative avec une approche similaire. OVH peut convenir pour des projets avec contraintes RGPD strictes ou besoin de contrôle total sur le serveur, mais demande une configuration manuelle."
+  - question: "Vercel est-il gratuit ?"
+    answer: "Oui pour les petits sites personnels et les MVP. Le plan Hobby est gratuit avec 100 GB de bande passante par mois et 100 GB-hours de calcul serverless. Au-delà, il faut passer en Pro à 20 USD par mois, qui couvre la plupart des sites professionnels jusqu'à plusieurs millions de visiteurs mensuels."
+  - question: "Faut-il un hébergeur français pour le RGPD ?"
+    answer: "Pas obligatoirement. Le RGPD impose la protection des données personnelles, pas leur stockage en France. Vercel et Netlify peuvent stocker en région européenne (Frankfurt, Dublin) ce qui suffit pour la majorité des cas. Pour les secteurs très réglementés (santé, finance, défense), un hébergeur français certifié HDS peut être imposé."
+  - question: "Quelle différence entre Vercel et Netlify ?"
+    answer: "Vercel est optimisé pour Next.js et React (mêmes équipes), Netlify est plus généraliste et fonctionne bien avec tous les frameworks. Vercel a une meilleure performance globale grâce à son edge network, Netlify une interface plus pédagogique pour les débutants. Pour un projet Next.js, Vercel ; pour un site statique multi-frameworks, Netlify reste compétitif."
+  - question: "OVH peut-il héberger un site Next.js ?"
+    answer: "Oui, mais avec configuration manuelle. OVH propose des VPS et serveurs dédiés où vous installez Node.js, PM2, Nginx et déployez Next.js manuellement. C'est plus complexe que Vercel mais offre un contrôle total. Idéal pour les projets enterprise avec contraintes spécifiques. À ne pas tenter sans expérience DevOps."
+  - question: "Quel hébergeur pour un blog WordPress ?"
+    answer: "OVH, o2switch ou Cloudways pour un hébergement WordPress optimisé. Vercel et Netlify ne sont pas adaptés pour WordPress car ils ne supportent pas PHP nativement. WP Engine et Kinsta sont les références premium pour WordPress avec performance optimisée, mais coûtent 30 à 200 EUR par mois selon le trafic."
+  - question: "Combien coûte l'hébergement d'un site web professionnel ?"
+    answer: "Entre 0 et 240 EUR par an pour un site Next.js sur Vercel Pro. Entre 50 et 500 EUR par an pour un WordPress sur OVH ou o2switch performance. Entre 600 et 3 000 EUR par an pour un e-commerce à fort trafic ou un SaaS. Le prix dépend du trafic, du stockage, de la base de données et des services annexes (CDN, backups, monitoring)."
+  - question: "Faut-il payer un CDN séparément ?"
+    answer: "Non, dans la plupart des cas. Vercel et Netlify incluent un CDN edge global dans leur offre de base. Pour un hébergement classique chez OVH ou autres, il faut ajouter Cloudflare (gratuit pour la majorité des sites) ou Bunny CDN (1 à 10 EUR par mois selon le trafic). Le CDN n'est plus une option premium en 2026, c'est une nécessité."
+---
+
+Antoine dirige un cabinet de conseil à Bordeaux. En 2024, il a fait développer son site WordPress pour 5 000 EUR par une agence locale. Hébergement chez un mutualisé bas de gamme à 4 EUR par mois pour économiser. En janvier 2026, son site charge en 7 secondes sur mobile, fait 47 sur PageSpeed et perd des leads chaque semaine. Quand on creuse, l'hébergeur est responsable de 60 % du problème : TTFB à 1,8 seconde sur les heures de pointe, latence variable, support inexistant.
+
+Le choix de l'hébergeur reste sous-estimé alors qu'il influence directement la performance, le SEO, la sécurité et même les coûts de développement (un dev sur stack moderne sur Vercel coûte deux à trois fois moins en maintenance qu'un WordPress mutualisé).
+
+Dans cet article, je compare les trois hébergeurs principaux du marché en 2026 :
+
+- **Vercel** : la référence pour Next.js et React
+- **Netlify** : l'alternative full-stack moderne
+- **OVH** : l'hébergeur français traditionnel
+
+Critères : performance, prix, simplicité, conformité, scalabilité.
+
+## Tableau comparatif rapide
+
+| Critère | Vercel | Netlify | OVH |
+|---|---|---|---|
+| Type | PaaS Next.js | PaaS multi-frameworks | Mutualisé / VPS / Dédié |
+| Tarif starter | Gratuit | Gratuit | À partir de 4 EUR/mois |
+| Tarif pro | 20 USD/mois | 19 USD/mois | 30 à 200 EUR/mois |
+| Idéal pour | Next.js, React | Frameworks variés | WordPress, projets custom |
+| Performance globale | ★★★★★ | ★★★★★ | ★★★ (mutualisé) à ★★★★★ (dédié) |
+| Simplicité | ★★★★★ | ★★★★★ | ★★ (config manuelle) |
+| CDN inclus | Oui (Edge global) | Oui (Edge global) | Cloudflare à ajouter |
+| Hébergement EU | Oui (Frankfurt) | Oui (Frankfurt) | Oui (Roubaix, Strasbourg) |
+| Conformité HDS | Non | Non | Oui (offres dédiées) |
+| Support FR | Non | Non | Oui |
+| Builds automatiques Git | Oui | Oui | À configurer |
+
+## Vercel : la référence Next.js
+
+### Forces
+
+**Optimisation Next.js native.** Vercel et Next.js partagent la même équipe d'origine (Vercel a créé et maintient Next.js). Toutes les optimisations Next.js (image optimization, ISR, edge functions, middleware) fonctionnent out-of-the-box sans configuration.
+
+**Performance globale.** Edge network global (40+ régions), CDN inclus, certificats SSL automatiques. Score Lighthouse 90+ atteignable sans effort sur un site Next.js bien codé.
+
+**Simplicité de déploiement.** Connectez votre repo GitHub, chaque commit déclenche un build et un déploiement automatique. Preview URL pour chaque pull request, rollback en un clic.
+
+**Tarification gratuite généreuse.** Le plan Hobby couvre la majorité des projets personnels et MVP. Bande passante 100 GB/mois suffisante pour des dizaines de milliers de visiteurs.
+
+### Faiblesses
+
+**Pas adapté aux frameworks non-React.** Vue, Svelte, Astro fonctionnent mais avec moins d'optimisations que Next.js.
+
+**Pas de support PHP.** Inutilisable pour WordPress.
+
+**Tarification à l'usage peut surprendre.** Les fonctions serverless et la bande passante sont chargées à l'usage. Sur un projet à fort trafic mal optimisé, la facture peut grimper rapidement (cas rare mais possible).
+
+**Pas de présence française dédiée.** Support en anglais uniquement, pas d'engagement de stockage en France.
+
+### Pour qui
+
+- Sites Next.js et React, du landing page au SaaS
+- Startups et freelances qui veulent zero-ops
+- Projets avec besoin de scalabilité automatique
+- E-commerce headless modernes (Next.js + Shopify Storefront API)
+
+### Tarifs détaillés
+
+- **Hobby (gratuit)** : 100 GB bande passante, 100 GB-hours fonctions, 1 build à la fois, sans support
+- **Pro (20 USD/mois)** : 1 TB bande passante, 1 000 GB-hours fonctions, 12 builds simultanés, support email
+- **Enterprise (sur devis)** : SLA 99,99 %, support dédié, audits sécurité, à partir de 1 200 USD/mois
+
+## Netlify : l'alternative full-stack
+
+### Forces
+
+**Polyvalence.** Fonctionne avec Next.js, Vue, Svelte, Astro, Hugo, Jekyll, Gatsby. Plus généraliste que Vercel.
+
+**Identity & Functions.** Système d'authentification intégré (Netlify Identity), fonctions serverless avec runtime Node.js standard. Idéal pour les projets full-stack légers.
+
+**Simplicité d'utilisation.** Interface très pédagogique, idéale pour les équipes non-techniques. La logique "drag-and-drop ou Git" la rend accessible.
+
+**Forms intégrés.** Formulaires HTML standard automatiquement collectés et envoyés par email, sans backend à coder.
+
+### Faiblesses
+
+**Performance Next.js inférieure à Vercel.** Sur un projet Next.js, Vercel reste 10 à 20 % plus rapide en moyenne grâce à son edge network optimisé pour le framework.
+
+**Pricing Pro sur l'équivalent.** Sensiblement le même prix que Vercel mais avec moins d'optimisations Next.js.
+
+**Communauté plus petite.** Moins d'intégrations tierces et de templates que Vercel.
+
+### Pour qui
+
+- Sites multi-frameworks (Vue, Svelte, Astro, etc.)
+- Projets avec formulaires lourds (Netlify Forms évite de coder un backend)
+- Équipes qui valorisent la pédagogie de l'interface
+- Sites Jamstack purs (statique + APIs)
+
+### Tarifs détaillés
+
+- **Starter (gratuit)** : 100 GB bande passante, 300 minutes build, 1 fonction serverless concurrente
+- **Pro (19 USD/mois)** : 400 GB bande passante, 1 000 min build, 10 fonctions concurrentes, support email
+- **Enterprise (sur devis)** : à partir de 1 500 USD/mois, SLA, isolation, audits
+
+## OVH : le poids lourd français
+
+### Forces
+
+**Souveraineté française.** Datacenters à Roubaix, Strasbourg, Gravelines. Conformité RGPD facilitée, choix politique pour certains secteurs.
+
+**Variété d'offres.** Du mutualisé à 4 EUR par mois au serveur dédié à 200 EUR par mois, en passant par VPS, Public Cloud, Bare Metal.
+
+**Conformité HDS** (Hébergement de Données de Santé) sur certaines offres. Indispensable pour cabinets médicaux, cliniques, EHPAD.
+
+**Support en français.** Téléphone, email, chat. Niveau variable selon l'offre.
+
+**Hébergement dédié possible.** Pour les projets avec besoin de contrôle total ou contraintes de performance extrêmes.
+
+### Faiblesses
+
+**Mutualisé sous-performant.** Les offres mutualisées d'entrée de gamme (4 à 8 EUR par mois) sont lentes : TTFB 600 à 1 500 ms, surcharge aux heures de pointe. Convient pour blogs personnels mais pas pour business.
+
+**Configuration Next.js manuelle.** Pas de déploiement Git automatique sans configurer un VPS et installer manuellement Node.js, PM2, Nginx. Demande compétences DevOps.
+
+**Pas de CDN inclus.** Il faut ajouter Cloudflare (gratuit) ou similaire.
+
+**Interface vieillissante.** Le manager OVH est moins moderne que Vercel ou Netlify, moins intuitif pour les débutants.
+
+### Pour qui
+
+- WordPress (offres performance dédiées WordPress)
+- E-commerce avec besoin de stockage massif
+- Projets avec contrainte HDS (santé)
+- Entreprises souhaitant souveraineté française
+- Projets enterprise avec besoins custom (firewall, IP fixe, etc.)
+
+### Tarifs détaillés
+
+- **Hébergement Web Starter (4 EUR/mois)** : 250 GB stockage, sites illimités, mutualisé
+- **Performance (12 EUR/mois)** : ressources dédiées partielles, plus rapide
+- **VPS (10 à 100 EUR/mois)** : serveur virtuel, contrôle total
+- **Bare Metal (100 à 500+ EUR/mois)** : serveur dédié physique
+
+## Comment choisir
+
+### Pour un site Next.js ou React → Vercel
+
+Sans hésitation. Configuration en 5 minutes via GitHub, déploiement automatique, performance native. Le plan gratuit suffit pour démarrer, le Pro à 20 USD/mois suffit pour 95 % des projets professionnels.
+
+### Pour un site Vue, Svelte, Astro → Netlify
+
+Très bon support multi-frameworks. Si Next.js, préférer Vercel.
+
+### Pour un WordPress → OVH ou Cloudways ou WP Engine
+
+OVH Performance pour PME française. Cloudways pour optimisation cloud (AWS, GCP, DigitalOcean managé). WP Engine ou Kinsta pour les sites WordPress haut trafic.
+
+### Pour un site avec contrainte HDS (santé) → OVH
+
+Seul des trois à proposer cette certification. Vérifier que l'offre exacte est certifiée (toutes les offres OVH ne le sont pas).
+
+### Pour un projet enterprise sur mesure → OVH dédié ou cloud spécialisé
+
+Si vous avez des besoins très spécifiques (architecture multi-régions, isolation complète, conformité sectorielle), OVH Bare Metal ou les offres cloud (AWS, GCP, Azure) sont incontournables.
+
+**Vous hésitez sur l'hébergeur de votre projet ?** [Échange gratuit de 30 minutes](https://louisdecaumont.fr/contact) pour identifier le meilleur choix selon votre stack et vos contraintes.
+
+## Cas pratiques
+
+### Cas 1 : freelance lance son site portfolio Next.js
+
+**Recommandation :** Vercel Hobby (gratuit). Domaine acheté chez Cloudflare ou OVH (10 à 30 EUR par an), branché sur Vercel.
+
+**Coût total :** 0 à 30 EUR par an.
+
+### Cas 2 : PME refait son site WordPress vitrine
+
+**Recommandation :** OVH Performance ou Cloudways. Migration depuis l'ancien hébergeur, certificat SSL auto, monitoring inclus.
+
+**Coût total :** 100 à 300 EUR par an.
+
+### Cas 3 : startup SaaS Next.js + PostgreSQL + Stripe
+
+**Recommandation :** Vercel Pro (20 USD/mois) + Supabase ou Railway pour la base de données + Stripe pour les paiements.
+
+**Coût total :** 600 à 1 500 EUR par an la première année.
+
+### Cas 4 : e-commerce headless
+
+**Recommandation :** Vercel Pro pour le front Next.js, Shopify pour le back-office produits/commandes, Stripe ou Mollie pour le paiement avancé.
+
+**Coût total :** 600 à 6 000 EUR par an selon le volume.
+
+### Cas 5 : cabinet médical avec contrainte HDS
+
+**Recommandation :** OVH HDS sur offre dédiée. Configuration manuelle d'un site Next.js sur VPS HDS, ou WordPress avec extensions sécurité.
+
+**Coût total :** 800 à 3 000 EUR par an minimum.
+
+## Au-delà du choix initial : la maintenance
+
+Un hébergement bien choisi limite drastiquement la maintenance. Comparaison sur 3 ans pour un site standard :
+
+| Hébergeur | Coût initial | Coût récurrent | Maintenance annuelle |
+|---|---|---|---|
+| Vercel + Next.js | 0 | 0-240 EUR | 0 EUR (autonome) |
+| Netlify + Astro | 0 | 0-228 EUR | 0 EUR (autonome) |
+| OVH + WordPress | 4 EUR/mois | 50-150 EUR | 500-2 000 EUR |
+| OVH dédié + custom | 100 EUR/mois | 1 200 EUR | 1 000-5 000 EUR |
+
+Pour comprendre ces coûts dans le contexte global d'un projet web, lisez [Prix d'un site internet en 2026](https://louisdecaumont.fr/blog/combien-coute-un-site-internet).
+
+Pour comprendre l'impact de l'hébergement sur la performance, voir [Pourquoi votre site est lent : diagnostic et solutions](https://louisdecaumont.fr/blog/pourquoi-mon-site-est-lent).
+
+## Mon recommandation par défaut
+
+Sur 12+ projets livrés depuis 2024, j'utilise par défaut :
+
+- **Vercel** pour 90 % des sites Next.js
+- **OVH dédié** pour les rares projets avec contrainte HDS ou besoin enterprise
+- **Cloudways** pour les rares WordPress que je récupère sans pouvoir migrer
+
+Le choix de l'hébergeur fait partie de mon devis et est inclus dans la livraison. Je gère le déploiement, la configuration DNS, les certificats SSL, et la connexion à Google Analytics et Search Console.
+
+Pour les détails de méthode, voir la page [Développeur Web Freelance à Lyon](https://louisdecaumont.fr/developpeur-web-freelance-lyon).
+
+---
+
+**Vous lancez un projet web ?** Échange gratuit de 30 minutes pour identifier la stack et l'hébergement les plus adaptés. [Me contacter](https://louisdecaumont.fr/contact).

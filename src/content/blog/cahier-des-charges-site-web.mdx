@@ -1,0 +1,361 @@
+---
+title: "Cahier des charges site web : la méthode + un template prêt à l'emploi"
+seoTitle: "Cahier des charges site web : méthode 2026"
+description: "Comment rédiger un cahier des charges efficace pour votre site web : méthode pas à pas, sections indispensables, exemples concrets et template à copier."
+date: "2026-05-09"
+keywords: ["cahier des charges site web", "rédiger cahier des charges site internet", "template cahier des charges site web", "exemple cahier des charges site web"]
+cover: "/photos/blog-cahier-des-charges.jpg"
+coverAlt: "Carnet ouvert avec ruban marque-page noir, illustrant la rédaction structurée d'un cahier des charges site web"
+coverCredit:
+  photographer: "Jakub Żerdzicki"
+  photographerUrl: "https://unsplash.com/@jakubzerdzicki?utm_source=louisdecaumont.fr&utm_medium=referral"
+  photoUrl: "https://unsplash.com/photos/4C9BS4FHGec?utm_source=louisdecaumont.fr&utm_medium=referral"
+  source: "Unsplash"
+faq:
+  - question: "Pourquoi rédiger un cahier des charges pour son site web ?"
+    answer: "Trois raisons principales : éviter les malentendus avec le prestataire en formalisant le périmètre, comparer les devis sur la même base objective, et servir de référence en cours de projet pour trancher les désaccords. Un cahier des charges économise généralement 20 à 40 pourcents du temps total grâce à la clarté qu'il apporte dès le départ."
+  - question: "Combien de pages doit faire un cahier des charges ?"
+    answer: "Entre 5 et 15 pages selon la complexité du projet. Un site vitrine simple : 5 à 8 pages. Un e-commerce : 10 à 15 pages. Un SaaS complexe : 20 à 50 pages. Trop court risque l'imprécision, trop long décourage les prestataires de répondre. La bonne mesure est : tout ce qui est nécessaire pour qu'un prestataire puisse chiffrer précisément, rien de superflu."
+  - question: "Faut-il un cahier des charges même pour un petit site ?"
+    answer: "Oui, même pour un site vitrine de 5 pages à 3 000 EUR. Le cahier peut faire seulement 3 pages, mais formaliser le périmètre, l'arborescence et les fonctionnalités évite les ambiguïtés. Sans cahier des charges, les modifications en cours de projet deviennent des conflits sur 'ce qui était inclus dans le devis'."
+  - question: "Qui doit rédiger le cahier des charges, le client ou le prestataire ?"
+    answer: "Idéalement le client, avec l'aide d'un consultant ou de son équipe interne. Le prestataire peut accompagner la rédaction (cadrage gratuit ou payant) mais ne doit pas la rédiger seul : il aurait un biais de simplification. Beaucoup de freelances proposent un atelier de cadrage payant (500 à 2 000 EUR) qui produit un cahier des charges utilisable ensuite pour comparer plusieurs devis."
+  - question: "Que mettre dans la partie technique du cahier des charges ?"
+    answer: "Cinq éléments critiques : technologies souhaitées si vous avez une préférence (sinon laissez le prestataire proposer), contraintes d'hébergement (cloud, serveur dédié, restrictions géographiques RGPD), intégrations tierces (CRM, ERP, paiement, CMS), niveau de performance attendu (Core Web Vitals, temps de chargement), et exigences de sécurité (RGPD, PCI-DSS pour e-commerce, certifications)."
+  - question: "Doit-on imposer une technologie au prestataire ?"
+    answer: "Non, sauf cas spécifiques : intégration à un système existant qui dicte la techno, ou expertise interne sur une stack précise. Sinon, laisser le prestataire choisir la meilleure techno pour votre besoin est plus sain. Imposer WordPress alors que Next.js serait plus adapté à votre projet, c'est limiter dès le départ la qualité du résultat."
+  - question: "Comment chiffrer un projet avec le cahier des charges ?"
+    answer: "Demander à 3 à 5 prestataires (mix freelances + agences) de chiffrer sur la même base. Les écarts seront révélateurs : les prestataires qui sous-chiffrent ont mal compris le projet ou comptent vendre des extras. Ceux qui sur-chiffrent peuvent être trop chers ou inclure plus que demandé. La médiane des devis est généralement le prix réel du marché."
+  - question: "Le cahier des charges doit-il préciser les délais ?"
+    answer: "Oui, mais avec souplesse. Indiquer une date cible et la marge acceptable (ex : 'mise en ligne souhaitée pour le 15 mars 2027, +/- 2 semaines acceptables'). Pour les projets avec deadline fixe (salon, événement), c'est non négociable et doit être en première page. Pour les projets sans deadline impérative, donner des indications permet aux prestataires de proposer un planning réaliste."
+  - question: "Faut-il inclure le budget dans le cahier des charges ?"
+    answer: "Oui, sous forme de fourchette ('budget : 8 000 à 15 000 EUR'). Cela évite de recevoir 5 devis qui n'ont aucun rapport entre eux. Les prestataires sérieux apprécient d'avoir une indication budgétaire pour proposer la meilleure solution dans cette enveloppe. Cacher le budget pour 'voir les vrais prix' donne souvent des résultats moins pertinents."
+---
+
+Élise dirige une PME industrielle à Lyon. En janvier 2026, elle a lancé l'appel d'offres pour refaire son site web. Cinq prestataires consultés, cinq devis reçus, écart entre le moins-disant et le plus-disant : 32 000 EUR contre 4 500 EUR pour le même besoin. Pourquoi un tel gap ? Parce que son brief faisait deux pages, et chaque prestataire a interprété différemment le périmètre. Le moins-disant prévoyait un thème WordPress avec quelques personnalisations. Le plus-disant proposait un développement sur mesure complet avec multilingue et CRM intégré. Élise ne savait même pas qu'il fallait choisir entre ces approches.
+
+Cette situation est universelle. Sans cahier des charges précis, vous comparez des choses incomparables. Avec un bon cahier des charges, vous comparez les mêmes choses et l'écart entre devis devient interprétable.
+
+Dans cet article, je détaille :
+
+- **Pourquoi le cahier des charges est rentable** même pour les petits projets
+- **Les 10 sections indispensables** d'un cahier des charges efficace
+- **Un template complet** à copier et adapter
+- **Les pièges classiques** qui ruinent un projet web
+
+Pas de modèle générique téléchargé sur Google. Une méthode éprouvée sur 12+ projets livrés.
+
+## Pourquoi le cahier des charges change tout
+
+Les chiffres parlent d'eux-mêmes.
+
+| Sans cahier des charges | Avec cahier des charges |
+|---|---|
+| Écart de devis 1x à 10x | Écart de devis 1x à 2x |
+| 30 à 50 pourcents de retard sur planning | 5 à 15 pourcents de retard |
+| 20 à 40 pourcents de surcoût en cours | 0 à 10 pourcents de surcoût |
+| 1 à 2 conflits projet majeurs | Quasi zéro conflit |
+| Risque de site bâclé | Qualité prévisible |
+
+L'investissement (5 à 20 heures de rédaction selon la taille du projet) est rentabilisé dès le premier devis comparé.
+
+## Les 10 sections indispensables
+
+Voici la structure que j'utilise et recommande pour tous les projets web.
+
+### Section 1 : Présentation de l'entreprise et du contexte
+
+**Pourquoi ?** Le prestataire doit comprendre votre activité avant de proposer une solution.
+
+**À inclure :**
+- Description courte de l'activité (3 à 5 phrases)
+- Cible client principale
+- Position concurrentielle (leader, challenger, niche)
+- Contexte du projet (création, refonte, expansion)
+- Date de création de l'entreprise et taille (effectif, CA approximatif)
+
+**Longueur :** 1 page maximum.
+
+### Section 2 : Objectifs business du site
+
+**Pourquoi ?** Sans objectifs business clairs, impossible de mesurer le succès du site.
+
+**À inclure :**
+- Objectif principal : générer des leads ? vendre en ligne ? recruter ? présenter un produit ?
+- Indicateurs de succès chiffrés (ex : 50 leads par mois, 100 commandes par jour, 10 000 visiteurs par mois)
+- Horizon temporel pour atteindre ces objectifs
+
+**Mauvais exemple :** "Avoir une présence en ligne professionnelle"
+
+**Bon exemple :** "Générer 30 demandes de devis qualifiés par mois dans les 6 mois suivant la mise en ligne, avec un coût d'acquisition organique inférieur à 50 EUR par lead."
+
+### Section 3 : Cibles et personas
+
+**Pourquoi ?** Le design, le contenu et l'UX dépendent du public cible.
+
+**À inclure :**
+- 2 à 4 personas principaux avec : nom fictif, âge, profession, problématique, comportement digital
+- Niveau de maturité technique (débutant, expert)
+- Devices principaux (mobile vs desktop)
+- Contexte d'utilisation (au bureau, en mobilité, sur le terrain)
+
+### Section 4 : Arborescence et contenu
+
+**Pourquoi ?** C'est la colonne vertébrale du site. Sans, le prestataire ne peut pas chiffrer précisément.
+
+**À inclure :**
+- Liste exhaustive des pages avec titre provisoire
+- Hiérarchie (pages parents et enfants)
+- Volume de contenu par page (court, moyen, long)
+- Source du contenu (vous le fournissez ? le prestataire rédige ? rédacteur tiers ?)
+- Langues (français seul, multilingue)
+
+**Format :**
+```
+- Accueil
+- Qui sommes-nous
+  - Histoire
+  - Équipe
+- Services
+  - Service 1
+  - Service 2
+- Réalisations
+- Blog (si activé)
+- Contact
+- Mentions légales
+```
+
+### Section 5 : Fonctionnalités
+
+**Pourquoi ?** Chaque fonctionnalité ajoute du temps de développement et donc du budget.
+
+**À inclure :**
+- Liste numérotée des fonctionnalités
+- Pour chaque fonctionnalité : description courte, importance (must-have / nice-to-have), exemple si possible
+
+**Exemples typiques :**
+- Formulaire de contact avec validation et anti-spam
+- Newsletter (Mailchimp, Brevo, autre)
+- Réservation en ligne (Calendly, custom)
+- Espace membre avec authentification
+- Module e-commerce (Shopify, Stripe, custom)
+- Multilingue
+- Recherche interne
+- Filtres avancés
+- Chat en ligne (Crisp, Intercom)
+
+### Section 6 : Design et identité visuelle
+
+**Pourquoi ?** Pour aligner les attentes esthétiques.
+
+**À inclure :**
+- Charte graphique existante (logo, couleurs, typographie) ou à créer
+- 3 à 5 sites d'inspiration (avec ce qui vous plaît dans chacun)
+- 2 à 3 sites repoussoirs (pour éviter les directions non souhaitées)
+- Style général (minimaliste, premium, fun, technique, etc.)
+- Mood board si possible
+
+### Section 7 : Performance et SEO
+
+**Pourquoi ?** La performance technique est non négociable en 2026.
+
+**À inclure :**
+- Score Lighthouse cible (idéalement 90+ sur Performance, Accessibility, Best Practices, SEO)
+- Core Web Vitals au vert (LCP < 2,5s, INP < 200ms, CLS < 0,1)
+- Mots-clés cibles principaux (5 à 20)
+- Existant SEO (positions actuelles si refonte)
+- Stratégie de redirections en cas de refonte
+
+### Section 8 : Contraintes techniques et intégrations
+
+**Pourquoi ?** Les intégrations tierces représentent souvent 20 à 40 pourcents du budget.
+
+**À inclure :**
+- Hébergement souhaité ou imposé
+- CMS imposé ou laissé au prestataire
+- Intégrations tierces (CRM Salesforce/HubSpot, ERP, paiement Stripe/PayPal, calendrier, mailing)
+- API externes à connecter
+- Conformité (RGPD, accessibilité WCAG, secteur réglementé)
+
+### Section 9 : Budget et planning
+
+**Pourquoi ?** Pour aligner réalité et ambitions.
+
+**À inclure :**
+- Fourchette budgétaire ("entre 8 000 et 15 000 EUR")
+- Date de mise en ligne souhaitée et marge acceptable
+- Phases de paiement souhaitées (acompte 30 % / milestone 30 % / livraison 40 % typique)
+- Budget récurrent (maintenance, hébergement, évolutions)
+
+### Section 10 : Critères d'évaluation et processus de sélection
+
+**Pourquoi ?** Pour objectiver le choix du prestataire.
+
+**À inclure :**
+- Critères de sélection (qualité technique, prix, références, méthode, feeling)
+- Pondération de chaque critère
+- Calendrier de réception des offres et de décision
+- Format de réponse attendu (PDF, présentation, atelier)
+
+## Template prêt à l'emploi
+
+Voici un template texte à copier-coller dans Word ou Google Docs. À adapter selon votre projet.
+
+```
+CAHIER DES CHARGES - REFONTE DU SITE WEB
+[Nom de l'entreprise]
+[Date]
+
+1. PRÉSENTATION DE L'ENTREPRISE
+1.1. Activité
+[3 à 5 phrases]
+1.2. Cible client
+[Description de la clientèle principale]
+1.3. Positionnement
+[Leader / Challenger / Niche]
+1.4. Contexte du projet
+[Création / Refonte / Expansion]
+
+2. OBJECTIFS DU SITE
+2.1. Objectif principal
+[Une phrase]
+2.2. Objectifs secondaires
+[Liste]
+2.3. Indicateurs de succès
+[Chiffrés et datés]
+
+3. CIBLES ET PERSONAS
+3.1. Persona 1 : [Nom]
+- Profil : [âge, profession, etc.]
+- Besoin principal : [...]
+- Comportement digital : [...]
+3.2. Persona 2 : [Nom]
+[...]
+
+4. ARBORESCENCE
+[Liste structurée des pages]
+
+5. CONTENU
+5.1. Source du contenu
+[Vous le fournissez / À rédiger par le prestataire / Mixte]
+5.2. Volume estimé
+[Nombre de pages, articles de blog, etc.]
+5.3. Langues
+[Français / Multilingue : préciser]
+
+6. FONCTIONNALITÉS
+6.1. Must-have (critiques)
+- [Fonctionnalité 1]
+- [Fonctionnalité 2]
+6.2. Nice-to-have (bonus)
+- [Fonctionnalité 3]
+
+7. DESIGN ET IDENTITÉ
+7.1. Charte existante
+[Oui/Non, joindre si disponible]
+7.2. Sites d'inspiration
+- [URL 1] : [ce qui plaît]
+- [URL 2] : [ce qui plaît]
+7.3. Sites repoussoirs
+- [URL 1] : [ce qui ne plaît pas]
+7.4. Style général souhaité
+[Minimaliste / Premium / Technique / Fun / etc.]
+
+8. PERFORMANCE ET SEO
+8.1. Cible technique
+- Score Lighthouse : 90+
+- Core Web Vitals : tous au vert
+8.2. SEO
+- Mots-clés cibles : [liste]
+- Positions actuelles : [si refonte]
+- Plan de redirections : [oui/non]
+
+9. CONTRAINTES TECHNIQUES
+9.1. Hébergement
+[Souhaité / Imposé / Laissé au choix]
+9.2. CMS
+[Imposé / Au choix du prestataire]
+9.3. Intégrations
+- [CRM, paiement, etc.]
+9.4. Conformité
+[RGPD, WCAG, secteur]
+
+10. BUDGET ET PLANNING
+10.1. Budget
+[Fourchette]
+10.2. Date de mise en ligne
+[Cible et marge]
+10.3. Phases de paiement
+[30/30/40 ou autre]
+10.4. Budget récurrent
+[Maintenance, évolutions]
+
+11. PROCESSUS DE SÉLECTION
+11.1. Critères et pondération
+- Qualité technique : 30 %
+- Prix : 25 %
+- Méthode : 20 %
+- Références : 15 %
+- Feeling : 10 %
+11.2. Calendrier
+- Réception des offres : [date]
+- Choix du prestataire : [date]
+- Démarrage : [date]
+11.3. Format de réponse
+[PDF / Présentation visio / Atelier de cadrage]
+```
+
+**Vous voulez un cahier des charges spécifique à votre projet ?** Je propose un atelier de cadrage de 3 heures qui produit un document complet utilisable ensuite pour comparer 3 à 5 devis. [Discutons-en gratuitement](https://louisdecaumont.fr/contact).
+
+## Les 5 pièges classiques à éviter
+
+### Piège 1 : trop de fonctionnalités
+
+Lister 50 fonctionnalités dont 35 sont du "ce serait bien" gonfle artificiellement le budget. Limitez aux must-have, ajoutez les nice-to-have en option chiffrée séparément.
+
+### Piège 2 : pas assez de précision sur le contenu
+
+Dire "blog avec articles" est insuffisant. Préciser : combien d'articles à la mise en ligne, qui les rédige, quelle longueur, quelle fréquence après le lancement.
+
+### Piège 3 : sites d'inspiration sans contexte
+
+Mettre "j'aime apple.com" sans préciser ce qu'on aime (le minimalisme ? les animations ? la photo ? les couleurs ?) ne sert à rien. Décortiquer chaque référence.
+
+### Piège 4 : oublier les objectifs business
+
+Un cahier des charges qui se concentre sur le "quoi" (pages, fonctionnalités) sans le "pourquoi" (objectifs business) produit un site joli mais inefficace commercialement.
+
+### Piège 5 : ne pas mettre le budget
+
+Cacher le budget pour "voir les vrais prix" est un mythe. Les bons prestataires ont besoin de connaître l'enveloppe pour proposer la solution la plus adaptée. Sans budget, vous recevrez des devis dispersés et impossible à comparer.
+
+## Et après ?
+
+Une fois le cahier des charges prêt :
+
+1. **Pré-sélection des prestataires** (5 à 8 freelances ou agences)
+2. **Envoi du document** + brief court de 2 à 3 paragraphes par email
+3. **Tour de question/réponse** (les bons prestataires posent des questions, c'est bon signe)
+4. **Réception des devis** (compter 1 à 2 semaines)
+5. **Entretiens** avec 3 finalistes
+6. **Choix et signature**
+
+Pour comprendre comment les délais s'articulent ensuite, lisez [Combien de temps pour créer un site web professionnel](https://louisdecaumont.fr/blog/delai-creation-site-web).
+
+Pour calibrer votre budget par rapport au marché, lisez [Prix d'un site internet en 2026](https://louisdecaumont.fr/blog/combien-coute-un-site-internet).
+
+## Ce que je propose
+
+Pour les clients qui n'ont pas le temps ou l'expertise pour rédiger seuls leur cahier des charges, je propose un atelier de cadrage en 3 séances :
+
+1. Découverte (1h) : votre activité, vos objectifs, votre marché
+2. Atelier collaboratif (2h) : arborescence, fonctionnalités, design
+3. Livraison (1h) : restitution du cahier des charges complet en PDF
+
+Forfait fixe : 1 200 EUR. Le document obtenu est utilisable pour consulter d'autres prestataires si vous le souhaitez. C'est totalement neutre et conçu pour vous aider à choisir le bon partenaire pour votre projet.
+
+Pour les détails de méthode, voir la page [Développeur Web Freelance à Lyon](https://louisdecaumont.fr/developpeur-web-freelance-lyon).
+
+---
+
+**Vous lancez un projet web ?** Atelier de cadrage gratuit de 30 minutes pour évaluer la complexité de votre projet et savoir si un cahier des charges détaillé est nécessaire. [Me contacter](https://louisdecaumont.fr/contact).

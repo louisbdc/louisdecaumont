@@ -1,0 +1,261 @@
+---
+title: "Refonte de site web : la méthode complète pour ne pas se rater en 2026"
+seoTitle: "Refonte de site web : méthode 2026"
+description: "Comment réussir la refonte de votre site web en 2026 : audit, planning, conservation du SEO, choix techniques, étapes et pièges à éviter. Le guide complet."
+date: "2026-05-09"
+keywords: ["refonte site web", "refonte site internet", "comment refaire son site web", "refonte site web méthode", "refonte site internet entreprise"]
+cover: "/photos/blog-refonte-site.jpg"
+coverAlt: "Charpente métallique en construction vue du dessous, illustrant la phase structurelle d'une refonte de site web"
+coverCredit:
+  photographer: "Caterina Beleffi"
+  photographerUrl: "https://unsplash.com/@caterinabeleffi?utm_source=louisdecaumont.fr&utm_medium=referral"
+  photoUrl: "https://unsplash.com/photos/PcMKpP0snfY?utm_source=louisdecaumont.fr&utm_medium=referral"
+  source: "Unsplash"
+faq:
+  - question: "Quand est-il temps de refondre son site web ?"
+    answer: "Cinq signaux clairs : design daté de plus de 4 à 5 ans, performance dégradée (PageSpeed sous 60), trafic organique qui stagne ou baisse depuis 6 mois, fonctionnalités manquantes qui freinent le business, ou maintenance technique excessive (plus de 1 500 EUR par an de bugs et patches). Si vous cumulez 2 ou 3 de ces signaux, la refonte est pertinente."
+  - question: "Combien coûte une refonte de site web ?"
+    answer: "Entre 4 000 et 25 000 EUR selon la taille et la complexité. Site vitrine 5-10 pages : 4 000 à 8 000 EUR. Site vitrine avancé avec blog : 8 000 à 15 000 EUR. E-commerce : 10 000 à 25 000 EUR. SaaS : 15 000 EUR et plus. La refonte est généralement 20 à 40 pourcents plus chère qu'une création from scratch équivalente, à cause du travail de migration et de conservation SEO."
+  - question: "Combien de temps prend une refonte ?"
+    answer: "Entre 6 et 16 semaines selon la taille. Site vitrine 5 pages : 6 à 8 semaines. Site avancé avec blog : 8 à 12 semaines. E-commerce : 12 à 16 semaines. Les délais incluent l'audit, le design, le développement, la migration de contenu, les redirections et les tests. Le facteur ralentissant numéro un : la disponibilité du client pour valider les étapes."
+  - question: "Vais-je perdre mon référencement Google après la refonte ?"
+    answer: "Pas si la refonte est bien préparée. Avec un audit SEO complet, des redirections 301 systématiques pour chaque URL qui change, et la préservation du contenu existant, on conserve 95 pourcents des positions Google. Une chute temporaire de 2 à 6 semaines est normale, le retour au niveau initial se fait en 2 à 3 mois."
+  - question: "Faut-il prévenir les utilisateurs de la refonte ?"
+    answer: "Oui, mais avec mesure. Pour une refonte design avec mêmes URLs, communiquer en interne aux équipes (ventes, support) suffit. Pour une refonte avec changement de structure, prévenir les clients réguliers par newsletter 1 à 2 semaines avant. Pour un changement de marque ou positionnement, communication marketing complète recommandée."
+  - question: "Faut-il garder la même technologie ou changer ?"
+    answer: "C'est l'occasion de remettre à plat. Si votre WordPress traîne 25 plugins et plante régulièrement, passer à Next.js sur Vercel est une libération technique. Si votre site custom mal documenté est lourd à maintenir, basculer sur un CMS moderne fait du sens. Mais ne pas changer 'pour changer' : si la stack actuelle est saine, la garder peut suffire."
+  - question: "Que faire pendant la refonte ? Site offline ?"
+    answer: "Jamais. Le site actuel reste en ligne tant que le nouveau n'est pas prêt. Le développement se fait sur un environnement de staging (sous-domaine type new.exemple.com ou preview Vercel). La bascule se fait via un changement DNS coordonné, instantané pour les utilisateurs. Aucune coupure de service."
+  - question: "Comment éviter les conflits avec le prestataire pendant la refonte ?"
+    answer: "Trois bonnes pratiques : un cahier des charges détaillé avant de signer, un planning avec milestones et délais clairs, des points hebdomadaires de 30 minutes en visio. Les conflits naissent presque toujours d'attentes non formalisées. Une refonte sans cahier des charges aboutit dans 60 pourcents des cas à des désaccords budgétaires."
+  - question: "Quelle est la différence entre refonte et création ?"
+    answer: "Une création part de zéro : pas de site existant, pas de contenu, pas d'historique SEO. Une refonte intègre l'existant : audit du contenu, conservation des URLs, plan de redirections, préservation du référencement. La refonte ajoute des contraintes que la création n'a pas, ce qui justifie son coût supérieur à périmètre fonctionnel équivalent."
+---
+
+Catherine dirige une PME de 25 salariés dans la métallurgie à proximité de Lyon. Son site web date de 2018, un WordPress avec un thème acheté à 80 EUR à l'époque. Sept ans plus tard, le site est lent (PageSpeed 28 sur mobile), le design est démodé, les concurrents sont passés au mobile-first et au moderne. Elle ne sait pas par où commencer la refonte. Une agence lui propose 18 000 EUR. Un freelance lui propose 6 000 EUR. Elle ne comprend pas ce qui justifie l'écart.
+
+La refonte de site web est un investissement majeur, et l'un des plus mal compris. Beaucoup de PME se lancent sans méthode et finissent avec un site neuf qui perd 30 % du trafic SEO ou ne sert pas mieux le business que l'ancien.
+
+Dans cet article, je détaille :
+
+- **Quand refondre** (et quand ne pas refondre)
+- **La méthode en 7 étapes** que j'applique sur tous mes projets de refonte
+- **Comment préserver votre SEO** sans perdre de positions Google
+- **Les pièges classiques** qui ruinent une refonte
+
+Pas de théorie. Du concret, basé sur mes projets de refonte livrés en 2025-2026.
+
+## Quand refondre votre site
+
+Tous les projets de site web ne nécessitent pas une refonte. Voici les signaux qui justifient l'investissement.
+
+### Signal 1 : design daté de plus de 4-5 ans
+
+Le web évolue vite. Un site qui plaît visuellement en 2020 peut avoir l'air daté en 2026 : typographie, espacement, animations, mobile-first. Un design daté projette une image d'amateurisme, indépendamment de la qualité de votre travail.
+
+### Signal 2 : performance dégradée
+
+Score PageSpeed sous 60, temps de chargement supérieur à 4 secondes, Core Web Vitals au rouge. Les conséquences SEO sont directes : Google déclasse activement les pages lentes depuis 2021.
+
+### Signal 3 : trafic SEO en baisse continue
+
+Si votre trafic organique baisse de 20 à 30 % sur 6 à 12 mois sans changement éditorial, c'est un signal que votre site est dépassé techniquement ou structurellement. Refondre permet de repartir sur des bases saines.
+
+### Signal 4 : fonctionnalités manquantes
+
+Vous voulez ajouter un espace client, un module de réservation, un blog actif, du multilingue, et votre architecture actuelle ne le supporte pas. Plutôt que d'empiler des plugins instables, refonder est plus durable.
+
+### Signal 5 : maintenance technique excessive
+
+Vous payez plus de 1 500 EUR par an pour faire fonctionner un site qui devrait être autonome. Plugins qui se contredisent, mises à jour qui cassent l'affichage, failles de sécurité. La refonte sur stack moderne réduit ces coûts à zéro ou presque.
+
+### Quand NE PAS refondre
+
+- Votre site fonctionne et génère du business sans accroc
+- Vous voulez juste rafraîchir le design (réfléchir à un simple "redesign" pour 2 000 à 5 000 EUR)
+- Vous avez moins de 5 000 EUR de budget (mieux vaut optimiser l'existant)
+- Vous êtes en pleine campagne marketing critique (refondre avant un événement majeur est risqué)
+
+## La méthode en 7 étapes
+
+Voici l'enchaînement que j'utilise sur chaque projet de refonte. Sauter une étape, c'est s'exposer à des problèmes coûteux.
+
+### Étape 1 : audit complet de l'existant (3-5 jours)
+
+Avant de toucher à quoi que ce soit, je documente l'existant. Quatre dimensions :
+
+**Audit technique** :
+- Stack actuelle (CMS, plugins, hébergement)
+- Performance (PageSpeed, Core Web Vitals)
+- Sécurité (vulnérabilités connues, certificat SSL, headers)
+- Code source (qualité, propreté, accessibilité)
+
+**Audit SEO** :
+- URLs indexées dans Search Console (export complet)
+- Top pages par trafic et conversions
+- Top mots-clés où le site se classe
+- Backlinks principaux (Ahrefs ou similaire)
+- Erreurs détectées par Google (couverture, mobile, CWV)
+
+**Audit contenu** :
+- Inventaire complet des pages avec qualité éditoriale
+- Pages obsolètes à supprimer
+- Pages à enrichir
+- Manques évidents
+
+**Audit business** :
+- Conversions actuelles (formulaires, ventes, leads)
+- Parcours utilisateurs principaux
+- Goulets d'étranglement identifiés
+- Objectifs business pour le nouveau site
+
+### Étape 2 : cahier des charges et stratégie (1-2 semaines)
+
+L'audit nourrit le cahier des charges. Je rédige avec le client un document complet : objectifs, cible, arborescence cible, fonctionnalités, design direction, contraintes techniques.
+
+Pour aller plus loin sur cette étape, lisez [Cahier des charges site web : la méthode + un template prêt à l'emploi](https://louisdecaumont.fr/blog/cahier-des-charges-site-web).
+
+### Étape 3 : design Figma (2-4 semaines)
+
+Maquettes haute fidélité de chaque page. Validation client à chaque étape. Système de design (couleurs, typo, composants) pour cohérence.
+
+Trois itérations maximum sur le design pour éviter le scope creep. Au-delà, c'est généralement signe que le brief n'était pas clair.
+
+### Étape 4 : développement Next.js (3-6 semaines)
+
+Code propre, typé en TypeScript, avec performance et SEO intégrés dès le départ. Preview Vercel mise à jour à chaque commit pour le client.
+
+Je travaille toujours en branches Git avec pull requests même en solo : ça force la discipline et facilite les rollbacks.
+
+### Étape 5 : migration du contenu (1-2 semaines selon volume)
+
+C'est la phase la plus sous-estimée. Pour un site avec 50 articles de blog, comptez :
+
+- Export du contenu de l'ancien CMS (XML, API, scripts)
+- Conversion au format MDX ou structure cible
+- Optimisation des images (compression, formats modernes)
+- Préservation des métadonnées (auteur, dates, catégories)
+- Nettoyage du HTML hérité (commentaires, scripts trackers obsolètes)
+
+Pour les sites WordPress vers Next.js spécifiquement, voir [Migrer un site WordPress vers Next.js : la méthode complète](https://louisdecaumont.fr/blog/migrer-wordpress-vers-next-js).
+
+### Étape 6 : plan de redirections 301 (1-2 jours)
+
+C'est l'étape la plus critique pour le SEO. Pour chaque URL de l'ancien site :
+
+- L'URL change-t-elle ? Si oui → redirection 301 (permanente) vers la nouvelle URL
+- L'URL disparaît-elle ? Si oui → redirection 301 vers la page parente la plus pertinente
+- L'URL ne change pas ? → vérifier que le contenu est préservé
+
+Le mapping est documenté dans une feuille de calcul, puis implémenté dans `next.config.ts` ou via Vercel Edge Middleware. Test automatique sur chaque ancienne URL avant la mise en ligne.
+
+### Étape 7 : mise en ligne et monitoring (1 jour + 4 semaines)
+
+Le déploiement se fait en trois phases :
+
+1. **Staging** : nouveau site sur sous-domaine type new.exemple.com pendant 1 à 2 semaines pour tests grandeur nature
+2. **Bascule DNS** : changement A record et CNAME vers Vercel, propagation en quelques minutes à quelques heures
+3. **Validation** : test de chaque parcours utilisateur en prod
+
+Dans les 4 semaines suivantes, monitoring quotidien de :
+- Couverture Search Console (pages indexées)
+- Positions sur les requêtes principales
+- Erreurs 404 et 500
+- Core Web Vitals
+
+## Préserver votre SEO : les règles d'or
+
+Une refonte mal préparée fait perdre 30 à 50 % du trafic organique pendant des mois. Voici comment éviter ça.
+
+### Règle 1 : conserver les URLs quand c'est possible
+
+Si l'ancienne page est `/services/audit-strategique`, la nouvelle aussi. Changer pour `/expertise/audit-strategie` sans raison fonctionnelle = perte d'autorité.
+
+### Règle 2 : préserver le contenu existant
+
+Le texte qui vous fait ranker doit rester identique ou enrichi, pas réécrit "pour faire neuf". Vous pouvez réorganiser, ajouter, mais pas supprimer ce qui marche.
+
+### Règle 3 : redirections 301 systématiques
+
+Toute URL qui change ou disparaît doit avoir une redirection 301. Une 404 sur une page qui rankait = perte définitive.
+
+### Règle 4 : conserver la hiérarchie sémantique
+
+Si l'ancien site avait un H1 sur chaque page de blog avec le titre, le nouveau aussi. Changer la structure des titres modifie l'interprétation Google.
+
+### Règle 5 : sitemap et indexation post-mise en ligne
+
+Soumettre le nouveau sitemap immédiatement dans Search Console. Demander l'indexation des 10 pages les plus importantes manuellement. Surveiller la couverture pendant 4 semaines.
+
+**Vous craignez de perdre votre SEO ?** Si votre site génère plus de 50 leads ou ventes par mois, l'audit pré-refonte est non négociable. [Parlons-en gratuitement](https://louisdecaumont.fr/contact).
+
+## Les 7 pièges classiques d'une refonte
+
+### Piège 1 : sous-estimer la migration de contenu
+
+Pour un site éditorial avec 100+ articles, la migration peut prendre autant de temps que le développement initial. À budgéter et planifier explicitement.
+
+### Piège 2 : changer de stack sans nécessité
+
+Passer de WordPress à un CMS exotique parce que c'est "moderne" peut créer plus de problèmes que de bénéfices si l'équipe éditoriale n'est pas formée. Choisir la stack en fonction de qui va l'utiliser au quotidien.
+
+### Piège 3 : oublier les intégrations externes
+
+Votre CRM, votre outil de mailing, votre calendrier de réservation, votre live chat. Tous doivent être reconnectés au nouveau site. À documenter dès l'audit, à tester avant la mise en ligne.
+
+### Piège 4 : négliger le mobile
+
+Si votre nouveau site est superbe sur desktop mais pas optimisé mobile, vous perdez 60 % du trafic. Le design Figma doit inclure les variantes mobile dès le début, pas en option finale.
+
+### Piège 5 : pas de plan de tests
+
+Tester chaque parcours utilisateur avant la mise en ligne : formulaire de contact, achat, inscription newsletter, recherche. Un seul formulaire cassé = leads perdus pendant des semaines avant qu'on ne s'en aperçoive.
+
+### Piège 6 : timing inopportun
+
+Refondre 2 semaines avant un salon professionnel ou Black Friday est risqué. Prévoir une marge de 4 à 6 semaines de stabilité après la mise en ligne avant tout événement critique.
+
+### Piège 7 : pas de stratégie post-launch
+
+Le jour de la mise en ligne n'est pas la fin du projet. Le monitoring SEO et les ajustements UX se font sur 2 à 3 mois. Prévoir un budget et une attention continue.
+
+## Combien ça coûte concrètement
+
+Voici les fourchettes que je pratique sur mes projets.
+
+| Type de refonte | Pages | Délai | Budget |
+|---|---|---|---|
+| Site vitrine simple | 5-10 | 6-8 semaines | 4 000 - 8 000 EUR |
+| Site vitrine avancé + blog | 15-30 | 8-12 semaines | 8 000 - 15 000 EUR |
+| Site éditorial (100+ articles) | 100+ | 12-16 semaines | 12 000 - 25 000 EUR |
+| E-commerce WooCommerce | 50+ | 12-16 semaines | 15 000 - 30 000 EUR |
+| SaaS B2B custom | Variable | 16-24 semaines | 25 000 - 60 000 EUR |
+
+Pour le détail des fourchettes par type de prestataire, lisez [Prix d'un site internet en 2026](https://louisdecaumont.fr/blog/combien-coute-un-site-internet).
+
+## Le retour sur investissement
+
+Une refonte bien menée se rentabilise en 12 à 24 mois sur trois axes :
+
+**Économies de maintenance** : 500 à 2 500 EUR par an de moins en plugins, support, patches sur stack moderne.
+
+**Gains de conversion** : un site rapide convertit 15 à 30 % mieux qu'un site lent. Pour un e-commerce qui génère 100 000 EUR par an, +20 % de conversion = +20 000 EUR.
+
+**Trafic SEO** : un site moderne avec Core Web Vitals au vert ranke mieux. Sur 12 mois post-refonte, le trafic organique progresse typiquement de 30 à 50 %.
+
+## Ce que je propose
+
+Sur mes projets de refonte, j'inclus systématiquement :
+
+- Audit complet pré-refonte (technique, SEO, contenu, business)
+- Design Figma de chaque écran avec validation client
+- Développement Next.js avec performance et SEO intégrés
+- Migration intégrale du contenu sans modification éditoriale
+- Plan de redirections 301 testé URL par URL
+- Mise en ligne et 4 semaines de monitoring SEO
+
+Pour les détails de méthode et les autres services, voir la page [Développeur Web Freelance à Lyon](https://louisdecaumont.fr/developpeur-web-freelance-lyon).
+
+---
+
+**Vous envisagez une refonte ?** Échange gratuit de 30 minutes pour évaluer la pertinence du projet et estimer le budget. [Me contacter](https://louisdecaumont.fr/contact).
