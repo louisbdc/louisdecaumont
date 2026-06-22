@@ -531,23 +531,25 @@ export function DiskoveryPage({
           </p>
         </motion.div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, i) => (
             <motion.div
               key={feature.title}
               {...fadeUp}
               transition={{ ...fadeUp.transition, delay: (i % 3) * 0.08 }}
-              className="rounded-2xl glass neu-shadow p-6"
+              className="flex gap-4"
             >
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-                <feature.icon size={20} />
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-foreground/[0.06] text-foreground">
+                <feature.icon size={18} />
               </span>
-              <h3 className="mt-4 text-lg font-semibold text-foreground">
-                {feature.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {feature.description}
-              </p>
+              <div>
+                <h3 className="text-base font-semibold text-foreground">
+                  {feature.title}
+                </h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                  {feature.description}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>

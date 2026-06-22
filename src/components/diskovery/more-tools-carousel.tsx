@@ -69,7 +69,7 @@ export function MoreToolsCarousel() {
             key={tool.title}
             className="w-[82%] shrink-0 snap-center rounded-2xl glass neu-shadow p-7 sm:w-[58%] lg:w-[31%]"
           >
-            <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-primary-foreground">
+            <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#0a84ff] text-white">
               <tool.icon size={20} />
             </span>
             <h3 className="mt-4 text-lg font-semibold text-foreground">
