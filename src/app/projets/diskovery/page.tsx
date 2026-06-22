@@ -1,5 +1,10 @@
 import type { Metadata } from "next"
 import { DiskoveryPage } from "@/components/pages/diskovery-page"
+import { getDownloads } from "@/lib/download-counter"
+
+// ISR: the page (and the download count baked into it) is served from cache and
+// regenerated at most once an hour. No per-view serverless cost.
+export const revalidate = 3600
 
 const PAGE_URL = "https://louisdecaumont.fr/projets/diskovery"
 const DESCRIPTION =
@@ -54,14 +59,16 @@ const jsonLd = {
   },
 }
 
-export default function Page() {
+export default async function Page() {
+  const downloadCount = await getDownloads()
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <DiskoveryPage />
+      <DiskoveryPage downloadCount={downloadCount} />
     </>
   )
 }

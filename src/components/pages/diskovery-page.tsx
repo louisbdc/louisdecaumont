@@ -22,6 +22,7 @@ import {
   Zap,
 } from "lucide-react"
 import { Breadcrumb } from "@/components/breadcrumb"
+import { DownloadCounter } from "@/components/diskovery/download-counter"
 import { WindowChrome } from "@/components/diskovery/window-chrome"
 import { DiskUsageMockup } from "@/components/diskovery/disk-usage-mockup"
 import { NodeModulesMockup } from "@/components/diskovery/node-modules-mockup"
@@ -130,7 +131,11 @@ const stack = [
   "macOS 14+",
 ]
 
-export function DiskoveryPage() {
+export function DiskoveryPage({
+  downloadCount = null,
+}: {
+  readonly downloadCount?: number | null
+}) {
   return (
     <div className="relative overflow-hidden pt-28">
       {/* ───────────── Hero ───────────── */}
@@ -187,6 +192,7 @@ export function DiskoveryPage() {
             <p className="mt-3 text-xs text-muted-foreground">
               macOS 14+ · Apple Silicon & Intel · ~3 Mo · sans installateur
             </p>
+            <DownloadCounter count={downloadCount} />
           </motion.div>
 
           <motion.div

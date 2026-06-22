@@ -1,6 +1,8 @@
 import { Download } from "lucide-react"
 
 export const DMG_URL = "/downloads/Diskovery.dmg"
+// Routed through the API so each click is counted, then redirected to the file.
+export const DOWNLOAD_URL = "/api/download"
 export const SOURCE_URL = "https://github.com/louisbdc/diskovery"
 
 /*
@@ -28,8 +30,7 @@ export function GithubMark({ className }: { readonly className?: string }) {
 export function DownloadButton({ className }: { readonly className?: string }) {
   return (
     <a
-      href={DMG_URL}
-      download
+      href={DOWNLOAD_URL}
       className={`group inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:shadow-lg ${className ?? ""}`}
     >
       <Download size={17} className="transition-transform duration-300 group-hover:translate-y-0.5" />
