@@ -52,13 +52,17 @@ export async function incrementDownloads(): Promise<number | null> {
 }
 
 /**
- * Read the current total (or null if unavailable).
+ * Read the current total.
+ * Returns null only when the store is NOT configured (nothing to show yet).
+ * When configured but the key does not exist yet, returns 0 so the counter
+ * displays "0 téléchargement".
  * Cached for an hour so the page stays statically served (ISR): the read fires
  * at most once per revalidation window, never per page view.
  */
 export async function getDownloads(): Promise<number | null> {
+  if (!config()) return null
   const result = await command(`get/${KEY}`, { next: { revalidate: 3600 } })
-  if (result == null) return null
+  if (result == null) return 0
   const n = Number(result)
-  return Number.isFinite(n) ? n : null
+  return Number.isFinite(n) ? n : 0
 }

@@ -5,10 +5,11 @@ const nf = new Intl.NumberFormat("fr-FR")
 /*
  * Static download count badge. The value is injected from the server (ISR), so
  * this renders no client fetch and costs nothing per page view.
- * Hidden until there is at least one real download.
+ * Shown as soon as the store is configured, even at 0. Hidden only when the
+ * store is unavailable (count === null).
  */
 export function DownloadCounter({ count }: { readonly count: number | null }) {
-  if (count == null || count <= 0) return null
+  if (count == null) return null
 
   return (
     <p className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
