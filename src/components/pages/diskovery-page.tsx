@@ -6,17 +6,14 @@ import {
   ArrowRight,
   Boxes,
   Check,
-  Copy,
   Cpu,
   Feather,
   FileSearch,
-  GitBranch,
   GitFork,
   Hammer,
   HardDrive,
   Layers,
   Package,
-  PieChart,
   ShieldCheck,
   Sparkles,
   Terminal,
@@ -31,6 +28,7 @@ import { DiskUsageMockup } from "@/components/diskovery/disk-usage-mockup"
 import { NodeModulesMockup } from "@/components/diskovery/node-modules-mockup"
 import { LargeFilesMockup } from "@/components/diskovery/large-files-mockup"
 import { BuildCachesMockup } from "@/components/diskovery/build-caches-mockup"
+import { MoreToolsCarousel } from "@/components/diskovery/more-tools-carousel"
 import {
   AppleMark,
   DownloadButton,
@@ -50,27 +48,6 @@ const stats = [
   { value: "7 outils", label: "Disque, doublons, caches, dépôts Git…" },
   { value: "100 %", label: "Hors-ligne, aucune télémétrie" },
   { value: "Open source", label: "MIT, forkable à volonté" },
-]
-
-const moreTools = [
-  {
-    icon: PieChart,
-    title: "Tableau de bord",
-    description:
-      "Une vue d'ensemble dès l'ouverture : espace utilisé et libre de chaque volume, et répartition de la place par type de fichier.",
-  },
-  {
-    icon: Copy,
-    title: "Doublons",
-    description:
-      "Détecte les fichiers en double, les regroupe et chiffre l'espace récupérable. Vous cochez les copies à supprimer, le reste est conservé.",
-  },
-  {
-    icon: GitBranch,
-    title: "Dépôts Git",
-    description:
-      "Retrouve tous vos dépôts Git sous un dossier, avec leur taille totale. Pratique pour repérer les vieux clones devenus énormes.",
-  },
 ]
 
 const nativePains = [
@@ -539,26 +516,7 @@ export function DiskoveryPage({
           </p>
         </motion.div>
 
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {moreTools.map((tool, i) => (
-            <motion.div
-              key={tool.title}
-              {...fadeUp}
-              transition={{ ...fadeUp.transition, delay: i * 0.08 }}
-              className="rounded-2xl glass neu-shadow p-6"
-            >
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-                <tool.icon size={20} />
-              </span>
-              <h3 className="mt-4 text-lg font-semibold text-foreground">
-                {tool.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {tool.description}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+        <MoreToolsCarousel />
       </section>
 
       {/* ───────────── Features grid ───────────── */}
