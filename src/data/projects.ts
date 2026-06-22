@@ -9,6 +9,78 @@ export interface Project {
 
 export const projects: readonly Project[] = [
   {
+    title: "Atelier KADOR",
+    description:
+      "Site vitrine pour un atelier de joaillerie à Strasbourg. Création sur-mesure, bagues de fiançailles et showroom diamants, dans une mise en scène élégante.",
+    url: "https://atelier-kador.stakon.workers.dev/",
+    screenshot: "/screenshots/atelier-kador.webp",
+    tags: ["Next.js", "Vitrine", "Joaillerie", "Luxe"],
+    category: "vitrine",
+  },
+  {
+    title: "Style Unique",
+    description:
+      "Landing page pour une conseillère en image et personal shopper à Paris et Genève. Mise en avant des transformations et prise de rendez-vous.",
+    url: "https://style-unique-landing.stakon.workers.dev/",
+    screenshot: "/screenshots/style-unique-landing.webp",
+    tags: ["Next.js", "Vitrine", "Mode", "Conseil"],
+    category: "vitrine",
+  },
+  {
+    title: "Chaud Mirette Productions",
+    description:
+      "Site pour une agence de production audiovisuelle à Lille. Vidéos corporate et événementielles, avec un portfolio de réalisations.",
+    url: "https://chaudmiretteprod.stakon.workers.dev/",
+    screenshot: "/screenshots/chaudmiretteprod.webp",
+    tags: ["Next.js", "Vitrine", "Audiovisuel", "Portfolio"],
+    category: "vitrine",
+  },
+  {
+    title: "Webmarketing Lille",
+    description:
+      "Site pour une agence de communication digitale à Lille. SEO, réseaux sociaux et création de sites performants pour les TPE et PME.",
+    url: "https://webmarketing-lille.stakon.workers.dev/",
+    screenshot: "/screenshots/webmarketing-lille.webp",
+    tags: ["Next.js", "Vitrine", "Marketing", "SEO"],
+    category: "vitrine",
+  },
+  {
+    title: "LaboXV",
+    description:
+      "Site pour un réseau de laboratoires de biologie médicale en Île-de-France. Prise de rendez-vous, résultats en ligne et cartes interactives.",
+    url: "https://labo-xv.stakon.workers.dev/",
+    screenshot: "/screenshots/labo-xv.webp",
+    tags: ["Next.js", "Santé", "Laboratoire", "RDV"],
+    category: "nutrition",
+  },
+  {
+    title: "Sport Santé Prévention",
+    description:
+      "Site pour un cabinet pluridisciplinaire (kinésithérapeutes, psychologues, ergothérapeutes). Prévention et accompagnement, entreprises comme particuliers.",
+    url: "https://sportsanteprevention.stakon.workers.dev/",
+    screenshot: "/screenshots/sportsanteprevention.webp",
+    tags: ["Next.js", "Santé", "Vitrine", "Prévention"],
+    category: "nutrition",
+  },
+  {
+    title: "Laetitia Mathis · Kinésiologie",
+    description:
+      "Site vitrine pour une kinésiologue près de Strasbourg. Présentation de l'approche, des séances et réservation en ligne.",
+    url: "https://laetitiamathis-kinesiologie.stakon.workers.dev/",
+    screenshot: "/screenshots/laetitiamathis-kinesiologie.webp",
+    tags: ["Next.js", "Santé", "Bien-être", "RDV"],
+    category: "nutrition",
+  },
+  {
+    title: "Archibald Ouramdane",
+    description:
+      "Site pour un praticien en thérapie manuelle des fascias à Marseille. Présentation des soins et réservation en ligne en une minute.",
+    url: "https://archibald-ouramdane.stakon.workers.dev/",
+    screenshot: "/screenshots/archibald-ouramdane.webp",
+    tags: ["Next.js", "Santé", "Thérapie", "RDV"],
+    category: "nutrition",
+  },
+  {
     title: "Winter Mate",
     description:
       "Landing page pour une app mobile de ski. Analyse vidéo, challenges entre riders et communauté. 12 500+ utilisateurs.",
