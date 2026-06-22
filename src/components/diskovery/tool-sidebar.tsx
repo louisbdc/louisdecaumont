@@ -1,12 +1,23 @@
-import { FileSearch, HardDrive, Hammer, Package } from "lucide-react"
+import {
+  Copy,
+  FileSearch,
+  GitBranch,
+  HardDrive,
+  Hammer,
+  Package,
+  PieChart,
+} from "lucide-react"
 
-type ToolId = "disk" | "node" | "large" | "caches"
+type ToolId = "dashboard" | "disk" | "node" | "large" | "duplicates" | "caches" | "git"
 
 const tools: ReadonlyArray<{ id: ToolId; label: string; icon: typeof HardDrive }> = [
+  { id: "dashboard", label: "Tableau de bord", icon: PieChart },
   { id: "disk", label: "Espace disque", icon: HardDrive },
   { id: "node", label: "node_modules", icon: Package },
   { id: "large", label: "Gros fichiers", icon: FileSearch },
+  { id: "duplicates", label: "Doublons", icon: Copy },
   { id: "caches", label: "Caches de build", icon: Hammer },
+  { id: "git", label: "Dépôts Git", icon: GitBranch },
 ]
 
 /*

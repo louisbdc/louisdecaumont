@@ -6,14 +6,17 @@ import {
   ArrowRight,
   Boxes,
   Check,
+  Copy,
   Cpu,
   Feather,
   FileSearch,
+  GitBranch,
   GitFork,
   Hammer,
   HardDrive,
   Layers,
   Package,
+  PieChart,
   ShieldCheck,
   Sparkles,
   Terminal,
@@ -44,9 +47,30 @@ const fadeUp = {
 
 const stats = [
   { value: "~3 Mo", label: "App native, zéro Electron" },
-  { value: "4 outils", label: "Disque, fichiers, caches, node_modules" },
+  { value: "7 outils", label: "Disque, doublons, caches, dépôts Git…" },
   { value: "100 %", label: "Hors-ligne, aucune télémétrie" },
   { value: "Open source", label: "MIT, forkable à volonté" },
+]
+
+const moreTools = [
+  {
+    icon: PieChart,
+    title: "Tableau de bord",
+    description:
+      "Une vue d'ensemble dès l'ouverture : espace utilisé et libre de chaque volume, et répartition de la place par type de fichier.",
+  },
+  {
+    icon: Copy,
+    title: "Doublons",
+    description:
+      "Détecte les fichiers en double, les regroupe et chiffre l'espace récupérable. Vous cochez les copies à supprimer, le reste est conservé.",
+  },
+  {
+    icon: GitBranch,
+    title: "Dépôts Git",
+    description:
+      "Retrouve tous vos dépôts Git sous un dossier, avec leur taille totale. Pratique pour repérer les vieux clones devenus énormes.",
+  },
 ]
 
 const nativePains = [
@@ -504,6 +528,39 @@ export function DiskoveryPage({
         </div>
       </section>
 
+      {/* ───────────── More tools ───────────── */}
+      <section className="mx-auto mt-32 max-w-7xl px-6">
+        <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            Et trois outils de plus
+          </h2>
+          <p className="mt-4 text-muted-foreground">
+            Le hub s'est étoffé : sept outils au total, toujours dans la même app.
+          </p>
+        </motion.div>
+
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
+          {moreTools.map((tool, i) => (
+            <motion.div
+              key={tool.title}
+              {...fadeUp}
+              transition={{ ...fadeUp.transition, delay: i * 0.08 }}
+              className="rounded-2xl glass neu-shadow p-6"
+            >
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-primary-foreground">
+                <tool.icon size={20} />
+              </span>
+              <h3 className="mt-4 text-lg font-semibold text-foreground">
+                {tool.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {tool.description}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       {/* ───────────── Features grid ───────────── */}
       <section className="mx-auto mt-32 max-w-7xl px-6">
         <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
@@ -574,10 +631,13 @@ export function DiskoveryPage({
             <pre className="overflow-x-auto p-5 text-white/90">
               <code>{`enum ToolRegistry {
   static let all: [ToolDescriptor] = [
+    DashboardTool.descriptor,
     DiskUsageTool.descriptor,
     NodeModulesTool.descriptor,
     LargeFilesTool.descriptor,
+    DuplicatesTool.descriptor,
     BuildCachesTool.descriptor,
+    GitReposTool.descriptor,
     `}<span className="text-emerald-400">{`// ← votre prochain outil ici`}</span>{`
   ]
 }`}</code>

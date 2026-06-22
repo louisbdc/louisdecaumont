@@ -8,7 +8,7 @@ export const revalidate = 3600
 
 const PAGE_URL = "https://louisdecaumont.fr/projets/diskovery"
 const DESCRIPTION =
-  "Diskovery, l'app macOS native et open source pour analyser votre espace disque. 4 outils : exploration des dossiers, gros fichiers, node_modules et caches de build à nettoyer. Gratuit, pensé pour les développeurs."
+  "Diskovery, l'app macOS native et open source pour analyser votre espace disque. 7 outils : tableau de bord, gros fichiers, node_modules, doublons, caches de build et dépôts Git à nettoyer. Gratuit, pensé pour les développeurs."
 
 export const metadata: Metadata = {
   title: "Diskovery — Analyseur d'espace disque macOS pour développeurs",
