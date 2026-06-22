@@ -14,11 +14,30 @@
 const KEY = "diskovery_downloads"
 
 function config(): { url: string; token: string } | null {
-  const url = process.env.UPSTASH_REDIS_REST_URL ?? process.env.KV_REST_API_URL
-  const token =
+  // Known names first (default Upstash / Vercel KV integrations).
+  const directUrl =
+    process.env.UPSTASH_REDIS_REST_URL ?? process.env.KV_REST_API_URL
+  const directToken =
     process.env.UPSTASH_REDIS_REST_TOKEN ?? process.env.KV_REST_API_TOKEN
-  if (!url || !token) return null
-  return { url, token }
+  if (directUrl && directToken) return { url: directUrl, token: directToken }
+
+  // Fallback: the Vercel integration may apply a custom prefix (e.g. STORAGE_*),
+  // so detect the REST endpoint and write token whatever they are named.
+  // The URL must be the HTTPS REST endpoint (not the redis:// TCP URL), and the
+  // token must be the write token (exclude read-only).
+  let url: string | undefined
+  let token: string | undefined
+  for (const [key, value] of Object.entries(process.env)) {
+    if (!value) continue
+    if (!url && /(REST_API_URL|REDIS_REST_URL)$/.test(key) && value.startsWith("https://")) {
+      url = value
+    }
+    if (!token && /(REST_API_TOKEN|REDIS_REST_TOKEN)$/.test(key) && !/READ_ONLY/.test(key)) {
+      token = value
+    }
+  }
+  if (url && token) return { url, token }
+  return null
 }
 
 async function command(
