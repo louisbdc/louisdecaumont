@@ -1,5 +1,6 @@
+import { revalidateTag } from "next/cache"
 import { NextResponse, type NextRequest } from "next/server"
-import { incrementDownloads } from "@/lib/download-counter"
+import { DOWNLOADS_TAG, incrementDownloads } from "@/lib/download-counter"
 
 export const dynamic = "force-dynamic"
 
@@ -16,7 +17,9 @@ const BOT_UA = /bot|crawler|spider|crawling|preview|facebookexternalhit|slurp|bi
 export async function GET(request: NextRequest) {
   const ua = request.headers.get("user-agent") ?? ""
   if (!BOT_UA.test(ua)) {
-    await incrementDownloads()
+    const total = await incrementDownloads()
+    // Bust the cached count so the badge reflects this download on next view.
+    if (total !== null) revalidateTag(DOWNLOADS_TAG)
   }
   return NextResponse.redirect(new URL(FILE_PATH, request.url), { status: 302 })
 }

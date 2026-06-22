@@ -40,9 +40,11 @@ function config(): { url: string; token: string } | null {
   return null
 }
 
+export const DOWNLOADS_TAG = "downloads"
+
 async function command(
   path: string,
-  init: RequestInit & { next?: { revalidate: number } }
+  init: RequestInit & { next?: { revalidate?: number; tags?: string[] } }
 ): Promise<unknown | null> {
   const cfg = config()
   if (!cfg) return null
@@ -80,7 +82,9 @@ export async function incrementDownloads(): Promise<number | null> {
  */
 export async function getDownloads(): Promise<number | null> {
   if (!config()) return null
-  const result = await command(`get/${KEY}`, { next: { revalidate: 3600 } })
+  const result = await command(`get/${KEY}`, {
+    next: { revalidate: 3600, tags: [DOWNLOADS_TAG] },
+  })
   if (result == null) return 0
   const n = Number(result)
   return Number.isFinite(n) ? n : 0
