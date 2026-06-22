@@ -7,10 +7,11 @@ import {
   useRef,
   type MouseEvent as ReactMouseEvent,
 } from "react"
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { motion, useScroll, useMotionValueEvent } from "framer-motion"
-import { Menu, X } from "lucide-react"
+import { AnimatePresence, motion, useScroll, useMotionValueEvent } from "framer-motion"
+import { ChevronDown, Menu, X } from "lucide-react"
 
 const navLinks = [
   { href: "/developpeur-web-freelance-lyon", label: "Freelance Lyon" },
@@ -18,6 +19,16 @@ const navLinks = [
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ]
+
+const projects = [
+  {
+    href: "/projets/diskovery",
+    label: "Diskovery",
+    description: "Analyseur d'espace disque pour macOS",
+    image: "/diskovery-icon.png",
+    badge: "Gratuit",
+  },
+] as const
 
 /*
  * Magnetic link — the text subtly follows the cursor on hover.
@@ -65,6 +76,108 @@ function MagneticLink({
         {label}
       </motion.span>
     </Link>
+  )
+}
+
+/*
+ * Projects dropdown — opens on hover (desktop), closes on leave or Escape.
+ */
+function ProjectsDropdown({ isActive }: { readonly isActive: boolean }) {
+  const [open, setOpen] = useState(false)
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const cancelClose = useCallback(() => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current)
+      closeTimer.current = null
+    }
+  }, [])
+
+  const scheduleClose = useCallback(() => {
+    cancelClose()
+    closeTimer.current = setTimeout(() => setOpen(false), 120)
+  }, [cancelClose])
+
+  useEffect(() => {
+    if (!open) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false)
+    }
+    document.addEventListener("keydown", handleKeyDown)
+    return () => document.removeEventListener("keydown", handleKeyDown)
+  }, [open])
+
+  useEffect(() => () => cancelClose(), [cancelClose])
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => {
+        cancelClose()
+        setOpen(true)
+      }}
+      onMouseLeave={scheduleClose}
+    >
+      <button
+        type="button"
+        onClick={() => setOpen((prev) => !prev)}
+        aria-expanded={open}
+        aria-haspopup="menu"
+        className={`flex cursor-pointer items-center gap-1 rounded-xl px-4 py-2 text-sm font-medium transition-colors duration-200 hover:text-foreground ${
+          isActive || open ? "text-foreground" : "text-muted-foreground"
+        }`}
+      >
+        Projets
+        <motion.span
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+          className="inline-flex"
+        >
+          <ChevronDown size={14} />
+        </motion.span>
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            role="menu"
+            initial={{ opacity: 0, y: 8, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.97 }}
+            transition={{ duration: 0.18, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="absolute right-0 top-full z-50 mt-2 w-72 origin-top-right rounded-2xl border border-border bg-background/95 p-2 shadow-xl backdrop-blur-xl"
+          >
+            {projects.map((project) => (
+              <Link
+                key={project.href}
+                href={project.href}
+                role="menuitem"
+                className="group flex items-start gap-3 rounded-xl p-3 transition-colors duration-200 hover:bg-black/5"
+              >
+                <Image
+                  src={project.image}
+                  alt=""
+                  width={36}
+                  height={36}
+                  className="mt-0.5 h-9 w-9 shrink-0 rounded-lg"
+                />
+                <span className="flex flex-col">
+                  <span className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                    {project.label}
+                    <span className="rounded-md bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-600">
+                      {project.badge}
+                    </span>
+                  </span>
+                  <span className="mt-0.5 text-xs leading-snug text-muted-foreground">
+                    {project.description}
+                  </span>
+                </span>
+              </Link>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   )
 }
 
@@ -195,6 +308,15 @@ export function Header() {
               />
             </motion.li>
           ))}
+
+          <motion.li
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.2 + navLinks.length * 0.08 }}
+            data-active={pathname.startsWith("/projets")}
+          >
+            <ProjectsDropdown isActive={pathname.startsWith("/projets")} />
+          </motion.li>
         </ul>
 
         {/* Mobile hamburger */}
@@ -248,6 +370,36 @@ export function Header() {
                 </Link>
               </li>
             ))}
+
+            <li className="mt-1 border-t border-border pt-2">
+              <p className="px-3 pb-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground/70">
+                Projets
+              </p>
+              {projects.map((project) => (
+                <Link
+                  key={project.href}
+                  href={project.href}
+                  onClick={closeMenu}
+                  className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-200 hover:bg-black/5"
+                >
+                  <Image
+                    src={project.image}
+                    alt=""
+                    width={32}
+                    height={32}
+                    className="h-8 w-8 shrink-0 rounded-lg"
+                  />
+                  <span className="flex flex-col">
+                    <span className="text-sm font-medium text-foreground">
+                      {project.label}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      {project.description}
+                    </span>
+                  </span>
+                </Link>
+              ))}
+            </li>
           </ul>
         </motion.div>
       )}

@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/a-propos`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/blog`, lastModified: latestPostDate, changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE_URL}/contact`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE_URL}/projets/diskovery`, lastModified: new Date("2026-06-22"), changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/mentions-legales`, lastModified: STATIC_LAST_MOD, changeFrequency: "yearly", priority: 0.3 },
   ]
 
