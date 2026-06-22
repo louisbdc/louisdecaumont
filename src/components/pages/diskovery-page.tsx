@@ -509,10 +509,10 @@ export function DiskoveryPage({
       <section className="mx-auto mt-32 max-w-7xl px-6">
         <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Et trois outils de plus
+            Et trois autres outils
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Le hub s'est étoffé : sept outils au total, toujours dans la même app.
+            Sept outils en tout, réunis dans une seule app native.
           </p>
         </motion.div>
 
