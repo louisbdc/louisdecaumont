@@ -18,8 +18,9 @@ export async function GET(request: NextRequest) {
   const ua = request.headers.get("user-agent") ?? ""
   if (!BOT_UA.test(ua)) {
     const total = await incrementDownloads()
-    // Bust the cached count so the badge reflects this download on next view.
-    if (total !== null) revalidateTag(DOWNLOADS_TAG)
+    // Mark the cached count stale so the badge reflects this download on the
+    // next view (stale-while-revalidate). Only when the store actually counted.
+    if (total !== null) revalidateTag(DOWNLOADS_TAG, "max")
   }
   return NextResponse.redirect(new URL(FILE_PATH, request.url), { status: 302 })
 }
