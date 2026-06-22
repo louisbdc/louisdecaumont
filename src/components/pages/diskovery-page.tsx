@@ -110,9 +110,9 @@ const steps = [
       "Glissez Diskovery dans votre dossier Applications. Aucune installation, aucun compte requis.",
   },
   {
-    title: "Autorisez la première ouverture",
+    title: "Ouvrez Diskovery",
     description:
-      "Diskovery n'est pas notarisée par Apple : macOS affiche un avertissement au premier lancement. Autorisez-la une fois (voir ci-dessous), puis les lancements suivants se font normalement.",
+      "Double-cliquez pour lancer l'app. Signée et notarisée par Apple, elle s'ouvre directement, sans avertissement.",
   },
   {
     title: "Choisissez un dossier",
@@ -611,57 +611,6 @@ export function DiskoveryPage() {
             </motion.div>
           ))}
         </div>
-
-        {/* Open note */}
-        <motion.div
-          {...fadeUp}
-          transition={{ ...fadeUp.transition, delay: 0.15 }}
-          className="mx-auto mt-8 max-w-3xl rounded-2xl border border-border bg-background p-6 sm:p-7"
-        >
-          <div className="flex items-center gap-2.5">
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-amber-500/10 text-amber-600">
-              <ShieldCheck size={17} />
-            </span>
-            <h3 className="text-base font-semibold text-foreground">
-              Première ouverture : autoriser l'app
-            </h3>
-          </div>
-          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            Diskovery n'est pas notarisée par Apple, donc macOS affiche un
-            avertissement au premier lancement. C'est normal et sans danger.
-            Autorisez-la une fois :
-          </p>
-          <ul className="mt-4 space-y-2.5 text-sm text-foreground/80">
-            <li className="flex items-start gap-3">
-              <ArrowRight size={16} className="mt-0.5 shrink-0 text-muted-foreground" />
-              <span>
-                <strong className="font-semibold text-foreground">
-                  macOS 15 (Sequoia) et +
-                </strong>{" "}
-                : double-cliquez sur Diskovery, puis ouvrez{" "}
-                <em>Réglages Système → Confidentialité et sécurité</em> et
-                cliquez sur <strong className="font-semibold text-foreground">« Ouvrir quand même »</strong>.
-              </span>
-            </li>
-            <li className="flex items-start gap-3">
-              <ArrowRight size={16} className="mt-0.5 shrink-0 text-muted-foreground" />
-              <span>
-                <strong className="font-semibold text-foreground">
-                  macOS 14 et avant
-                </strong>{" "}
-                : <strong className="font-semibold text-foreground">clic droit</strong> sur
-                Diskovery → <strong className="font-semibold text-foreground">Ouvrir</strong> → <strong className="font-semibold text-foreground">Ouvrir</strong>.
-              </span>
-            </li>
-          </ul>
-          <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-            Les lancements suivants se font normalement. En dernier recours, dans
-            le Terminal :
-          </p>
-          <pre className="mt-2 overflow-x-auto rounded-xl bg-primary p-3.5 text-xs text-primary-foreground">
-            <code>xattr -dr com.apple.quarantine /Applications/Diskovery.app</code>
-          </pre>
-        </motion.div>
       </section>
 
       {/* ───────────── Tech stack ───────────── */}
